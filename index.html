@@ -1516,13 +1516,13 @@
       <div class="brand-logo" style="margin: 0 auto 14px; width: 52px; height: 52px;">
         <i class="fa-solid fa-shield-halved gold-icon" style="font-size: 24px;"></i>
       </div>
-      <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">OSSIAN PRO Banking Lock</h3>
+      <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">OSSIAN PRO Advance Lock</h3>
       <p style="font-size: 12.5px; color: #94a3b8; margin-bottom: 14px;" id="pinLockSub">
-        Enter or paste your permanent 4-digit Banking Security PIN to open OSSIAN PRO.
+        Enter your login 4-digit Security PIN to open OSSIAN PRO.
       </p>
       <div class="lock-timer-box" id="pinLockTimerBox" style="text-align:left;">
         <i class="fa-solid fa-clock"></i>
-        <span id="pinLockTimerText">3 wrong PIN attempts! Please wait 120 seconds.</span>
+        <span id="pinLockTimerText"> Please wait 120 seconds.</span>
       </div>
       <form id="pinUnlockForm">
         <div class="form-group">
@@ -1553,11 +1553,11 @@
         </span>
         <div>
           <h3 style="font-size:17px; font-weight:800;">OSSIAN PRO Customer Service</h3>
-          <div style="font-size:12px; color:var(--text-muted);">24/7 Banking Lock &amp; Account Support</div>
+          <div style="font-size:12px; color:var(--text-muted);">24/7 Advance Lock &amp; Account Support</div>
         </div>
       </div>
       <div class="sheet-desc" style="margin-bottom:14px;">
-        Forgot your 4-digit Banking Security PIN or facing a lock issue? Send a support ticket to OSSIAN PRO Customer Service below.
+        Forgot your 4-digit Advance Security PIN or facing a lock issue? Send a support ticket to OSSIAN PRO Customer Service below.
       </div>
       <form id="customerServiceForm">
         <div class="form-group">
@@ -1566,7 +1566,7 @@
         </div>
         <div class="form-group">
           <label>Describe Your Issue</label>
-          <textarea id="csMessageInput" rows="3" placeholder="e.g. Need assistance with Banking Lock PIN..." required></textarea>
+          <textarea id="csMessageInput" rows="3" placeholder="Need assistance with Banking Lock PIN..." required></textarea>
         </div>
         <div style="display:flex; gap:8px;">
           <button type="submit" class="btn btn-primary" id="csSubmitBtn">
@@ -1616,14 +1616,14 @@
       <section id="page-home" class="page active">
         <div class="hero-card">
           <h2><i class="fa-solid fa-crown gold-icon"></i> Welcome to OSSIAN PRO</h2>
-          <p>Tap any app below to view its details and launch the website with banking-grade protection.</p>
+          <p>Tap any app below to view its details and launch the website with Advance-grade protection.</p>
         </div>
 
         <div id="errorBanner" class="error-banner"></div>
 
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass gold-icon search-icon"></i>
-          <input type="text" id="homeSearchInput" placeholder="Search apps on Home..." autocomplete="off" />
+          <input type="text" id="homeSearchInput" placeholder="Searching..." autocomplete="off" />
           <div id="homeSuggestions" class="search-suggestions"></div>
         </div>
 
@@ -1850,7 +1850,7 @@
               <span class="gold-badge-icon"><i class="fa-solid fa-gear gold-icon"></i></span>
               <div>
                 <div class="setting-title">Settings</div>
-                <div class="setting-sub">Banking Security, Refresh, Invite, Applications &amp; Policies</div>
+                <div class="setting-sub">Advance Security, Refresh, Invite, Applications &amp; Policies</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
@@ -1864,10 +1864,10 @@
               <span class="gold-badge-icon"><i class="fa-solid fa-download gold-icon"></i></span>
               <div>
                 <div class="setting-title">Direct Download</div>
-                <div class="setting-sub" id="directDownloadSub">Download Mobile App (PWA • Auto-Updates)</div>
+                <div class="setting-sub" id="directDownloadSub">Download Mobile App & Auto-Updates</div>
               </div>
             </div>
-            <span class="category-pill" id="directDownloadBadge">PWA</span>
+            <span class="category-pill" id="directDownloadBadge">PRO</span>
           </div>
         </div>
 
@@ -1902,7 +1902,7 @@
           <form id="loginForm">
             <div class="lock-timer-box" id="loginLockBox">
               <i class="fa-solid fa-clock"></i>
-              <span id="loginLockText">Too many wrong attempts! Try again in 60s.</span>
+              <span id="loginLockText"> Try again in 60s.</span>
             </div>
             <div class="form-group">
               <label>Email</label>
@@ -1939,8 +1939,8 @@
               <input type="password" id="regConfirmPassword" placeholder="Re-enter password" required />
             </div>
             <div class="form-group">
-              <label>5. Invite Code (Optional)</label>
-              <input type="text" id="regInviteCode" placeholder="Enter invite code (optional)" />
+              <label>5. Invite Code </label>
+              <input type="text" id="regInviteCode" placeholder="Enter invite code " />
             </div>
             <button type="submit" class="btn btn-primary" id="registerSubmitBtn" style="margin-top:6px;">
               <i class="fa-solid fa-user-plus"></i> Register
@@ -1951,7 +1951,7 @@
           <div id="qrLoginSection" style="display:none;">
             <div class="lock-timer-box" id="qrLockBox">
               <i class="fa-solid fa-clock"></i>
-              <span id="qrLockText">3 wrong QR attempts! Please wait 120 seconds.</span>
+              <span id="qrLockText">Please wait 120 seconds.</span>
             </div>
 
             <div class="qr-scanner-box">
@@ -2059,7 +2059,7 @@
         <div class="panel-card">
           <div class="lock-timer-box" id="promoLockBox">
             <i class="fa-solid fa-clock"></i>
-            <span id="promoLockText">Too many wrong promo codes! Try again in 60s.</span>
+            <span id="promoLockText">Try again in 60s.</span>
           </div>
           <form id="promoForm">
             <div class="form-group">
@@ -2067,7 +2067,7 @@
               <input type="text" id="promoCodeInput" placeholder="Paste your promo code here" required />
             </div>
             <button type="submit" class="btn btn-primary" id="promoApplyBtn">
-              <i class="fa-solid fa-check-circle"></i> Apply Promo Code
+              <i class="fa-solid fa-check-circle"></i> Apply 
             </button>
           </form>
         </div>
@@ -2094,7 +2094,7 @@
 
         <div class="panel-card">
           <div style="font-size:13px; font-weight:700; margin-bottom:10px;">
-            1. Select Feedback Option (6 Options)
+            1. Select Feedback Option 
           </div>
           <div class="feedback-options-grid" id="feedbackOptionsGrid">
             <div class="feedback-option-card" data-opt="App Bug / Error" onclick="selectFeedbackOption(this, 'App Bug / Error')">
@@ -2125,7 +2125,7 @@
 
           <form id="feedbackForm">
             <div class="form-group">
-              <label>2. Write Your Feedback (50 to 600 Words)</label>
+              <label>2. Write Your Feedback min 50 to mex 600 Words</label>
               <textarea id="feedbackText" rows="7" placeholder="Write between 50 and 600 words. To unlock Submit Application, select 'App Upload Request' and describe your website/app request here..." required></textarea>
               <div class="word-counter-row">
                 <span id="feedbackSelectedLabel">Selected: None</span>
@@ -2228,7 +2228,7 @@
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-vault gold-icon"></i></span>
               <div>
-                <div class="setting-title">Banking Security</div>
+                <div class="setting-title">Advance Security</div>
                 <div class="setting-sub" id="bankingSecurityRowSub">Blackout Shield Permanently ON • PIN Not Set</div>
               </div>
             </div>
@@ -2353,7 +2353,7 @@
               <i class="fa-solid fa-arrow-left gold-icon"></i>
             </button>
             <span class="gold-badge-icon"><i class="fa-solid fa-vault gold-icon"></i></span>
-            <div class="subpage-title">Banking Security</div>
+            <div class="subpage-title">High Security</div>
           </div>
         </div>
 
@@ -2382,22 +2382,22 @@
 
         <div class="panel-card">
           <div style="font-size:14px; font-weight:800; margin-bottom:10px;">
-            <i class="fa-solid fa-key gold-icon"></i> 4-Digit Banking Security PIN
+            <i class="fa-solid fa-key gold-icon"></i> 4-Digit Advance Security PIN
           </div>
           <p style="font-size:12.5px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
-            Once saved, your 4-digit Banking Security PIN is <strong>permanently active</strong>. Entering or pasting this saved PIN is required to open OSSIAN PRO and every website or app until you delete the PIN.
+            Once saved, your 4-digit Advance Security PIN is <strong>permanently active</strong>. Entering or pasting this saved PIN is required to open OSSIAN PRO and every website or app until you delete the PIN.
           </p>
           <form id="setPinForm">
             <div class="form-group">
-              <label>New 4-Digit Banking PIN</label>
-              <input type="password" id="newBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter 4 digits (e.g. 4829)" required />
+              <label>New 4-Digit advance PIN</label>
+              <input type="password" id="newBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter 4 digits..." required />
             </div>
             <div class="form-group">
               <label>Confirm 4-Digit Banking PIN</label>
-              <input type="password" id="confirmBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Re-enter 4 digits" required />
+              <input type="password" id="confirmBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Re-enter 4 digits..." required />
             </div>
             <button type="submit" class="btn btn-primary">
-              <i class="fa-solid fa-floppy-disk"></i> Save PIN Permanently
+              <i class="fa-solid fa-floppy-disk"></i> Save 
             </button>
           </form>
           <div id="pinExtraActions" style="display:none; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
@@ -2538,11 +2538,11 @@
           <form id="submitAppForm">
             <div class="form-group">
               <label>1. App / Website Name</label>
-              <input type="text" id="subAppName" placeholder="e.g. ChatGPT" required />
+              <input type="text" id="subAppName" placeholder=" ChatGPT" required />
             </div>
             <div class="form-group">
               <label>2. Link</label>
-              <input type="text" id="subAppLink" placeholder="e.g. https://example.com" required />
+              <input type="text" id="subAppLink" placeholder=" https://example.com" required />
             </div>
             <div class="form-group">
               <label>3. Description</label>
@@ -2645,7 +2645,7 @@
 
         <div class="panel-card" style="padding:12px 14px; margin-bottom:14px;">
           <p style="font-size:12px; color:var(--text-muted); line-height:1.5;">
-            <i class="fa-solid fa-shield-halved gold-icon"></i> Submitted websites remain in <strong>Pending</strong> until approved from the Admin Panel. Once approved, they progress through all 6 stages.
+            <i class="fa-solid fa-shield-halved gold-icon"></i> Submitted websites remain in <strong>Pending</strong> until approved from the company approval. Once approved, they progress through all 6 stages.
           </p>
         </div>
 
@@ -2790,19 +2790,19 @@
           <i class="fa-solid fa-lock gold-icon"></i>
         </span>
         <div style="flex:1; min-width:0;">
-          <h3 style="font-size:17px; font-weight:800;">Banking Security PIN Required</h3>
-          <div style="font-size:12px; color:var(--text-muted);" id="appPinTargetName">Paste or enter your saved 4-digit PIN to open app</div>
+          <h3 style="font-size:17px; font-weight:800;"> Security PIN Required</h3>
+          <div style="font-size:12px; color:var(--text-muted);" id="appPinTargetName">Paste your 4-digit PIN to open app</div>
         </div>
       </div>
       <div class="lock-timer-box" id="appPinLockTimerBox">
         <i class="fa-solid fa-clock"></i>
-        <span id="appPinLockTimerText">3 wrong PIN attempts! Please wait 120 seconds.</span>
+        <span id="appPinLockTimerText"> Please wait 120 seconds.</span>
       </div>
       <form id="appPinVerifyForm">
         <div class="form-group">
-          <label>Saved 4-Digit Banking Security PIN</label>
+          <label>Saved 4-Digit Security PIN</label>
           <div class="pin-input-row">
-            <input type="password" id="appPinInput" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter or paste 4-digit PIN" style="text-align:center; letter-spacing:8px; font-size:18px; font-weight:800;" required />
+            <input type="password" id="appPinInput" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter your 4-digit PIN" style="text-align:center; letter-spacing:8px; font-size:18px; font-weight:800;" required />
             <button type="button" class="btn btn-secondary btn-sm" onclick="pastePinInto('appPinInput')" style="height:46px;">
               <i class="fa-solid fa-paste gold-icon"></i> Paste
             </button>
@@ -2828,7 +2828,7 @@
         </span>
         <div style="flex:1; min-width:0;">
           <h3 style="font-size:17px; font-weight:800;">Direct Download — OSSIAN PRO App</h3>
-          <div style="font-size:12px; color:var(--text-muted);" id="pwaModalSubtitle">PWA Mobile App • Auto-Updates with Website</div>
+          <div style="font-size:12px; color:var(--text-muted);" id="pwaModalSubtitle"> Mobile App • Auto-Updates with Website</div>
         </div>
       </div>
 
@@ -2836,7 +2836,7 @@
         <div class="pwa-progress-fill" id="pwaProgressBar"></div>
       </div>
       <div id="pwaStatusMsg" style="font-size:13px; font-weight:700; margin-bottom:12px; color:var(--primary);">
-        Preparing OSSIAN PRO PWA...
+        Preparing OSSIAN PRO...
       </div>
 
       <div id="pwaManualFallbackBox" class="sheet-desc" style="display:none; margin-bottom:14px;"></div>
@@ -3137,14 +3137,14 @@
         if (!sub || !badge) return;
 
         if (isRunningStandalonePwa()) {
-          sub.textContent = "Installed PWA • Live Auto-Updates Active";
+          sub.textContent = "Installed • Live Auto-Updates Active";
           badge.textContent = "Installed";
         } else if (deferredInstallPrompt) {
           sub.textContent = "Ready! Tap to download app in <5 sec";
           badge.textContent = "Install";
         } else {
-          sub.textContent = "Download Mobile App (PWA • Auto-Updates)";
-          badge.textContent = "PWA";
+          sub.textContent = "Download Mobile App • Auto-Updates";
+          badge.textContent = "PRO";
         }
       }
 
@@ -3162,7 +3162,7 @@
               deferredInstallPrompt = null;
               safeSet("ossian_pwa_installed_v1", "yes");
               updateDirectDownloadUI();
-              showToast("Downloading OSSIAN PRO PWA app...");
+              showToast("Downloading OSSIAN PRO app...");
               return;
             }
           } catch (err) {}
@@ -3175,7 +3175,7 @@
         var fallbackBox = document.getElementById("pwaManualFallbackBox");
         var pkgBtn = document.getElementById("pwaInstantPackageBtn");
         bar.style.width = "10%";
-        status.textContent = "Preparing OSSIAN PRO PWA app...";
+        status.textContent = "Preparing OSSIAN PRO app...";
         fallbackBox.style.display = "none";
         pkgBtn.style.display = "none";
         document.getElementById("pwaDownloadModal").classList.add("open");
@@ -3189,9 +3189,9 @@
             bar.style.width = "100%";
 
             if (isRunningStandalonePwa()) {
-              status.textContent = "OSSIAN PRO PWA is installed & synced with latest website!";
+              status.textContent = "OSSIAN PRO is installed & synced with latest website!";
               fallbackBox.style.display = "block";
-              fallbackBox.innerHTML = "You are already running the installed <strong>OSSIAN PRO PWA App</strong>. Every time the website updates or upgrades, your app updates automatically.";
+              fallbackBox.innerHTML = "You are already running the installed <strong>OSSIAN PRO App</strong>. Every time the website updates or upgrades, your app updates automatically.";
               return;
             }
 
@@ -3238,7 +3238,7 @@
           setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
           showToast("OSSIAN PRO App downloaded!");
         } catch (e) {
-          showToast("Use Browser Menu -> Install App to install PWA");
+          showToast("Use Browser Menu -> Install App to install...");
         }
       }
 
@@ -3260,7 +3260,7 @@
             navigator.mediaDevices.getDisplayMedia = function () {
               triggerBlackoutFlash(true);
               showToast("Screen recording blocked by OSSIAN PRO Security!");
-              return Promise.reject(new DOMException("Screen capture disabled by Banking Security", "NotAllowedError"));
+              return Promise.reject(new DOMException("Screen capture disabled by High Security", "NotAllowedError"));
             };
           }
         } catch (e) {}
@@ -3314,7 +3314,7 @@
                 navigator.clipboard.writeText("");
               }
             } catch (err) {}
-            showToast("Capture blocked by OSSIAN PRO Banking Security!");
+            showToast("Capture blocked by OSSIAN PRO High Security!");
           }
         }, true);
 
@@ -3376,7 +3376,7 @@
 
       function lockAppWithPinNow() {
         if (!bankingPinHash) {
-          showToast("Please set a 4-digit Banking PIN first!");
+          showToast("Please set a 4-digit PIN first!");
           return;
         }
         openPinLockOverlay();
@@ -3436,7 +3436,7 @@
           await syncBankingPinToCloud("");
         }
         updateBankingSecurityUI();
-        showToast("Banking Security PIN deleted!");
+        showToast("Advance Security PIN deleted!");
       }
 
       // Anti-Capture Blackout Shield is permanently ON; if turned OFF, re-enables in 1 second!
@@ -3527,7 +3527,7 @@
 
         if (pinLockUntil > now) {
           var sec = Math.ceil((pinLockUntil - now) / 1000);
-          var msg = "3 wrong PIN attempts! Wait " + sec + " second" + (sec === 1 ? "" : "s") + ".";
+          var msg = " Wait " + sec + " second" + (sec === 1 ? "" : "s") + ".";
           if (box && txt && btn) {
             box.classList.add("show");
             txt.textContent = msg;
@@ -3562,7 +3562,7 @@
         var p1 = document.getElementById("newBankingPin").value.trim();
         var p2 = document.getElementById("confirmBankingPin").value.trim();
         if (!/^\d{4}$/.test(p1)) {
-          showToast("Banking PIN must be exactly 4 digits!");
+          showToast("Advance PIN must be exactly 4 digits!");
           return;
         }
         if (p1 !== p2) {
@@ -3579,7 +3579,7 @@
         }
         document.getElementById("setPinForm").reset();
         updateBankingSecurityUI();
-        showToast("4-Digit Banking Security PIN permanently saved!");
+        showToast("4-Digit Security PIN permanently saved!");
       });
 
       document.getElementById("pinUnlockForm").addEventListener("submit", async function (e) {
@@ -3598,7 +3598,7 @@
             safeSet("ossian_pin_fails_v1", "0");
             safeSet("ossian_pin_lock_v1", String(pinLockUntil));
             updatePinLockTimerUI();
-            showToast("3 wrong PINs! Locked for 2 minutes.");
+            showToast("Locked for 2 minutes.");
           } else {
             safeSet("ossian_pin_fails_v1", String(pinFailCount));
             showToast("Wrong Banking PIN! (" + pinFailCount + "/3)");
@@ -3631,7 +3631,7 @@
             safeSet("ossian_pin_fails_v1", "0");
             safeSet("ossian_pin_lock_v1", String(pinLockUntil));
             updatePinLockTimerUI();
-            showToast("3 wrong PINs! Locked for 2 minutes.");
+            showToast("Locked for 2 minutes.");
           } else {
             safeSet("ossian_pin_fails_v1", String(pinFailCount));
             showToast("Wrong Banking PIN! (" + pinFailCount + "/3)");
@@ -4071,7 +4071,7 @@
           }
         } else if (foundPending) {
           setUserUploadApprovalState(currentUser.uid, "pending");
-          if (showMsg) showToast("Request is still pending Admin approval.");
+          if (showMsg) showToast("Request is still pending company approval.");
         } else {
           if (showMsg) {
             var curState = getUserUploadApprovalState();
