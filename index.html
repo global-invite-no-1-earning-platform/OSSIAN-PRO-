@@ -18,7 +18,7 @@
   <meta property="og:type" content="website" />
   <title>OSSIAN PRO</title>
   <!-- OSSIAN PRO Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fde047'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%230f172a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cpath d='M32 10 L36 22 L32 19 L28 22 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='url(%23g)'/%3E%3C/svg%3E" />
+  <link id="siteFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fde047'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%230f172a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cpath d='M32 10 L36 22 L32 19 L28 22 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='url(%23g)'/%3E%3C/svg%3E" />
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- QR Code Generator & Scanner Libraries -->
@@ -213,11 +213,19 @@
       justify-content: center;
       box-shadow: 0 4px 14px rgba(245, 158, 11, 0.22);
       flex-shrink: 0;
+      overflow: hidden;
     }
 
     .brand-logo svg {
       width: 24px;
       height: 24px;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .brand-title {
@@ -401,7 +409,7 @@
       border-radius: 16px;
       box-shadow: var(--shadow);
       z-index: 25;
-      max-height: 240px;
+      max-height: 260px;
       overflow-y: auto;
       display: none;
     }
@@ -540,6 +548,22 @@
       text-overflow: ellipsis;
     }
 
+    .external-grid-banner {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--gold-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: left;
+    }
+
     .category-pill {
       font-size: 10px;
       font-weight: 700;
@@ -609,11 +633,19 @@
       justify-content: center;
       flex-shrink: 0;
       box-shadow: 0 6px 16px rgba(245, 158, 11, 0.22);
+      overflow: hidden;
     }
 
     .profile-avatar svg {
       width: 34px;
       height: 34px;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .db-status-pill {
@@ -1516,13 +1548,13 @@
       <div class="brand-logo" style="margin: 0 auto 14px; width: 52px; height: 52px;">
         <i class="fa-solid fa-shield-halved gold-icon" style="font-size: 24px;"></i>
       </div>
-      <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">OSSIAN PRO Advance Lock</h3>
+      <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">OSSIAN PRO Banking Lock</h3>
       <p style="font-size: 12.5px; color: #94a3b8; margin-bottom: 14px;" id="pinLockSub">
-        Enter your login 4-digit Security PIN to open OSSIAN PRO.
+        Enter or paste your permanent 4-digit Banking Security PIN to open OSSIAN PRO.
       </p>
       <div class="lock-timer-box" id="pinLockTimerBox" style="text-align:left;">
         <i class="fa-solid fa-clock"></i>
-        <span id="pinLockTimerText"> Please wait 120 seconds.</span>
+        <span id="pinLockTimerText">3 wrong PIN attempts! Please wait 120 seconds.</span>
       </div>
       <form id="pinUnlockForm">
         <div class="form-group">
@@ -1553,11 +1585,11 @@
         </span>
         <div>
           <h3 style="font-size:17px; font-weight:800;">OSSIAN PRO Customer Service</h3>
-          <div style="font-size:12px; color:var(--text-muted);">24/7 Advance Lock &amp; Account Support</div>
+          <div style="font-size:12px; color:var(--text-muted);">24/7 Banking Lock &amp; Account Support</div>
         </div>
       </div>
       <div class="sheet-desc" style="margin-bottom:14px;">
-        Forgot your 4-digit Advance Security PIN or facing a lock issue? Send a support ticket to OSSIAN PRO Customer Service below.
+        Forgot your 4-digit Banking Security PIN or facing a lock issue? Send a support ticket to OSSIAN PRO Customer Service below.
       </div>
       <form id="customerServiceForm">
         <div class="form-group">
@@ -1566,7 +1598,7 @@
         </div>
         <div class="form-group">
           <label>Describe Your Issue</label>
-          <textarea id="csMessageInput" rows="3" placeholder="Need assistance with Banking Lock PIN..." required></textarea>
+          <textarea id="csMessageInput" rows="3" placeholder="e.g. Need assistance with Banking Lock PIN..." required></textarea>
         </div>
         <div style="display:flex; gap:8px;">
           <button type="submit" class="btn btn-primary" id="csSubmitBtn">
@@ -1581,7 +1613,7 @@
   <div class="app-shell">
     <header class="top-header">
       <div class="brand">
-        <div class="brand-logo" aria-label="OSSIAN PRO Logo">
+        <div class="brand-logo" id="headerBrandLogo" aria-label="OSSIAN PRO Logo">
           <svg viewBox="0 0 64 64" fill="none">
             <defs>
               <linearGradient id="ossianGold" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
@@ -1616,14 +1648,14 @@
       <section id="page-home" class="page active">
         <div class="hero-card">
           <h2><i class="fa-solid fa-crown gold-icon"></i> Welcome to OSSIAN PRO</h2>
-          <p>Tap any app below to view its details and launch the website with Advance-grade protection.</p>
+          <p>Tap any app below to view its details and launch the website with banking-grade protection.</p>
         </div>
 
         <div id="errorBanner" class="error-banner"></div>
 
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass gold-icon search-icon"></i>
-          <input type="text" id="homeSearchInput" placeholder="Searching..." autocomplete="off" />
+          <input type="text" id="homeSearchInput" placeholder="Search apps or search Google / Web..." autocomplete="off" />
           <div id="homeSuggestions" class="search-suggestions"></div>
         </div>
 
@@ -1689,7 +1721,7 @@
       <section id="page-apps" class="page">
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass gold-icon search-icon"></i>
-          <input type="text" id="appsSearchInput" placeholder="Search all websites & apps..." autocomplete="off" />
+          <input type="text" id="appsSearchInput" placeholder="Search all websites, apps or Google..." autocomplete="off" />
           <div id="appsSuggestions" class="search-suggestions"></div>
         </div>
 
@@ -1708,7 +1740,7 @@
       <!-- 3. ME PAGE -->
       <section id="page-me" class="page">
         <div class="profile-card">
-          <div class="profile-avatar">
+          <div class="profile-avatar" id="meProfileAvatar">
             <svg viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="ossianGoldMe" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
@@ -1794,7 +1826,7 @@
           </div>
         </div>
 
-        <!-- Promo Code -> Feedback -> Appearance -> Sync Apps -> Settings -->
+        <!-- Promo Code -> Channels & Tools -> Feedback -> Appearance -> Sync Apps -> Settings -->
         <div class="panel-card">
           <!-- Promo Code -->
           <div class="setting-row clickable" onclick="openPromoPage()">
@@ -1803,6 +1835,18 @@
               <div>
                 <div class="setting-title">Promo Code</div>
                 <div class="setting-sub" id="promoRowSub">Apply promo codes &amp; rewards</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right row-arrow"></i>
+          </div>
+
+          <!-- Channels & Tools (Before Feedback - Opens Separate Page with Admin Tools / WhatsApp Channel) -->
+          <div class="setting-row clickable" onclick="openToolsPage()">
+            <div class="setting-left">
+              <span class="gold-badge-icon"><i class="fa-solid fa-toolbox gold-icon"></i></span>
+              <div>
+                <div class="setting-title">Channels &amp; Tools</div>
+                <div class="setting-sub" id="toolsRowSub">WhatsApp Channel &amp; official admin tools</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
@@ -1850,24 +1894,35 @@
               <span class="gold-badge-icon"><i class="fa-solid fa-gear gold-icon"></i></span>
               <div>
                 <div class="setting-title">Settings</div>
-                <div class="setting-sub">Advance Security, Refresh, Invite, Applications &amp; Policies</div>
+                <div class="setting-sub">Banking Security, Refresh, Invite, Applications &amp; Policies</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
           </div>
         </div>
 
-        <!-- Direct Download (PWA - Right before Log Out) -->
+        <!-- Direct Download (PWA) + Open Website Tool (Right before Log Out) -->
         <div class="panel-card">
           <div class="setting-row clickable" id="directDownloadRow" onclick="triggerDirectPwaDownload()">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-download gold-icon"></i></span>
               <div>
                 <div class="setting-title">Direct Download</div>
-                <div class="setting-sub" id="directDownloadSub">Download Mobile App & Auto-Updates</div>
+                <div class="setting-sub" id="directDownloadSub">Download Mobile App (PWA • Auto-Updates)</div>
               </div>
             </div>
-            <span class="category-pill" id="directDownloadBadge">PRO</span>
+            <span class="category-pill" id="directDownloadBadge">PWA</span>
+          </div>
+
+          <div class="setting-row clickable" id="openWebsiteRow" onclick="openLiveWebsiteTool()">
+            <div class="setting-left">
+              <span class="gold-badge-icon"><i class="fa-solid fa-globe gold-icon"></i></span>
+              <div>
+                <div class="setting-title">Open Website</div>
+                <div class="setting-sub">Open official OSSIAN PRO website directly</div>
+              </div>
+            </div>
+            <span class="category-pill">Web</span>
           </div>
         </div>
 
@@ -1902,7 +1957,7 @@
           <form id="loginForm">
             <div class="lock-timer-box" id="loginLockBox">
               <i class="fa-solid fa-clock"></i>
-              <span id="loginLockText"> Try again in 60s.</span>
+              <span id="loginLockText">Too many wrong attempts! Try again in 60s.</span>
             </div>
             <div class="form-group">
               <label>Email</label>
@@ -1939,8 +1994,8 @@
               <input type="password" id="regConfirmPassword" placeholder="Re-enter password" required />
             </div>
             <div class="form-group">
-              <label>5. Invite Code </label>
-              <input type="text" id="regInviteCode" placeholder="Enter invite code " />
+              <label>5. Invite Code (Optional)</label>
+              <input type="text" id="regInviteCode" placeholder="Enter invite code (optional)" />
             </div>
             <button type="submit" class="btn btn-primary" id="registerSubmitBtn" style="margin-top:6px;">
               <i class="fa-solid fa-user-plus"></i> Register
@@ -1951,7 +2006,7 @@
           <div id="qrLoginSection" style="display:none;">
             <div class="lock-timer-box" id="qrLockBox">
               <i class="fa-solid fa-clock"></i>
-              <span id="qrLockText">Please wait 120 seconds.</span>
+              <span id="qrLockText">3 wrong QR attempts! Please wait 120 seconds.</span>
             </div>
 
             <div class="qr-scanner-box">
@@ -2059,7 +2114,7 @@
         <div class="panel-card">
           <div class="lock-timer-box" id="promoLockBox">
             <i class="fa-solid fa-clock"></i>
-            <span id="promoLockText">Try again in 60s.</span>
+            <span id="promoLockText">Too many wrong promo codes! Try again in 60s.</span>
           </div>
           <form id="promoForm">
             <div class="form-group">
@@ -2067,7 +2122,7 @@
               <input type="text" id="promoCodeInput" placeholder="Paste your promo code here" required />
             </div>
             <button type="submit" class="btn btn-primary" id="promoApplyBtn">
-              <i class="fa-solid fa-check-circle"></i> Apply 
+              <i class="fa-solid fa-check-circle"></i> Apply Promo Code
             </button>
           </form>
         </div>
@@ -2078,6 +2133,24 @@
           </div>
           <div id="redeemedPromoList" class="info-kv-list"></div>
         </div>
+      </section>
+
+      <!-- ME SUBPAGE 5B: CHANNELS & TOOLS (Before Feedback) -->
+      <section id="page-me-tools" class="page">
+        <div class="subpage-header">
+          <div class="subpage-header-left">
+            <button class="subpage-back-btn" onclick="switchTab('me')" title="Back">
+              <i class="fa-solid fa-arrow-left gold-icon"></i>
+            </button>
+            <span class="gold-badge-icon"><i class="fa-solid fa-toolbox gold-icon"></i></span>
+            <div class="subpage-title">Channels &amp; Tools</div>
+          </div>
+          <button class="icon-btn" onclick="fetchAdminTools(true)" style="width:36px;height:36px;" title="Refresh Tools">
+            <i class="fa-solid fa-arrows-rotate gold-icon"></i>
+          </button>
+        </div>
+
+        <div id="adminToolsGrid" class="launcher-grid"></div>
       </section>
 
       <!-- ME SUBPAGE 6: FEEDBACK -->
@@ -2094,7 +2167,7 @@
 
         <div class="panel-card">
           <div style="font-size:13px; font-weight:700; margin-bottom:10px;">
-            1. Select Feedback Option 
+            1. Select Feedback Option (6 Options)
           </div>
           <div class="feedback-options-grid" id="feedbackOptionsGrid">
             <div class="feedback-option-card" data-opt="App Bug / Error" onclick="selectFeedbackOption(this, 'App Bug / Error')">
@@ -2125,7 +2198,7 @@
 
           <form id="feedbackForm">
             <div class="form-group">
-              <label>2. Write Your Feedback min 50 to mex 600 Words</label>
+              <label>2. Write Your Feedback (50 to 600 Words)</label>
               <textarea id="feedbackText" rows="7" placeholder="Write between 50 and 600 words. To unlock Submit Application, select 'App Upload Request' and describe your website/app request here..." required></textarea>
               <div class="word-counter-row">
                 <span id="feedbackSelectedLabel">Selected: None</span>
@@ -2228,7 +2301,7 @@
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-vault gold-icon"></i></span>
               <div>
-                <div class="setting-title">Advance Security</div>
+                <div class="setting-title">Banking Security</div>
                 <div class="setting-sub" id="bankingSecurityRowSub">Blackout Shield Permanently ON • PIN Not Set</div>
               </div>
             </div>
@@ -2353,7 +2426,7 @@
               <i class="fa-solid fa-arrow-left gold-icon"></i>
             </button>
             <span class="gold-badge-icon"><i class="fa-solid fa-vault gold-icon"></i></span>
-            <div class="subpage-title">High Security</div>
+            <div class="subpage-title">Banking Security</div>
           </div>
         </div>
 
@@ -2382,22 +2455,22 @@
 
         <div class="panel-card">
           <div style="font-size:14px; font-weight:800; margin-bottom:10px;">
-            <i class="fa-solid fa-key gold-icon"></i> 4-Digit Advance Security PIN
+            <i class="fa-solid fa-key gold-icon"></i> 4-Digit Banking Security PIN
           </div>
           <p style="font-size:12.5px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
-            Once saved, your 4-digit Advance Security PIN is <strong>permanently active</strong>. Entering or pasting this saved PIN is required to open OSSIAN PRO and every website or app until you delete the PIN.
+            Once saved, your 4-digit Banking Security PIN is <strong>permanently active</strong>. Entering or pasting this saved PIN is required to open OSSIAN PRO and every website or app until you delete the PIN.
           </p>
           <form id="setPinForm">
             <div class="form-group">
-              <label>New 4-Digit advance PIN</label>
-              <input type="password" id="newBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter 4 digits..." required />
+              <label>New 4-Digit Banking PIN</label>
+              <input type="password" id="newBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter 4 digits (e.g. 4829)" required />
             </div>
             <div class="form-group">
               <label>Confirm 4-Digit Banking PIN</label>
-              <input type="password" id="confirmBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Re-enter 4 digits..." required />
+              <input type="password" id="confirmBankingPin" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Re-enter 4 digits" required />
             </div>
             <button type="submit" class="btn btn-primary">
-              <i class="fa-solid fa-floppy-disk"></i> Save 
+              <i class="fa-solid fa-floppy-disk"></i> Save PIN Permanently
             </button>
           </form>
           <div id="pinExtraActions" style="display:none; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
@@ -2535,14 +2608,18 @@
         </div>
 
         <div class="panel-card" id="submitAppFormCard">
+          <div class="lock-timer-box" id="submitDuplicateError">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>this appointment already uploaded</span>
+          </div>
           <form id="submitAppForm">
             <div class="form-group">
               <label>1. App / Website Name</label>
-              <input type="text" id="subAppName" placeholder=" ChatGPT" required />
+              <input type="text" id="subAppName" placeholder="e.g. ChatGPT" required />
             </div>
             <div class="form-group">
               <label>2. Link</label>
-              <input type="text" id="subAppLink" placeholder=" https://example.com" required />
+              <input type="text" id="subAppLink" placeholder="e.g. https://example.com" required />
             </div>
             <div class="form-group">
               <label>3. Description</label>
@@ -2561,7 +2638,7 @@
                 <option value="Other">Other</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-top:6px;">
+            <button type="submit" class="btn btn-primary" id="submitAppBtn" style="margin-top:6px;">
               <i class="fa-solid fa-check"></i> Submit Application
             </button>
           </form>
@@ -2645,7 +2722,7 @@
 
         <div class="panel-card" style="padding:12px 14px; margin-bottom:14px;">
           <p style="font-size:12px; color:var(--text-muted); line-height:1.5;">
-            <i class="fa-solid fa-shield-halved gold-icon"></i> Submitted websites remain in <strong>Pending</strong> until approved from the company approval. Once approved, they progress through all 6 stages.
+            <i class="fa-solid fa-shield-halved gold-icon"></i> Submitted websites remain in <strong>Pending</strong> until approved from the Admin Panel. Once approved, they progress through all 6 stages.
           </p>
         </div>
 
@@ -2694,10 +2771,11 @@
           <p>OSSIAN PRO is a fast, banking-grade secure Web Apps Launcher designed to bring all your favorite websites, tools, and official web apps together in one clean interface.</p>
           <h4>Key Features</h4>
           <p>• Quick access to Web Official Apps, Popular Apps, Favorite Apps, and Quick Launch Apps.<br>
+          • External Google &amp; Web discovery when searching for apps not yet listed on OSSIAN PRO.<br>
           • Banking-level security: SHA-256 hashing, permanent 4-digit Banking PIN lock, permanent anti-capture blackout shield, and 30s clipboard wipe.<br>
           • Instant PWA Direct Download with live website updates, QR Login system, Feedback-gated submission, and 6-stage tracking.</p>
           <h4>Platform</h4>
-          <p>Version 3.1 • Copyright &copy; 2026 OSSIAN PRO. All rights reserved.</p>
+          <p>Version 3.2 • Copyright &copy; 2026 OSSIAN PRO. All rights reserved.</p>
         </div>
       </section>
 
@@ -2790,19 +2868,19 @@
           <i class="fa-solid fa-lock gold-icon"></i>
         </span>
         <div style="flex:1; min-width:0;">
-          <h3 style="font-size:17px; font-weight:800;"> Security PIN Required</h3>
-          <div style="font-size:12px; color:var(--text-muted);" id="appPinTargetName">Paste your 4-digit PIN to open app</div>
+          <h3 style="font-size:17px; font-weight:800;">Banking Security PIN Required</h3>
+          <div style="font-size:12px; color:var(--text-muted);" id="appPinTargetName">Paste or enter your saved 4-digit PIN to open app</div>
         </div>
       </div>
       <div class="lock-timer-box" id="appPinLockTimerBox">
         <i class="fa-solid fa-clock"></i>
-        <span id="appPinLockTimerText"> Please wait 120 seconds.</span>
+        <span id="appPinLockTimerText">3 wrong PIN attempts! Please wait 120 seconds.</span>
       </div>
       <form id="appPinVerifyForm">
         <div class="form-group">
-          <label>Saved 4-Digit Security PIN</label>
+          <label>Saved 4-Digit Banking Security PIN</label>
           <div class="pin-input-row">
-            <input type="password" id="appPinInput" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter your 4-digit PIN" style="text-align:center; letter-spacing:8px; font-size:18px; font-weight:800;" required />
+            <input type="password" id="appPinInput" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="Enter or paste 4-digit PIN" style="text-align:center; letter-spacing:8px; font-size:18px; font-weight:800;" required />
             <button type="button" class="btn btn-secondary btn-sm" onclick="pastePinInto('appPinInput')" style="height:46px;">
               <i class="fa-solid fa-paste gold-icon"></i> Paste
             </button>
@@ -2828,7 +2906,7 @@
         </span>
         <div style="flex:1; min-width:0;">
           <h3 style="font-size:17px; font-weight:800;">Direct Download — OSSIAN PRO App</h3>
-          <div style="font-size:12px; color:var(--text-muted);" id="pwaModalSubtitle"> Mobile App • Auto-Updates with Website</div>
+          <div style="font-size:12px; color:var(--text-muted);" id="pwaModalSubtitle">PWA Mobile App • Auto-Updates with Website</div>
         </div>
       </div>
 
@@ -2836,7 +2914,7 @@
         <div class="pwa-progress-fill" id="pwaProgressBar"></div>
       </div>
       <div id="pwaStatusMsg" style="font-size:13px; font-weight:700; margin-bottom:12px; color:var(--primary);">
-        Preparing OSSIAN PRO...
+        Preparing OSSIAN PRO PWA...
       </div>
 
       <div id="pwaManualFallbackBox" class="sheet-desc" style="display:none; margin-bottom:14px;"></div>
@@ -2864,6 +2942,9 @@
       const FEEDBACK_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/feedback";
       const SUBMITTED_APPS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/submitted_apps";
       const APPOINTMENTS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/appointments";
+      const TOOLS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/tools";
+      const SITE_CONFIG_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/site_config";
+      const SETTINGS_CONFIG_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/settings";
 
       const MAX_REG_PER_HOUR = 40;
       const HOUR_MS = 3600000;
@@ -2872,11 +2953,45 @@
       const LAUNCH_TIMER_MS = 24 * 3600 * 1000;
       const SESSION_SECRET_KEY = "OSSIAN_PRO_BANK_SEC_V3";
 
+      const DEFAULT_FAVICON_HREF = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fde047'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%230f172a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cpath d='M32 10 L36 22 L32 19 L28 22 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='url(%23g)'/%3E%3C/svg%3E";
+      const DEFAULT_HEADER_SVG =
+        '<svg viewBox="0 0 64 64" fill="none">' +
+          '<defs><linearGradient id="ossianGold" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">' +
+            '<stop offset="0%" stop-color="#fde047"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#b45309"/>' +
+          '</linearGradient></defs>' +
+          '<circle cx="32" cy="32" r="20" stroke="url(#ossianGold)" stroke-width="5.5"/>' +
+          '<path d="M32 6L36 16H28L32 6Z" fill="url(#ossianGold)"/>' +
+          '<circle cx="32" cy="32" r="7" fill="url(#ossianGold)"/>' +
+        '</svg>';
+      const DEFAULT_ME_SVG =
+        '<svg viewBox="0 0 64 64" fill="none">' +
+          '<defs><linearGradient id="ossianGoldMe" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">' +
+            '<stop offset="0%" stop-color="#fde047"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#b45309"/>' +
+          '</linearGradient></defs>' +
+          '<circle cx="32" cy="32" r="20" stroke="url(#ossianGoldMe)" stroke-width="5.5"/>' +
+          '<path d="M32 6L36 16H28L32 6Z" fill="url(#ossianGoldMe)"/>' +
+          '<circle cx="32" cy="32" r="7" fill="url(#ossianGoldMe)"/>' +
+        '</svg>';
+
+      const DEFAULT_WHATSAPP_CHANNEL_TOOL = {
+        id: "tool_whatsapp_channel",
+        name: "WhatsApp Channel",
+        url: "https://www.whatsapp.com/channel",
+        description: "Join the official OSSIAN PRO WhatsApp Channel for instant updates, announcements, and newly added apps.",
+        category: "Channel",
+        icon: "fa-brands fa-whatsapp",
+        isTool: true,
+        createdAt: 1
+      };
+
       let apps = [];
+      let adminTools = [DEFAULT_WHATSAPP_CHANNEL_TOOL];
+      let siteConfig = { siteIcon: "", websiteUrl: "" };
       let officialMessages = [];
       let promoCodesList = [];
       let redeemedPromos = [];
       let submittedApps = [];
+      let allCloudSubmittedApps = [];
       let appointments = [];
       let uploadAccessMap = {};
       let messagesLoaded = false;
@@ -2893,6 +3008,13 @@
       let draftAutoRefreshOn = true;
       let draftAutoRefreshSec = 15;
       let autoRefreshTimerId = null;
+
+      // External Google & Web Search State
+      let externalSearchCache = {};
+      let externalSearchResults = [];
+      let activeExternalQuery = "";
+      let externalSearchLoading = false;
+      let externalSearchTimer = null;
 
       // Banking Security States
       let blackoutShieldOn = true;
@@ -3019,6 +3141,104 @@
       }
 
       /* =======================================================
+         ADMIN-CONTROLLED WEBSITE ICON & LIVE WEBSITE LAUNCHER
+         ======================================================= */
+      function applyCustomSiteIcon(iconValue) {
+        var headerLogo = document.getElementById("headerBrandLogo");
+        var meAvatar = document.getElementById("meProfileAvatar");
+        var favicon = document.getElementById("siteFavicon");
+        var val = String(iconValue || "").trim();
+
+        if (!val) {
+          if (headerLogo) headerLogo.innerHTML = DEFAULT_HEADER_SVG;
+          if (meAvatar) meAvatar.innerHTML = DEFAULT_ME_SVG;
+          if (favicon) favicon.href = DEFAULT_FAVICON_HREF;
+          return;
+        }
+
+        if (/^(https?:\/\/|data:image\/)/i.test(val)) {
+          if (headerLogo) {
+            headerLogo.innerHTML = '<img src="' + escapeHtml(val) + '" alt="OSSIAN PRO" onerror="this.parentElement.innerHTML=\'' + DEFAULT_HEADER_SVG.replace(/'/g, "\\'") + '\'" />';
+          }
+          if (meAvatar) {
+            meAvatar.innerHTML = '<img src="' + escapeHtml(val) + '" alt="OSSIAN PRO" onerror="this.parentElement.innerHTML=\'' + DEFAULT_ME_SVG.replace(/'/g, "\\'") + '\'" />';
+          }
+          if (favicon) favicon.href = val;
+        } else if (/^(fa-(solid|regular|brands)\s+)?fa-[a-z0-9-]+$/i.test(val)) {
+          var faClass = /^fa-(solid|regular|brands)\s+/i.test(val) ? val : ("fa-solid " + val);
+          if (headerLogo) {
+            headerLogo.innerHTML = '<i class="' + escapeHtml(faClass) + ' gold-icon" style="font-size:20px;"></i>';
+          }
+          if (meAvatar) {
+            meAvatar.innerHTML = '<i class="' + escapeHtml(faClass) + ' gold-icon" style="font-size:26px;"></i>';
+          }
+          if (favicon) favicon.href = DEFAULT_FAVICON_HREF;
+        } else {
+          if (headerLogo) headerLogo.innerHTML = DEFAULT_HEADER_SVG;
+          if (meAvatar) meAvatar.innerHTML = DEFAULT_ME_SVG;
+          if (favicon) favicon.href = DEFAULT_FAVICON_HREF;
+        }
+      }
+
+      async function fetchSiteConfig() {
+        var urlsToCheck = [SITE_CONFIG_URL, SETTINGS_CONFIG_URL];
+        var foundIcon = "";
+        var foundSiteUrl = "";
+
+        for (var uIdx = 0; uIdx < urlsToCheck.length; uIdx++) {
+          try {
+            const res = await fetch(urlsToCheck[uIdx] + "?pageSize=20&key=" + encodeURIComponent(API_KEY), {
+              method: "GET",
+              cache: "no-store"
+            });
+            const data = await res.json();
+            if (res.ok && data && Array.isArray(data.documents) && data.documents.length > 0) {
+              var chosen = data.documents.find(function (d) {
+                var docId = (d.name || "").split("/").pop().toLowerCase();
+                return docId === "main" || docId === "config" || docId === "site" || docId === "branding";
+              }) || data.documents[0];
+
+              var f = (chosen && chosen.fields) || {};
+              var iconField = f.siteIcon || f.icon || f.logoUrl || f.siteLogo || f.iconUrl || f.brandIcon || f.favicon || f.logo;
+              var siteField = f.websiteUrl || f.siteUrl || f.url || f.homeUrl;
+              if (iconField && iconField.stringValue) {
+                foundIcon = String(iconField.stringValue).trim();
+              }
+              if (siteField && siteField.stringValue) {
+                foundSiteUrl = String(siteField.stringValue).trim();
+              }
+              if (foundIcon || foundSiteUrl) break;
+            }
+          } catch (e) {}
+        }
+
+        siteConfig.siteIcon = foundIcon;
+        siteConfig.websiteUrl = foundSiteUrl;
+        safeSet("ossian_site_config_v1", JSON.stringify(siteConfig));
+        applyCustomSiteIcon(siteConfig.siteIcon);
+      }
+
+      function openLiveWebsiteTool() {
+        var target = "";
+        if (siteConfig && siteConfig.websiteUrl) {
+          target = normalizeUrl(siteConfig.websiteUrl);
+        }
+        if (!target || target === "#") {
+          var currentHref = String(window.location.href || "").split("#")[0];
+          if (/^https?:\/\//i.test(currentHref)) {
+            target = currentHref;
+          } else {
+            target = "https://" + PROJECT_ID + ".web.app";
+          }
+        }
+        var opened = window.open(target, "_blank", "noopener,noreferrer");
+        if (!opened) {
+          window.location.href = target;
+        }
+        showToast("Opening OSSIAN PRO website...");
+      }
+
+      /* =======================================================
          PWA SETUP, AUTO-UPDATE & <5 SECOND DIRECT DOWNLOAD
          ======================================================= */
       function buildPwaIconDataUrl(size) {
@@ -3137,14 +3357,14 @@
         if (!sub || !badge) return;
 
         if (isRunningStandalonePwa()) {
-          sub.textContent = "Installed • Live Auto-Updates Active";
+          sub.textContent = "Installed PWA • Live Auto-Updates Active";
           badge.textContent = "Installed";
         } else if (deferredInstallPrompt) {
           sub.textContent = "Ready! Tap to download app in <5 sec";
           badge.textContent = "Install";
         } else {
-          sub.textContent = "Download Mobile App • Auto-Updates";
-          badge.textContent = "PRO";
+          sub.textContent = "Download Mobile App (PWA • Auto-Updates)";
+          badge.textContent = "PWA";
         }
       }
 
@@ -3153,7 +3373,6 @@
           swRegistration.update().catch(function () {});
         }
 
-        // Fast native PWA install within user gesture (< 5 seconds)
         if (deferredInstallPrompt) {
           try {
             deferredInstallPrompt.prompt();
@@ -3162,20 +3381,19 @@
               deferredInstallPrompt = null;
               safeSet("ossian_pwa_installed_v1", "yes");
               updateDirectDownloadUI();
-              showToast("Downloading OSSIAN PRO app...");
+              showToast("Downloading OSSIAN PRO PWA app...");
               return;
             }
           } catch (err) {}
         }
 
-        // Open fast < 3 second Direct Download progress sheet
         clearInterval(pwaProgressTimer);
         var bar = document.getElementById("pwaProgressBar");
         var status = document.getElementById("pwaStatusMsg");
         var fallbackBox = document.getElementById("pwaManualFallbackBox");
         var pkgBtn = document.getElementById("pwaInstantPackageBtn");
         bar.style.width = "10%";
-        status.textContent = "Preparing OSSIAN PRO app...";
+        status.textContent = "Preparing OSSIAN PRO PWA app...";
         fallbackBox.style.display = "none";
         pkgBtn.style.display = "none";
         document.getElementById("pwaDownloadModal").classList.add("open");
@@ -3189,9 +3407,9 @@
             bar.style.width = "100%";
 
             if (isRunningStandalonePwa()) {
-              status.textContent = "OSSIAN PRO is installed & synced with latest website!";
+              status.textContent = "OSSIAN PRO PWA is installed & synced with latest website!";
               fallbackBox.style.display = "block";
-              fallbackBox.innerHTML = "You are already running the installed <strong>OSSIAN PRO App</strong>. Every time the website updates or upgrades, your app updates automatically.";
+              fallbackBox.innerHTML = "You are already running the installed <strong>OSSIAN PRO PWA App</strong>. Every time the website updates or upgrades, your app updates automatically.";
               return;
             }
 
@@ -3217,7 +3435,7 @@
             if (pct === 40) status.textContent = "Linking live auto-update manifest...";
             if (pct === 70) status.textContent = "Finalizing OSSIAN PRO mobile app...";
           }
-        }, 450); // Total ~1.35 seconds (well under 5 seconds)
+        }, 450);
       }
 
       function downloadLiveSyncPwaFile() {
@@ -3238,7 +3456,7 @@
           setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
           showToast("OSSIAN PRO App downloaded!");
         } catch (e) {
-          showToast("Use Browser Menu -> Install App to install...");
+          showToast("Use Browser Menu -> Install App to install PWA");
         }
       }
 
@@ -3260,7 +3478,7 @@
             navigator.mediaDevices.getDisplayMedia = function () {
               triggerBlackoutFlash(true);
               showToast("Screen recording blocked by OSSIAN PRO Security!");
-              return Promise.reject(new DOMException("Screen capture disabled by High Security", "NotAllowedError"));
+              return Promise.reject(new DOMException("Screen capture disabled by Banking Security", "NotAllowedError"));
             };
           }
         } catch (e) {}
@@ -3314,7 +3532,7 @@
                 navigator.clipboard.writeText("");
               }
             } catch (err) {}
-            showToast("Capture blocked by OSSIAN PRO High Security!");
+            showToast("Capture blocked by OSSIAN PRO Banking Security!");
           }
         }, true);
 
@@ -3376,7 +3594,7 @@
 
       function lockAppWithPinNow() {
         if (!bankingPinHash) {
-          showToast("Please set a 4-digit PIN first!");
+          showToast("Please set a 4-digit Banking PIN first!");
           return;
         }
         openPinLockOverlay();
@@ -3436,10 +3654,9 @@
           await syncBankingPinToCloud("");
         }
         updateBankingSecurityUI();
-        showToast("Advance Security PIN deleted!");
+        showToast("Banking Security PIN deleted!");
       }
 
-      // Anti-Capture Blackout Shield is permanently ON; if turned OFF, re-enables in 1 second!
       function toggleBlackoutShield() {
         clearTimeout(blackoutReenableTimer);
         if (blackoutShieldOn) {
@@ -3527,7 +3744,7 @@
 
         if (pinLockUntil > now) {
           var sec = Math.ceil((pinLockUntil - now) / 1000);
-          var msg = " Wait " + sec + " second" + (sec === 1 ? "" : "s") + ".";
+          var msg = "3 wrong PIN attempts! Wait " + sec + " second" + (sec === 1 ? "" : "s") + ".";
           if (box && txt && btn) {
             box.classList.add("show");
             txt.textContent = msg;
@@ -3562,7 +3779,7 @@
         var p1 = document.getElementById("newBankingPin").value.trim();
         var p2 = document.getElementById("confirmBankingPin").value.trim();
         if (!/^\d{4}$/.test(p1)) {
-          showToast("Advance PIN must be exactly 4 digits!");
+          showToast("Banking PIN must be exactly 4 digits!");
           return;
         }
         if (p1 !== p2) {
@@ -3579,7 +3796,7 @@
         }
         document.getElementById("setPinForm").reset();
         updateBankingSecurityUI();
-        showToast("4-Digit Security PIN permanently saved!");
+        showToast("4-Digit Banking Security PIN permanently saved!");
       });
 
       document.getElementById("pinUnlockForm").addEventListener("submit", async function (e) {
@@ -3598,7 +3815,7 @@
             safeSet("ossian_pin_fails_v1", "0");
             safeSet("ossian_pin_lock_v1", String(pinLockUntil));
             updatePinLockTimerUI();
-            showToast("Locked for 2 minutes.");
+            showToast("3 wrong PINs! Locked for 2 minutes.");
           } else {
             safeSet("ossian_pin_fails_v1", String(pinFailCount));
             showToast("Wrong Banking PIN! (" + pinFailCount + "/3)");
@@ -3614,7 +3831,6 @@
         showToast("OSSIAN PRO Unlocked");
       });
 
-      /* Verify Banking PIN before opening any Website / App inside launcher */
       document.getElementById("appPinVerifyForm").addEventListener("submit", async function (e) {
         e.preventDefault();
         if (updatePinLockTimerUI()) {
@@ -3631,7 +3847,7 @@
             safeSet("ossian_pin_fails_v1", "0");
             safeSet("ossian_pin_lock_v1", String(pinLockUntil));
             updatePinLockTimerUI();
-            showToast("Locked for 2 minutes.");
+            showToast("3 wrong PINs! Locked for 2 minutes.");
           } else {
             safeSet("ossian_pin_fails_v1", String(pinFailCount));
             showToast("Wrong Banking PIN! (" + pinFailCount + "/3)");
@@ -3649,7 +3865,9 @@
         if (pendingLaunchTarget) {
           var target = pendingLaunchTarget;
           pendingLaunchTarget = null;
-          trackAppOpen(target.id);
+          if (!target.isExternal && !target.isTool) {
+            trackAppOpen(target.id);
+          }
           window.open(target.url, "_blank", "noopener,noreferrer");
         }
       });
@@ -3665,13 +3883,19 @@
         try { submittedApps = JSON.parse(safeGet("ossian_submitted_apps_v1", "[]")) || []; } catch (e) { submittedApps = []; }
         try { appointments = JSON.parse(safeGet("ossian_appointments_v1", "[]")) || []; } catch (e) { appointments = []; }
         try { uploadAccessMap = JSON.parse(safeGet("ossian_upload_access_v1", "{}")) || {}; } catch (e) { uploadAccessMap = {}; }
+        try {
+          var cachedSiteCfg = JSON.parse(safeGet("ossian_site_config_v1", "null"));
+          if (cachedSiteCfg) {
+            siteConfig = cachedSiteCfg;
+            applyCustomSiteIcon(siteConfig.siteIcon);
+          }
+        } catch (e) {}
 
         notificationsOn = safeGet("ossian_notifications_v1", "on") !== "off";
         autoRefreshOn = safeGet("ossian_autorefresh_on_v1", "on") !== "off";
         autoRefreshSec = Number(safeGet("ossian_autorefresh_sec_v1", "15")) || 15;
         if ([10, 15, 30, 60, 300].indexOf(autoRefreshSec) === -1) autoRefreshSec = 15;
 
-        // Anti-Capture Blackout Shield is permanently ON on launch
         blackoutShieldOn = true;
         safeSet("ossian_blackout_shield_v1", "on");
 
@@ -3744,7 +3968,6 @@
           }
         }
 
-        // Permanent Banking Lock immediately when opening OSSIAN PRO if PIN is saved
         if (bankingPinHash) {
           openPinLockOverlay();
         }
@@ -3811,7 +4034,24 @@
           icon: (f.icon && f.icon.stringValue) || "",
           isOwn: f.isOwn && typeof f.isOwn.booleanValue === "boolean" ? f.isOwn.booleanValue : false,
           isOfficial: f.isOfficial && typeof f.isOfficial.booleanValue === "boolean" ? f.isOfficial.booleanValue : false,
+          isTool: f.isTool && typeof f.isTool.booleanValue === "boolean" ? f.isTool.booleanValue : false,
           showOnHome: f.showOnHome && typeof f.showOnHome.booleanValue === "boolean" ? f.showOnHome.booleanValue : true,
+          createdAt: Number((f.createdAt && (f.createdAt.integerValue || f.createdAt.doubleValue)) || 0)
+        };
+      }
+
+      function parseFirestoreTool(docObj) {
+        var f = docObj.fields || {};
+        var nameVal = (f.name && f.name.stringValue) || (f.title && f.title.stringValue) || "";
+        var urlVal = (f.url && f.url.stringValue) || (f.link && f.link.stringValue) || "";
+        return {
+          id: "tool_" + (docObj.name || "").split("/").pop(),
+          name: nameVal,
+          url: urlVal,
+          description: (f.description && f.description.stringValue) || "Official tool added from OSSIAN PRO Admin Panel.",
+          category: (f.category && f.category.stringValue) || "Channel & Tool",
+          icon: (f.icon && f.icon.stringValue) || "",
+          isTool: true,
           createdAt: Number((f.createdAt && (f.createdAt.integerValue || f.createdAt.doubleValue)) || 0)
         };
       }
@@ -4071,7 +4311,7 @@
           }
         } else if (foundPending) {
           setUserUploadApprovalState(currentUser.uid, "pending");
-          if (showMsg) showToast("Request is still pending company approval.");
+          if (showMsg) showToast("Request is still pending Admin approval.");
         } else {
           if (showMsg) {
             var curState = getUserUploadApprovalState();
@@ -4100,8 +4340,13 @@
             throw new Error(msg);
           }
 
-          apps = (data.documents || []).map(parseFirestoreDoc);
+          var allDocs = (data.documents || []).map(parseFirestoreDoc);
+          apps = allDocs.filter(function (a) {
+            var catLow = String(a.category || "").toLowerCase();
+            return !a.isTool && catLow !== "tools_page" && catLow !== "admin tool";
+          });
           apps.sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
+
           isLoaded = true;
           dbStatusMessage = "Cloud Connected";
           setDbStatus('<i class="fa-solid fa-circle-check"></i> Cloud Connected', "#10b981");
@@ -4114,6 +4359,59 @@
           showErrorBanner("System Error: " + errText + ". Please check your internet connection.");
         }
         renderAll();
+      }
+
+      async function fetchAdminTools(showMsg) {
+        var cloudTools = [];
+        try {
+          const res = await fetch(TOOLS_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
+            method: "GET",
+            cache: "no-store"
+          });
+          const data = await res.json();
+          if (res.ok && data && Array.isArray(data.documents)) {
+            cloudTools = data.documents.map(parseFirestoreTool).filter(function (t) {
+              return t.name && t.url;
+            });
+          }
+        } catch (e) {}
+
+        // Also include any apps marked with isTool: true from Admin Panel
+        try {
+          const appRes = await fetch(BASE_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
+            method: "GET",
+            cache: "no-store"
+          });
+          const appData = await appRes.json();
+          if (appRes.ok && appData && Array.isArray(appData.documents)) {
+            appData.documents.map(parseFirestoreDoc).forEach(function (item) {
+              var catLow = String(item.category || "").toLowerCase();
+              if (item.isTool || catLow === "tools_page" || catLow === "admin tool") {
+                item.isTool = true;
+                cloudTools.push(item);
+              }
+            });
+          }
+        } catch (e) {}
+
+        var merged = [];
+        var seenNames = {};
+        cloudTools.sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
+        cloudTools.forEach(function (t) {
+          var key = String(t.name || "").trim().toLowerCase();
+          if (!key || seenNames[key]) return;
+          seenNames[key] = true;
+          merged.push(t);
+        });
+
+        // Include default WhatsApp Channel example tool if Admin hasn't overridden it
+        if (!seenNames["whatsapp channel"]) {
+          merged.push(DEFAULT_WHATSAPP_CHANNEL_TOOL);
+        }
+
+        adminTools = merged;
+        renderAdminToolsGrid();
+        if (showMsg) showToast("Channels & Tools refreshed!");
       }
 
       async function fetchMessages(showMsg) {
@@ -4169,13 +4467,14 @@
             }
           }
 
-          const res = await fetch(SUBMITTED_APPS_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
+          const res = await fetch(SUBMITTED_APPS_URL + "?pageSize=200&key=" + encodeURIComponent(API_KEY), {
             method: "GET",
             cache: "no-store"
           });
           const data = await res.json();
           if (res.ok && data && Array.isArray(data.documents)) {
             var cloudSubs = data.documents.map(parseFirestoreSubmittedApp);
+            allCloudSubmittedApps = cloudSubs;
             cloudSubs.forEach(function (cs) {
               var localIdx = submittedApps.findIndex(function (ls) { return ls.id === cs.id; });
               if (localIdx !== -1) {
@@ -4354,6 +4653,174 @@
         }
       }
 
+      /* =======================================================
+         EXTERNAL GOOGLE & WEB SEARCH FALLBACK
+         ======================================================= */
+      function buildImmediateExternalResults(query) {
+        var trimmed = String(query || "").trim();
+        if (!trimmed) return [];
+        var list = [];
+
+        // If query looks like a domain (e.g. canva.com or daraz.pk), add direct site card
+        if (/^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(trimmed) && !/\s/.test(trimmed)) {
+          var directUrl = normalizeUrl(trimmed);
+          list.push({
+            id: "ext_domain_" + hashSecret(trimmed.toLowerCase()),
+            name: trimmed.replace(/^https?:\/\//i, "").replace(/^www\./i, "").split("/")[0],
+            url: directUrl,
+            description: "Direct website result from external web search for " + trimmed + ".",
+            category: "Web Result",
+            icon: "",
+            isExternal: true
+          });
+        }
+
+        // Direct Google Search launcher card
+        list.push({
+          id: "ext_google_" + hashSecret(trimmed.toLowerCase()),
+          name: "Google: " + trimmed,
+          url: "https://www.google.com/search?q=" + encodeURIComponent(trimmed),
+          description: "Search \"" + trimmed + "\" directly on Google to find its official website and pages.",
+          category: "Google Search",
+          icon: "fa-brands fa-google",
+          isExternal: true
+        });
+
+        return list;
+      }
+
+      function fetchItunesAppsJsonp(query) {
+        return new Promise(function (resolve) {
+          var cbName = "__ossianItunesCb_" + Date.now() + "_" + Math.floor(Math.random() * 9999);
+          var script = document.createElement("script");
+          var done = false;
+
+          function cleanup() {
+            if (script.parentNode) script.parentNode.removeChild(script);
+            try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+          }
+
+          var timer = setTimeout(function () {
+            if (done) return;
+            done = true;
+            cleanup();
+            resolve([]);
+          }, 4500);
+
+          window[cbName] = function (data) {
+            if (done) return;
+            done = true;
+            clearTimeout(timer);
+            cleanup();
+            if (!data || !Array.isArray(data.results)) {
+              resolve([]);
+              return;
+            }
+            var mapped = data.results.map(function (item) {
+              var targetUrl = item.sellerUrl || item.trackViewUrl || ("https://www.google.com/search?q=" + encodeURIComponent(item.trackName || query));
+              return {
+                id: "ext_itunes_" + String(item.trackId || hashSecret(item.trackName || "")),
+                name: item.trackName || query,
+                url: normalizeUrl(targetUrl),
+                description: (item.description ? String(item.description).slice(0, 220) + "..." : ("Found via external Web/App search for " + query)),
+                category: "Google / Web",
+                icon: item.artworkUrl100 || item.artworkUrl60 || "",
+                isExternal: true
+              };
+            });
+            resolve(mapped);
+          };
+
+          script.src = "https://itunes.apple.com/search?term=" + encodeURIComponent(query) + "&entity=software&limit=4&callback=" + cbName;
+          script.onerror = function () {
+            if (done) return;
+            done = true;
+            clearTimeout(timer);
+            cleanup();
+            resolve([]);
+          };
+          document.body.appendChild(script);
+        });
+      }
+
+      async function fetchWikipediaWebResults(query) {
+        try {
+          var url = "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=" +
+            encodeURIComponent(query) + "&gsrlimit=3&prop=extracts|info&inprop=url&exintro=1&explaintext=1&format=json&origin=*";
+          const res = await fetch(url, { method: "GET" });
+          const data = await res.json();
+          if (!res.ok || !data || !data.query || !data.query.pages) return [];
+          var pages = Object.keys(data.query.pages).map(function (k) { return data.query.pages[k]; });
+          pages.sort(function (a, b) { return (a.index || 0) - (b.index || 0); });
+          return pages.map(function (p) {
+            var wikiUrl = p.fullurl || ("https://en.wikipedia.org/?curid=" + p.pageid);
+            return {
+              id: "ext_wiki_" + String(p.pageid),
+              name: p.title || query,
+              url: wikiUrl,
+              description: (p.extract ? String(p.extract).slice(0, 220) + "..." : "External web result found for " + query),
+              category: "Web Info",
+              icon: "fa-solid fa-globe",
+              isExternal: true
+            };
+          });
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function scheduleExternalSearch(rawQuery) {
+        var q = String(rawQuery || "").trim();
+        var qKey = q.toLowerCase();
+        activeExternalQuery = qKey;
+
+        if (!q || q.length < 2) {
+          externalSearchResults = [];
+          externalSearchLoading = false;
+          clearTimeout(externalSearchTimer);
+          return;
+        }
+
+        if (externalSearchCache[qKey]) {
+          externalSearchResults = externalSearchCache[qKey];
+          externalSearchLoading = false;
+          return;
+        }
+
+        externalSearchResults = buildImmediateExternalResults(q);
+        externalSearchLoading = true;
+        clearTimeout(externalSearchTimer);
+
+        externalSearchTimer = setTimeout(async function () {
+          var immediate = buildImmediateExternalResults(q);
+          var results = await Promise.all([
+            fetchItunesAppsJsonp(q),
+            fetchWikipediaWebResults(q)
+          ]);
+          var itunesList = results[0] || [];
+          var wikiList = results[1] || [];
+
+          var combined = [];
+          var seen = {};
+          immediate.concat(itunesList).concat(wikiList).forEach(function (item) {
+            var k = (item.name || "").toLowerCase() + "::" + (item.url || "").toLowerCase();
+            if (seen[k]) return;
+            seen[k] = true;
+            combined.push(item);
+          });
+
+          externalSearchCache[qKey] = combined;
+          if (activeExternalQuery === qKey) {
+            externalSearchResults = combined;
+            externalSearchLoading = false;
+            renderHome();
+            renderAppsPage();
+            renderSuggestions("homeSearchInput", "homeSuggestions");
+            renderSuggestions("appsSearchInput", "appsSuggestions");
+          }
+        }, 350);
+      }
+
       function showErrorBanner(text) {
         var el = document.getElementById("errorBanner");
         el.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + escapeHtml(text);
@@ -4446,6 +4913,16 @@
         return clean;
       }
 
+      function normalizeCompareUrl(url) {
+        var clean = String(url || "").trim().toLowerCase();
+        clean = clean.replace(/^https?:\/\//i, "").replace(/^www\./i, "").replace(/\/+$/, "");
+        return clean;
+      }
+
+      function normalizeCompareName(name) {
+        return String(name || "").trim().toLowerCase().replace(/\s+/g, " ");
+      }
+
       function getDomain(url) {
         try {
           return new URL(normalizeUrl(url)).hostname;
@@ -4465,20 +4942,22 @@
 
       function getCategoryFaIcon(cat) {
         var c = String(cat || "").toLowerCase();
-        if (c.includes("official") || c.includes("own")) return "fa-certificate";
-        if (c.includes("fav")) return "fa-heart";
-        if (c.includes("popular") || c.includes("most")) return "fa-fire";
-        if (c.includes("shop") || c.includes("store") || c.includes("mart")) return "fa-cart-shopping";
-        if (c.includes("game")) return "fa-gamepad";
-        if (c.includes("video") || c.includes("movie") || c.includes("media") || c.includes("entertain")) return "fa-film";
-        if (c.includes("music") || c.includes("audio")) return "fa-music";
-        if (c.includes("social") || c.includes("chat")) return "fa-comments";
-        if (c.includes("tool") || c.includes("util")) return "fa-screwdriver-wrench";
-        if (c.includes("edu") || c.includes("study") || c.includes("learn")) return "fa-graduation-cap";
-        if (c.includes("news") || c.includes("blog")) return "fa-newspaper";
-        if (c.includes("fin") || c.includes("pay") || c.includes("bank")) return "fa-wallet";
-        if (c.includes("ai")) return "fa-wand-magic-sparkles";
-        return "fa-globe";
+        if (c.includes("google")) return "fa-brands fa-google";
+        if (c.includes("channel") || c.includes("whatsapp")) return "fa-brands fa-whatsapp";
+        if (c.includes("official") || c.includes("own")) return "fa-solid fa-certificate";
+        if (c.includes("fav")) return "fa-solid fa-heart";
+        if (c.includes("popular") || c.includes("most")) return "fa-solid fa-fire";
+        if (c.includes("shop") || c.includes("store") || c.includes("mart")) return "fa-solid fa-cart-shopping";
+        if (c.includes("game")) return "fa-solid fa-gamepad";
+        if (c.includes("video") || c.includes("movie") || c.includes("media") || c.includes("entertain")) return "fa-solid fa-film";
+        if (c.includes("music") || c.includes("audio")) return "fa-solid fa-music";
+        if (c.includes("social") || c.includes("chat")) return "fa-solid fa-comments";
+        if (c.includes("tool") || c.includes("util")) return "fa-solid fa-screwdriver-wrench";
+        if (c.includes("edu") || c.includes("study") || c.includes("learn")) return "fa-solid fa-graduation-cap";
+        if (c.includes("news") || c.includes("blog")) return "fa-solid fa-newspaper";
+        if (c.includes("fin") || c.includes("pay") || c.includes("bank")) return "fa-solid fa-wallet";
+        if (c.includes("ai")) return "fa-solid fa-wand-magic-sparkles";
+        return "fa-solid fa-globe";
       }
 
       function createAppIconHtml(app, sizeClass) {
@@ -4486,18 +4965,19 @@
         var customIcon = String(app.icon || "").trim();
         var faFallback = getCategoryFaIcon(app.category);
 
-        if (/^fa-[a-z0-9-]+$/i.test(customIcon)) {
-          return '<div class="app-icon-box ' + cls + '"><i class="fa-solid ' + escapeHtml(customIcon) + ' gold-icon"></i></div>';
+        if (/^(fa-(solid|regular|brands)\s+)?fa-[a-z0-9-]+$/i.test(customIcon)) {
+          var fullFa = /^fa-(solid|regular|brands)\s+/i.test(customIcon) ? customIcon : ("fa-solid " + customIcon);
+          return '<div class="app-icon-box ' + cls + '"><i class="' + escapeHtml(fullFa) + ' gold-icon"></i></div>';
         }
-        if (/^https?:\/\//i.test(customIcon)) {
-          return '<div class="app-icon-box ' + cls + '"><img src="' + escapeHtml(customIcon) + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="fa-solid ' + faFallback + ' gold-icon" style="display:none;"></i></div>';
+        if (/^(https?:\/\/|data:image\/)/i.test(customIcon)) {
+          return '<div class="app-icon-box ' + cls + '"><img src="' + escapeHtml(customIcon) + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="' + faFallback + ' gold-icon" style="display:none;"></i></div>';
         }
         var domain = getDomain(app.url);
         if (domain) {
           var fav = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=128";
-          return '<div class="app-icon-box ' + cls + '"><img src="' + fav + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="fa-solid ' + faFallback + ' gold-icon" style="display:none;"></i></div>';
+          return '<div class="app-icon-box ' + cls + '"><img src="' + fav + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="' + faFallback + ' gold-icon" style="display:none;"></i></div>';
         }
-        return '<div class="app-icon-box ' + cls + '"><i class="fa-solid ' + faFallback + ' gold-icon"></i></div>';
+        return '<div class="app-icon-box ' + cls + '"><i class="' + faFallback + ' gold-icon"></i></div>';
       }
 
       function createLauncherGridHtml(list, emptyIcon, emptyText) {
@@ -4515,6 +4995,23 @@
         }).join("");
       }
 
+      function createExternalGridHtml(rawQuery) {
+        var results = externalSearchResults || [];
+        var bannerHtml = '<div class="external-grid-banner">' +
+          '<span><i class="fa-brands fa-google gold-icon"></i> Google &amp; External Web Results for "' + escapeHtml(rawQuery) + '"</span>' +
+          (externalSearchLoading ? '<i class="fa-solid fa-spinner fa-spin"></i>' : '') +
+        '</div>';
+        if (results.length === 0) {
+          return bannerHtml + '<div class="grid-empty-state"><i class="fa-solid fa-spinner fa-spin gold-icon"></i>Searching Google &amp; Web...</div>';
+        }
+        return bannerHtml + results.map(function (item) {
+          return '<div class="launcher-item" onclick="openAppModal(\'' + escapeHtml(item.id) + '\')">' +
+            createAppIconHtml(item, "") +
+            '<div class="launcher-name">' + escapeHtml(item.name) + '</div>' +
+          '</div>';
+        }).join("");
+      }
+
       function matchesQuery(app, query) {
         if (!query) return true;
         return (app.name || "").toLowerCase().includes(query) ||
@@ -4524,32 +5021,41 @@
       }
 
       function renderSuggestions(inputId, boxId) {
-        var val = document.getElementById(inputId).value.trim().toLowerCase();
+        var raw = document.getElementById(inputId).value.trim();
+        var val = raw.toLowerCase();
         var box = document.getElementById(boxId);
-        if (!val || apps.length === 0) {
+        if (!val) {
           box.classList.remove("show");
           box.innerHTML = "";
           return;
         }
         var matches = apps.filter(function (a) { return matchesQuery(a, val); }).slice(0, 6);
+        var showingExternal = false;
+        if (matches.length === 0 && val.length >= 2) {
+          showingExternal = true;
+          matches = (externalSearchResults.length > 0 ? externalSearchResults : buildImmediateExternalResults(raw)).slice(0, 6);
+        }
         if (matches.length === 0) {
           box.classList.remove("show");
           box.innerHTML = "";
           return;
         }
-        box.innerHTML = matches.map(function (a) {
-          var iconCls = getCategoryFaIcon(a.category);
-          return '<div class="suggestion-item" onclick="pickSuggestion(\'' + escapeHtml(a.id) + '\', \'' + boxId + '\')">' +
-            '<div class="suggestion-left">' +
-              '<span class="gold-badge-icon" style="width:26px;height:26px;font-size:12px;"><i class="fa-solid ' + iconCls + ' gold-icon"></i></span>' +
-              '<div style="min-width:0;">' +
-                '<div class="suggestion-name">' + escapeHtml(a.name) + '</div>' +
-                '<div class="suggestion-cat">' + escapeHtml(a.category || "Other") + '</div>' +
+        box.innerHTML = (showingExternal
+          ? '<div style="padding:7px 14px;font-size:11px;font-weight:800;color:var(--primary);background:var(--gold-bg);border-bottom:1px solid var(--border);"><i class="fa-brands fa-google"></i> Not in OSSIAN PRO — Google &amp; External Results</div>'
+          : '') +
+          matches.map(function (a) {
+            var iconCls = getCategoryFaIcon(a.category);
+            return '<div class="suggestion-item" onclick="pickSuggestion(\'' + escapeHtml(a.id) + '\', \'' + boxId + '\')">' +
+              '<div class="suggestion-left">' +
+                '<span class="gold-badge-icon" style="width:26px;height:26px;font-size:12px;"><i class="' + iconCls + ' gold-icon"></i></span>' +
+                '<div style="min-width:0;">' +
+                  '<div class="suggestion-name">' + escapeHtml(a.name) + '</div>' +
+                  '<div class="suggestion-cat">' + escapeHtml(a.category || "Other") + '</div>' +
+                '</div>' +
               '</div>' +
-            '</div>' +
-            '<i class="fa-solid fa-arrow-up-right-from-square gold-icon" style="font-size:12px;"></i>' +
-          '</div>';
-        }).join("");
+              '<i class="fa-solid fa-arrow-up-right-from-square gold-icon" style="font-size:12px;"></i>' +
+            '</div>';
+          }).join("");
         box.classList.add("show");
       }
 
@@ -4567,11 +5073,33 @@
         renderHome();
         renderAppsPage();
         renderMePage();
+        renderAdminToolsGrid();
         updateSyncUI();
       }
 
+      function renderAdminToolsGrid() {
+        var grid = document.getElementById("adminToolsGrid");
+        if (!grid) return;
+        grid.innerHTML = createLauncherGridHtml(
+          adminTools,
+          "fa-toolbox",
+          "No tools available yet."
+        );
+        var sub = document.getElementById("toolsRowSub");
+        if (sub) {
+          sub.textContent = adminTools.length + " tool" + (adminTools.length === 1 ? "" : "s") + " • WhatsApp Channel & admin tools";
+        }
+      }
+
+      function openToolsPage() {
+        renderAdminToolsGrid();
+        openSubPage("me-tools");
+        fetchAdminTools(false);
+      }
+
       function renderHome() {
-        var query = document.getElementById("homeSearchInput").value.trim().toLowerCase();
+        var rawQuery = document.getElementById("homeSearchInput").value.trim();
+        var query = rawQuery.toLowerCase();
 
         var officialApps = apps
           .filter(function (a) { return isOfficialApp(a) && matchesQuery(a, query); })
@@ -4611,15 +5139,20 @@
         );
 
         var allFiltered = apps.filter(function (a) { return matchesQuery(a, query); });
-        document.getElementById("homeAllAppsGrid").innerHTML = createLauncherGridHtml(
-          allFiltered,
-          "fa-folder-open",
-          "No apps found."
-        );
+        if (query.length >= 2 && allFiltered.length === 0 && isLoaded) {
+          document.getElementById("homeAllAppsGrid").innerHTML = createExternalGridHtml(rawQuery);
+        } else {
+          document.getElementById("homeAllAppsGrid").innerHTML = createLauncherGridHtml(
+            allFiltered,
+            "fa-folder-open",
+            "No apps found."
+          );
+        }
       }
 
       function renderAppsPage() {
-        var query = document.getElementById("appsSearchInput").value.trim().toLowerCase();
+        var rawQuery = document.getElementById("appsSearchInput").value.trim();
+        var query = rawQuery.toLowerCase();
         var catSet = {};
         apps.forEach(function (a) {
           var cat = a.category || "Other";
@@ -4630,18 +5163,18 @@
         });
         var categories = ["All", "Web Official App", "Popular", "Favorites"].concat(Object.keys(catSet));
 
-        if (categories.indexOf(activeCategory) === -1) activeCategory = "All";
+        if (if (categories.indexOf(activeCategory) === -1) activeCategory = "All";
 
         document.getElementById("categoryChips").innerHTML = categories.map(function (cat) {
           var iconCls = cat === "All"
-            ? "fa-layer-group"
+            ? "fa-solid fa-layer-group"
             : (cat === "Web Official App"
-              ? "fa-certificate"
+              ? "fa-solid fa-certificate"
               : (cat === "Popular"
-                ? "fa-fire"
-                : (cat === "Favorites" ? "fa-heart" : getCategoryFaIcon(cat))));
+                ? "fa-solid fa-fire"
+                : (cat === "Favorites" ? "fa-solid fa-heart" : getCategoryFaIcon(cat))));
           return '<button class="chip ' + (cat === activeCategory ? "active" : "") + '" onclick="selectCategory(\'' + escapeHtml(cat) + '\')">' +
-            '<i class="fa-solid ' + iconCls + '"></i> ' + escapeHtml(cat) + '</button>';
+            '<i class="' + iconCls + '"></i> ' + escapeHtml(cat) + '</button>';
         }).join("");
 
         var filtered;
@@ -4663,11 +5196,15 @@
           });
         }
 
-        document.getElementById("allAppsGrid").innerHTML = createLauncherGridHtml(
-          filtered,
-          "fa-folder-open",
-          "No apps found in this category."
-        );
+        if (query.length >= 2 && filtered.length === 0 && isLoaded) {
+          document.getElementById("allAppsGrid").innerHTML = createExternalGridHtml(rawQuery);
+        } else {
+          document.getElementById("allAppsGrid").innerHTML = createLauncherGridHtml(
+            filtered,
+            "fa-folder-open",
+            "No apps found in this category."
+          );
+        }
       }
 
       function renderMePage() {
@@ -4809,6 +5346,8 @@
         if (!autoRefreshOn) return;
         autoRefreshTimerId = setInterval(function () {
           fetchApps(false);
+          fetchAdminTools(false);
+          fetchSiteConfig();
           fetchMessages(false);
           fetchPromoCodes();
           fetchSubmittedAppsStatus(false);
@@ -5058,10 +5597,13 @@
       }
 
       function openSubmitAppPage() {
+        var dupBox = document.getElementById("submitDuplicateError");
+        if (dupBox) dupBox.classList.remove("show");
         renderSubmitAppLockState();
         renderSubmittedAppsList();
         openSubPage("settings-submit-app");
         fetchUploadApprovalStatus(false);
+        fetchSubmittedAppsStatus(false);
       }
 
       function openAppointmentsPage() {
@@ -5078,6 +5620,8 @@
 
       function syncNowFromPage() {
         fetchApps(true);
+        fetchAdminTools(false);
+        fetchSiteConfig();
         fetchMessages(false);
         fetchPromoCodes();
         fetchSubmittedAppsStatus(false);
@@ -5990,9 +6534,58 @@
           '</div>';
       }
 
-      /* Submit Application Page */
+      /* Submit Application Page (with Duplicate Check: "this appointment already uploaded") */
+      async function isDuplicateAppOrWebsite(name, url) {
+        var targetName = normalizeCompareName(name);
+        var targetUrl = normalizeCompareUrl(url);
+        var combinedList = [];
+
+        apps.forEach(function (a) { combinedList.push(a); });
+        submittedApps.forEach(function (a) { combinedList.push(a); });
+        allCloudSubmittedApps.forEach(function (a) { combinedList.push(a); });
+
+        try {
+          const resApps = await fetch(BASE_URL + "?pageSize=200&key=" + encodeURIComponent(API_KEY), {
+            method: "GET",
+            cache: "no-store"
+          });
+          const dataApps = await resApps.json();
+          if (resApps.ok && dataApps && Array.isArray(dataApps.documents)) {
+            dataApps.documents.map(parseFirestoreDoc).forEach(function (item) {
+              combinedList.push(item);
+            });
+          }
+        } catch (e) {}
+
+        try {
+          const resSub = await fetch(SUBMITTED_APPS_URL + "?pageSize=200&key=" + encodeURIComponent(API_KEY), {
+            method: "GET",
+            cache: "no-store"
+          });
+          const dataSub = await resSub.json();
+          if (resSub.ok && dataSub && Array.isArray(dataSub.documents)) {
+            allCloudSubmittedApps = dataSub.documents.map(parseFirestoreSubmittedApp);
+            allCloudSubmittedApps.forEach(function (item) {
+              combinedList.push(item);
+            });
+          }
+        } catch (e) {}
+
+        return combinedList.some(function (existing) {
+          if (!existing) return false;
+          var exUrl = normalizeCompareUrl(existing.url);
+          var exName = normalizeCompareName(existing.name);
+          var urlMatched = targetUrl && exUrl && exUrl === targetUrl;
+          var nameMatched = targetName && exName && exName === targetName;
+          return urlMatched || nameMatched;
+        });
+      }
+
       document.getElementById("submitAppForm").addEventListener("submit", async function (e) {
         e.preventDefault();
+        var dupErrBox = document.getElementById("submitDuplicateError");
+        if (dupErrBox) dupErrBox.classList.remove("show");
+
         if (!currentUser) {
           showToast("Please login or register first!");
           openAuthPage("login");
@@ -6020,6 +6613,17 @@
           return;
         }
 
+        var subBtn = document.getElementById("submitAppBtn");
+        if (subBtn) subBtn.disabled = true;
+
+        var duplicateFound = await isDuplicateAppOrWebsite(name, url);
+        if (duplicateFound) {
+          if (subBtn) subBtn.disabled = false;
+          if (dupErrBox) dupErrBox.classList.add("show");
+          showToast("this appointment already uploaded");
+          return;
+        }
+
         var appItem = {
           id: "sub_" + Date.now() + "_" + Math.floor(1000 + Math.random() * 9000),
           name: name,
@@ -6036,6 +6640,7 @@
         };
 
         submittedApps.unshift(appItem);
+        allCloudSubmittedApps.unshift(appItem);
         safeSet("ossian_submitted_apps_v1", JSON.stringify(submittedApps));
         document.getElementById("submitAppForm").reset();
         renderSubmittedAppsList();
@@ -6043,6 +6648,7 @@
         updateSyncUI();
 
         var synced = await syncSubmittedAppToCloudSilently(appItem, false);
+        if (subBtn) subBtn.disabled = false;
         if (synced) {
           showToast("Submitted to Admin Panel! Status: Pending.");
         }
@@ -6391,6 +6997,22 @@
         if (currentModalId) toggleFavorite(currentModalId);
       }
 
+      function findAnyAppById(id) {
+        var found = apps.find(function (a) { return a.id === id; });
+        if (found) return found;
+        found = adminTools.find(function (t) { return t.id === id; });
+        if (found) return found;
+        found = externalSearchResults.find(function (x) { return x.id === id; });
+        if (found) return found;
+        var cacheKeys = Object.keys(externalSearchCache);
+        for (var i = 0; i < cacheKeys.length; i++) {
+          var arr = externalSearchCache[cacheKeys[i]] || [];
+          found = arr.find(function (x) { return x.id === id; });
+          if (found) return found;
+        }
+        return null;
+      }
+
       function openAppModal(id) {
         if (!currentUser) {
           showToast("Please register or login first to open apps!");
@@ -6398,7 +7020,7 @@
           return;
         }
 
-        var app = apps.find(function (a) { return a.id === id; });
+        var app = findAnyAppById(id);
         if (!app) return;
         currentModalId = id;
         var safeUrl = normalizeUrl(app.url);
@@ -6411,6 +7033,12 @@
         document.getElementById("modalAppCat").textContent = app.category || "Other";
         document.getElementById("modalAppUrl").textContent = safeUrl;
         document.getElementById("modalAppDesc").textContent = app.description || "Launch this web app directly from OSSIAN PRO.";
+
+        var favBtn = document.getElementById("modalFavBtn");
+        if (favBtn) {
+          favBtn.style.display = (app.isExternal || app.isTool) ? "none" : "";
+        }
+
         var launchLink = document.getElementById("modalLaunchLink");
         launchLink.href = safeUrl;
         launchLink.onclick = function (ev) {
@@ -6421,21 +7049,27 @@
             openAuthPage("register");
             return false;
           }
-          // Require saved 4-digit Banking PIN whenever opening any website/app
           if (bankingPinHash) {
             ev.preventDefault();
             if (updatePinLockTimerUI()) {
               showToast("PIN locked! Please wait for timer.");
               return false;
             }
-            pendingLaunchTarget = { id: id, url: safeUrl };
+            pendingLaunchTarget = {
+              id: id,
+              url: safeUrl,
+              isExternal: !!app.isExternal,
+              isTool: !!app.isTool
+            };
             document.getElementById("appPinTargetName").textContent =
               "Paste or enter your saved 4-digit PIN to open " + app.name;
             document.getElementById("appPinInput").value = "";
             document.getElementById("appPinVerifyModal").classList.add("open");
             return false;
           }
-          trackAppOpen(id);
+          if (!app.isExternal && !app.isTool) {
+            trackAppOpen(id);
+          }
         };
 
         updateModalFavBtn();
@@ -6505,7 +7139,7 @@
         var toast = document.getElementById("toast");
         var icon = toast.querySelector("i");
         var lower = String(msg || "").toLowerCase();
-        if (lower.includes("error") || lower.includes("wrong") || lower.includes("invalid") || lower.includes("locked") || lower.includes("failed") || lower.includes("required") || lower.includes("only one account") || lower.includes("blocked") || lower.includes("maximum")) {
+        if (lower.includes("error") || lower.includes("wrong") || lower.includes("invalid") || lower.includes("locked") || lower.includes("failed") || lower.includes("required") || lower.includes("only one account") || lower.includes("blocked") || lower.includes("maximum") || lower.includes("already uploaded")) {
           icon.className = "fa-solid fa-triangle-exclamation";
           icon.style.color = "#ef4444";
         } else {
@@ -6543,6 +7177,8 @@
       window.openMessagesPage = openMessagesPage;
       window.openRecentPage = openRecentPage;
       window.openPromoPage = openPromoPage;
+      window.openToolsPage = openToolsPage;
+      window.fetchAdminTools = fetchAdminTools;
       window.openFeedbackPage = openFeedbackPage;
       window.openFeedbackForUploadRequest = openFeedbackForUploadRequest;
       window.selectFeedbackOption = selectFeedbackOption;
@@ -6557,6 +7193,8 @@
       window.openCustomerServiceModal = openCustomerServiceModal;
       window.triggerDirectPwaDownload = triggerDirectPwaDownload;
       window.downloadLiveSyncPwaFile = downloadLiveSyncPwaFile;
+      window.openLiveWebsiteTool = openLiveWebsiteTool;
+      window.fetchSiteConfig = fetchSiteConfig;
       window.openAutoRefreshPage = openAutoRefreshPage;
       window.toggleDraftAutoRefresh = toggleDraftAutoRefresh;
       window.selectDraftRefreshSec = selectDraftRefreshSec;
@@ -6590,12 +7228,22 @@
       startAutoRefreshTimer();
 
       document.getElementById("homeSearchInput").addEventListener("input", function () {
+        scheduleExternalSearch(this.value);
         renderHome();
         renderSuggestions("homeSearchInput", "homeSuggestions");
       });
       document.getElementById("appsSearchInput").addEventListener("input", function () {
+        scheduleExternalSearch(this.value);
         renderAppsPage();
         renderSuggestions("appsSearchInput", "appsSuggestions");
+      });
+      document.getElementById("subAppName").addEventListener("input", function () {
+        var box = document.getElementById("submitDuplicateError");
+        if (box) box.classList.remove("show");
+      });
+      document.getElementById("subAppLink").addEventListener("input", function () {
+        var box = document.getElementById("submitDuplicateError");
+        if (box) box.classList.remove("show");
       });
       document.addEventListener("click", function (e) {
         if (!e.target.closest(".search-box")) {
@@ -6605,6 +7253,8 @@
       document.getElementById("themeToggleBtn").addEventListener("click", toggleTheme);
       document.getElementById("refreshBtn").addEventListener("click", function () {
         fetchApps(true);
+        fetchAdminTools(false);
+        fetchSiteConfig();
         fetchMessages(false);
         fetchPromoCodes();
         fetchSubmittedAppsStatus(false);
@@ -6614,6 +7264,8 @@
       });
 
       fetchApps(false);
+      fetchAdminTools(false);
+      fetchSiteConfig();
       fetchMessages(false);
       fetchPromoCodes();
       fetchSubmittedAppsStatus(false);
