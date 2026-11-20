@@ -18,7 +18,7 @@
   <meta property="og:type" content="website" />
   <title>OSSIAN PRO</title>
   <!-- OSSIAN PRO Favicon -->
-  <link id="siteFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fde047'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%230f172a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cpath d='M32 10 L36 22 L32 19 L28 22 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='url(%23g)'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fde047'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%230f172a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cpath d='M32 10 L36 22 L32 19 L28 22 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='url(%23g)'/%3E%3C/svg%3E" />
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- QR Code Generator & Scanner Libraries -->
@@ -81,7 +81,6 @@
       user-select: text;
     }
 
-    /* Block printing / PDF screen capture */
     @media print {
       html, body {
         display: none !important;
@@ -141,14 +140,184 @@
       text-align: center;
     }
 
+    /* Easypaisa-Style Account Suspended Overlay */
+    .suspended-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 94000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      overflow-y: auto;
+    }
+
+    .suspended-overlay.open {
+      display: flex;
+    }
+
+    .suspended-card {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .ep-header-banner {
+      background: linear-gradient(135deg, #00a859 0%, #007a3d 100%);
+      color: #ffffff;
+      padding: 18px 20px 36px;
+      text-align: center;
+      position: relative;
+    }
+
+    .ep-brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      opacity: 0.95;
+      margin-bottom: 10px;
+    }
+
+    .ep-status-chip {
+      background: rgba(239, 68, 68, 0.95);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .ep-badge-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 4px solid #fee2e2;
+      color: #dc2626;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: -36px auto 12px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
+    }
+
+    .ep-body {
+      padding: 0 20px 22px;
+      text-align: center;
+    }
+
+    .ep-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #b91c1c;
+      margin-bottom: 6px;
+    }
+
+    .ep-desc {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #475569;
+      margin-bottom: 14px;
+    }
+
+    .ep-details-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 12px 14px;
+      text-align: left;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ep-detail-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 6px;
+    }
+
+    .ep-detail-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ep-detail-label {
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .ep-detail-val {
+      color: #0f172a;
+      font-weight: 800;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    .ep-btn-primary {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #00a859 0%, #008a47 100%);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 9px;
+      box-shadow: 0 6px 16px rgba(0, 168, 89, 0.25);
+    }
+
+    .ep-btn-secondary {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
     /* Easypaisa-style Golden fa- Icon Styling */
     .gold-icon {
-      color: #f59e0b;
-      background: var(--gold-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
+  color: #f59e0b;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  }
 
     .gold-badge-icon {
       width: 30px;
@@ -213,19 +382,11 @@
       justify-content: center;
       box-shadow: 0 4px 14px rgba(245, 158, 11, 0.22);
       flex-shrink: 0;
-      overflow: hidden;
     }
 
     .brand-logo svg {
       width: 24px;
       height: 24px;
-    }
-
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     .brand-title {
@@ -369,6 +530,57 @@
       max-width: 92%;
     }
 
+    .hero-wallet-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-wallet-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 99px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    /* Wallet / Balance + Token Badges beside Name */
+    .wallet-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 3px;
+    }
+
+    .wallet-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .wallet-pill.token-pill {
+      background: var(--gold-bg);
+      border-color: var(--gold-border);
+      color: var(--primary);
+    }
+
     .search-box {
       position: relative;
       margin-bottom: 16px;
@@ -398,7 +610,6 @@
       pointer-events: none;
     }
 
-    /* Search Suggestions Dropdown */
     .search-suggestions {
       position: absolute;
       left: 0;
@@ -409,7 +620,7 @@
       border-radius: 16px;
       box-shadow: var(--shadow);
       z-index: 25;
-      max-height: 260px;
+      max-height: 240px;
       overflow-y: auto;
       display: none;
     }
@@ -505,6 +716,16 @@
       min-width: 0;
     }
 
+    .tool-slot-empty {
+      opacity: 0.62;
+    }
+
+    .tool-slot-empty .app-icon-box {
+      border-style: dashed;
+      background: var(--surface-2);
+      box-shadow: none;
+    }
+
     .app-icon-box {
       width: 54px;
       height: 54px;
@@ -546,22 +767,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .external-grid-banner {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      background: var(--gold-bg);
-      border: 1px solid var(--gold-border);
-      border-radius: 12px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--primary);
-      text-align: left;
     }
 
     .category-pill {
@@ -633,19 +838,11 @@
       justify-content: center;
       flex-shrink: 0;
       box-shadow: 0 6px 16px rgba(245, 158, 11, 0.22);
-      overflow: hidden;
     }
 
     .profile-avatar svg {
       width: 34px;
       height: 34px;
-    }
-
-    .profile-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     .db-status-pill {
@@ -999,6 +1196,21 @@
       color: #0f172a;
     }
 
+    .security-notice-bar {
+      background: var(--gold-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 9px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
     /* QR Code Generator & Scanner Styles */
     .qr-preview-box {
       margin-top: 16px;
@@ -1081,7 +1293,6 @@
       box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.35);
     }
 
-    /* Submit Application Lock Box */
     .submit-lock-card {
       text-align: center;
       padding: 20px 14px;
@@ -1387,10 +1598,11 @@
     }
 
     .nav-item.active i {
-      background: var(--gold-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+ }
 
     .modal-overlay {
       position: fixed;
@@ -1542,6 +1754,62 @@
   <!-- Solid Black Anti-Screenshot / Anti-Recording Privacy Shield -->
   <div id="blackoutShield" class="blackout-shield" aria-hidden="true"></div>
 
+  <!-- Easypaisa-Style Account Suspended Overlay -->
+  <div id="suspendedOverlay" class="suspended-overlay">
+    <div class="suspended-card">
+      <div class="ep-header-banner">
+        <div class="ep-brand-row">
+          <span><i class="fa-solid fa-shield-halved"></i> OSSIAN PRO SECURITY</span>
+          <span class="ep-status-chip">Suspended</span>
+        </div>
+        <div style="font-size:12px; opacity:0.9;">IP &amp; Single-Device Protection Active</div>
+      </div>
+      <div class="ep-badge-circle">
+        <i class="fa-solid fa-ban"></i>
+      </div>
+      <div class="ep-body">
+        <div class="ep-title">Account Suspended</div>
+        <div class="ep-desc" id="suspendedReasonText">
+          Multiple accounts were detected on this mobile phone or IP address. As per security rules, only your Main Account remains active and all extra accounts are suspended.
+        </div>
+
+        <div class="ep-details-box">
+          <div class="ep-detail-row">
+            <span class="ep-detail-label">Account Name</span>
+            <span class="ep-detail-val" id="suspAccountName">-</span>
+          </div>
+          <div class="ep-detail-row">
+            <span class="ep-detail-label">UID</span>
+            <span class="ep-detail-val" id="suspAccountUid">-</span>
+          </div>
+          <div class="ep-detail-row">
+            <span class="ep-detail-label">Status</span>
+            <span class="ep-detail-val" style="color:#dc2626;">SUSPENDED (0 Tokens)</span>
+          </div>
+          <div class="ep-detail-row">
+            <span class="ep-detail-label">Tracked IP Address</span>
+            <span class="ep-detail-val" id="suspAccountIp">Checking...</span>
+          </div>
+          <div class="ep-detail-row">
+            <span class="ep-detail-label">Device ID</span>
+            <span class="ep-detail-val" id="suspDeviceId">-</span>
+          </div>
+          <div class="ep-detail-row">
+            <span class="ep-detail-label">Main Account</span>
+            <span class="ep-detail-val" style="color:#00a859;" id="suspMainAccountNote">Protected &amp; Active</span>
+          </div>
+        </div>
+
+        <button type="button" class="ep-btn-primary" onclick="openCustomerServiceModal()">
+          <i class="fa-solid fa-headset"></i> Contact Customer Service
+        </button>
+        <button type="button" class="ep-btn-secondary" onclick="logoutSuspendedToMain()">
+          <i class="fa-solid fa-right-from-bracket"></i> Log Out &amp; Use Main Account
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Banking PIN Lock Screen -->
   <div id="pinLockOverlay" class="pin-lock-overlay">
     <div class="pin-lock-card">
@@ -1575,7 +1843,7 @@
     </div>
   </div>
 
-  <!-- Customer Service Modal (Accessible from Banking Lock Screen) -->
+  <!-- Customer Service Modal (Accessible from Banking Lock & Suspended Screen) -->
   <div class="modal-overlay" id="customerServiceModal" style="z-index:96000;" onclick="closeModalOnOverlay(event, 'customerServiceModal')">
     <div class="modal-sheet">
       <div class="sheet-handle"></div>
@@ -1585,11 +1853,11 @@
         </span>
         <div>
           <h3 style="font-size:17px; font-weight:800;">OSSIAN PRO Customer Service</h3>
-          <div style="font-size:12px; color:var(--text-muted);">24/7 Banking Lock &amp; Account Support</div>
+          <div style="font-size:12px; color:var(--text-muted);">24/7 Security, Suspension &amp; PIN Support</div>
         </div>
       </div>
       <div class="sheet-desc" style="margin-bottom:14px;">
-        Forgot your 4-digit Banking Security PIN or facing a lock issue? Send a support ticket to OSSIAN PRO Customer Service below.
+        Forgot your 4-digit Banking Security PIN or need help with an account suspension? Send a support ticket to OSSIAN PRO Customer Service below.
       </div>
       <form id="customerServiceForm">
         <div class="form-group">
@@ -1598,7 +1866,7 @@
         </div>
         <div class="form-group">
           <label>Describe Your Issue</label>
-          <textarea id="csMessageInput" rows="3" placeholder="e.g. Need assistance with Banking Lock PIN..." required></textarea>
+          <textarea id="csMessageInput" rows="3" placeholder="e.g. Need assistance with Banking Lock PIN or account suspension..." required></textarea>
         </div>
         <div style="display:flex; gap:8px;">
           <button type="submit" class="btn btn-primary" id="csSubmitBtn">
@@ -1613,7 +1881,7 @@
   <div class="app-shell">
     <header class="top-header">
       <div class="brand">
-        <div class="brand-logo" id="headerBrandLogo" aria-label="OSSIAN PRO Logo">
+        <div class="brand-logo" aria-label="OSSIAN PRO Logo">
           <svg viewBox="0 0 64 64" fill="none">
             <defs>
               <linearGradient id="ossianGold" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
@@ -1647,17 +1915,31 @@
       <!-- 1. HOME PAGE -->
       <section id="page-home" class="page active">
         <div class="hero-card">
-          <h2><i class="fa-solid fa-crown gold-icon"></i> Welcome to OSSIAN PRO</h2>
-          <p>Tap any app below to view its details and launch the website with banking-grade protection.</p>
+          <h2 id="heroWelcomeTitle"><i class="fa-solid fa-crown gold-icon"></i> Welcome to OSSIAN PRO</h2>
+          <p>Tap any app or tool below to view its details and launch with banking-grade protection.</p>
+          <div class="hero-wallet-bar" id="heroWalletBar">
+            <span class="hero-wallet-pill"><i class="fa-solid fa-wallet gold-icon"></i> Balance: <strong id="heroBalanceVal">0</strong></span>
+            <span class="hero-wallet-pill"><i class="fa-solid fa-coins gold-icon"></i> Tokens: <strong id="heroTokensVal">0</strong></span>
+          </div>
         </div>
 
         <div id="errorBanner" class="error-banner"></div>
 
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass gold-icon search-icon"></i>
-          <input type="text" id="homeSearchInput" placeholder="Search apps or search Google / Web..." autocomplete="off" />
+          <input type="text" id="homeSearchInput" placeholder="Search apps & tools on Home..." autocomplete="off" />
           <div id="homeSuggestions" class="search-suggestions"></div>
         </div>
+
+        <!-- 0th: 4 Tools (Placed Before Web Official App - Admin Panel Managed) -->
+        <div class="section-header">
+          <div class="section-title">
+            <span class="gold-badge-icon"><i class="fa-solid fa-toolbox gold-icon"></i></span>
+            Pro Tools
+          </div>
+          <span class="category-pill" id="toolsCountBadge">4 Tools</span>
+        </div>
+        <div id="homeToolsGrid" class="launcher-grid"></div>
 
         <!-- 1st: Web Official App (4 items + View All) -->
         <div class="section-header">
@@ -1721,7 +2003,7 @@
       <section id="page-apps" class="page">
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass gold-icon search-icon"></i>
-          <input type="text" id="appsSearchInput" placeholder="Search all websites, apps or Google..." autocomplete="off" />
+          <input type="text" id="appsSearchInput" placeholder="Search all websites & apps..." autocomplete="off" />
           <div id="appsSuggestions" class="search-suggestions"></div>
         </div>
 
@@ -1740,7 +2022,7 @@
       <!-- 3. ME PAGE -->
       <section id="page-me" class="page">
         <div class="profile-card">
-          <div class="profile-avatar" id="meProfileAvatar">
+          <div class="profile-avatar">
             <svg viewBox="0 0 64 64" fill="none">
               <defs>
                 <linearGradient id="ossianGoldMe" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
@@ -1755,8 +2037,14 @@
             </svg>
           </div>
           <div style="flex:1; min-width:0;">
-            <h3 id="meProfileTitle" style="font-size:17px; margin-bottom:2px;">OSSIAN PRO</h3>
-            <p id="meProfileSub" style="font-size:12.5px; color:var(--text-muted);">Login or register to open apps &amp; manage account</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+              <h3 id="meProfileTitle" style="font-size:17px; margin-bottom:2px;">OSSIAN PRO</h3>
+              <div class="wallet-badges-row" id="meWalletBadges">
+                <span class="wallet-pill"><i class="fa-solid fa-wallet gold-icon"></i> Balance: <strong id="meBalanceVal">0</strong></span>
+                <span class="wallet-pill token-pill"><i class="fa-solid fa-coins gold-icon"></i> <strong id="meTokensVal">0</strong> Tokens</span>
+              </div>
+            </div>
+            <p id="meProfileSub" style="font-size:12.5px; color:var(--text-muted); margin-top:4px;">Login or register to get 5K free tokens &amp; open apps</p>
             <span class="db-status-pill" id="dbStatusBadge">
               <i class="fa-solid fa-spinner fa-spin gold-icon"></i> Connecting...
             </span>
@@ -1783,7 +2071,7 @@
               <span class="gold-badge-icon"><i class="fa-solid fa-id-card gold-icon"></i></span>
               <div>
                 <div class="setting-title">Account Information</div>
-                <div class="setting-sub">Name, UID, Email, Password &amp; Invite Code</div>
+                <div class="setting-sub">Name, Balance, Tokens, UID, IP &amp; Invite Code</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
@@ -1826,9 +2114,8 @@
           </div>
         </div>
 
-        <!-- Promo Code -> Channels & Tools -> Feedback -> Appearance -> Sync Apps -> Settings -->
+        <!-- Promo Code -> Feedback -> Appearance -> Sync Apps -> Settings -->
         <div class="panel-card">
-          <!-- Promo Code -->
           <div class="setting-row clickable" onclick="openPromoPage()">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-ticket gold-icon"></i></span>
@@ -1840,19 +2127,6 @@
             <i class="fa-solid fa-chevron-right row-arrow"></i>
           </div>
 
-          <!-- Channels & Tools (Before Feedback - Opens Separate Page with Admin Tools / WhatsApp Channel) -->
-          <div class="setting-row clickable" onclick="openToolsPage()">
-            <div class="setting-left">
-              <span class="gold-badge-icon"><i class="fa-solid fa-toolbox gold-icon"></i></span>
-              <div>
-                <div class="setting-title">Channels &amp; Tools</div>
-                <div class="setting-sub" id="toolsRowSub">WhatsApp Channel &amp; official admin tools</div>
-              </div>
-            </div>
-            <i class="fa-solid fa-chevron-right row-arrow"></i>
-          </div>
-
-          <!-- Feedback -->
           <div class="setting-row clickable" onclick="openFeedbackPage()">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-comment-dots gold-icon"></i></span>
@@ -1864,7 +2138,6 @@
             <i class="fa-solid fa-chevron-right row-arrow"></i>
           </div>
 
-          <!-- Appearance -->
           <div class="setting-row clickable" onclick="openAppearancePage()">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-palette gold-icon"></i></span>
@@ -1876,32 +2149,30 @@
             <i class="fa-solid fa-chevron-right row-arrow"></i>
           </div>
 
-          <!-- Sync Apps -->
           <div class="setting-row clickable" onclick="openSyncPage()">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-cloud-arrow-down gold-icon"></i></span>
               <div>
                 <div class="setting-title">Sync Apps</div>
-                <div class="setting-sub">Reload uploaded apps, approvals &amp; messages</div>
+                <div class="setting-sub">Reload tools, apps, approvals &amp; security</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
           </div>
 
-          <!-- Settings -->
           <div class="setting-row clickable" onclick="openSettingsPage()">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-gear gold-icon"></i></span>
               <div>
                 <div class="setting-title">Settings</div>
-                <div class="setting-sub">Banking Security, Refresh, Invite, Applications &amp; Policies</div>
+                <div class="setting-sub">Banking Security, IP Guard, Refresh, Invite &amp; Policies</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
           </div>
         </div>
 
-        <!-- Direct Download (PWA) + Open Website Tool (Right before Log Out) -->
+        <!-- Direct Download (PWA) -->
         <div class="panel-card">
           <div class="setting-row clickable" id="directDownloadRow" onclick="triggerDirectPwaDownload()">
             <div class="setting-left">
@@ -1912,17 +2183,6 @@
               </div>
             </div>
             <span class="category-pill" id="directDownloadBadge">PWA</span>
-          </div>
-
-          <div class="setting-row clickable" id="openWebsiteRow" onclick="openLiveWebsiteTool()">
-            <div class="setting-left">
-              <span class="gold-badge-icon"><i class="fa-solid fa-globe gold-icon"></i></span>
-              <div>
-                <div class="setting-title">Open Website</div>
-                <div class="setting-sub">Open official OSSIAN PRO website directly</div>
-              </div>
-            </div>
-            <span class="category-pill">Web</span>
           </div>
         </div>
 
@@ -1977,6 +2237,10 @@
 
           <!-- Register Form -->
           <form id="registerForm" style="display:none;">
+            <div class="security-notice-bar">
+              <i class="fa-solid fa-gift gold-icon"></i>
+              <span>Register now &amp; get <strong>5,000 Free Tokens</strong>! (1 account per mobile phone &amp; IP protected; duplicate accounts are auto-suspended.)</span>
+            </div>
             <div class="form-group">
               <label>1. Name</label>
               <input type="text" id="regName" placeholder="Enter your full name" required />
@@ -1998,7 +2262,7 @@
               <input type="text" id="regInviteCode" placeholder="Enter invite code (optional)" />
             </div>
             <button type="submit" class="btn btn-primary" id="registerSubmitBtn" style="margin-top:6px;">
-              <i class="fa-solid fa-user-plus"></i> Register
+              <i class="fa-solid fa-user-plus"></i> Register &amp; Claim 5K Tokens
             </button>
           </form>
 
@@ -2135,24 +2399,6 @@
         </div>
       </section>
 
-      <!-- ME SUBPAGE 5B: CHANNELS & TOOLS (Before Feedback) -->
-      <section id="page-me-tools" class="page">
-        <div class="subpage-header">
-          <div class="subpage-header-left">
-            <button class="subpage-back-btn" onclick="switchTab('me')" title="Back">
-              <i class="fa-solid fa-arrow-left gold-icon"></i>
-            </button>
-            <span class="gold-badge-icon"><i class="fa-solid fa-toolbox gold-icon"></i></span>
-            <div class="subpage-title">Channels &amp; Tools</div>
-          </div>
-          <button class="icon-btn" onclick="fetchAdminTools(true)" style="width:36px;height:36px;" title="Refresh Tools">
-            <i class="fa-solid fa-arrows-rotate gold-icon"></i>
-          </button>
-        </div>
-
-        <div id="adminToolsGrid" class="launcher-grid"></div>
-      </section>
-
       <!-- ME SUBPAGE 6: FEEDBACK -->
       <section id="page-me-feedback" class="page">
         <div class="subpage-header">
@@ -2264,6 +2510,13 @@
             </div>
             <div class="info-kv-item">
               <div>
+                <div class="info-kv-label">Admin Tools Loaded</div>
+                <div class="info-kv-val" id="syncToolsCount">0 / 4</div>
+              </div>
+              <i class="fa-solid fa-toolbox gold-icon"></i>
+            </div>
+            <div class="info-kv-item">
+              <div>
                 <div class="info-kv-label">Uploaded Apps</div>
                 <div class="info-kv-val" id="syncUploadedCount">0</div>
               </div>
@@ -2287,7 +2540,7 @@
       <section id="page-me-settings" class="page">
         <div class="subpage-header">
           <div class="subpage-header-left">
-            <button class="subpage-back-btn" onclick="switchTab('me')" title="Back">
+            <button class="subpage-back-btn" onclick="openSubPage('me')" title="Back">
               <i class="fa-solid fa-arrow-left gold-icon"></i>
             </button>
             <span class="gold-badge-icon"><i class="fa-solid fa-gear gold-icon"></i></span>
@@ -2302,7 +2555,7 @@
               <span class="gold-badge-icon"><i class="fa-solid fa-vault gold-icon"></i></span>
               <div>
                 <div class="setting-title">Banking Security</div>
-                <div class="setting-sub" id="bankingSecurityRowSub">Blackout Shield Permanently ON • PIN Not Set</div>
+                <div class="setting-sub" id="bankingSecurityRowSub">IP &amp; Device Guard Active • Blackout ON</div>
               </div>
             </div>
             <i class="fa-solid fa-chevron-right row-arrow"></i>
@@ -2431,6 +2684,16 @@
         </div>
 
         <div class="panel-card">
+          <div class="setting-row">
+            <div class="setting-left">
+              <span class="gold-badge-icon"><i class="fa-solid fa-mobile-screen gold-icon"></i></span>
+              <div>
+                <div class="setting-title">1-Mobile &amp; IP Multi-Account Guard</div>
+                <div class="setting-sub" id="ipGuardStatusSub">Tracking IP &amp; Device • Main Account Protected</div>
+              </div>
+            </div>
+            <span class="category-pill">Active</span>
+          </div>
           <div class="setting-row">
             <div class="setting-left">
               <span class="gold-badge-icon"><i class="fa-solid fa-eye-slash gold-icon"></i></span>
@@ -2587,7 +2850,6 @@
           </button>
         </div>
 
-        <!-- Lock Screen when not yet approved via Feedback -->
         <div class="panel-card submit-lock-card" id="submitAppLockCard" style="display:none;">
           <i class="fa-solid fa-lock gold-icon" style="font-size:34px;"></i>
           <div style="font-size:16px; font-weight:800; margin-top:10px;">Submit Application is Locked</div>
@@ -2608,10 +2870,6 @@
         </div>
 
         <div class="panel-card" id="submitAppFormCard">
-          <div class="lock-timer-box" id="submitDuplicateError">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <span>this appointment already uploaded</span>
-          </div>
           <form id="submitAppForm">
             <div class="form-group">
               <label>1. App / Website Name</label>
@@ -2638,7 +2896,7 @@
                 <option value="Other">Other</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary" id="submitAppBtn" style="margin-top:6px;">
+            <button type="submit" class="btn btn-primary" style="margin-top:6px;">
               <i class="fa-solid fa-check"></i> Submit Application
             </button>
           </form>
@@ -2744,8 +3002,8 @@
         <div class="panel-card legal-box">
           <h4>1. Acceptance of Terms</h4>
           <p>By accessing and using OSSIAN PRO, you agree to comply with this User Agreement and all applicable laws and regulations.</p>
-          <h4>2. Use of Platform</h4>
-          <p>OSSIAN PRO provides a secure launcher to access official and third-party web applications. You agree to use this service responsibly and only for lawful purposes.</p>
+          <h4>2. One Account Per Mobile Device &amp; IP Policy</h4>
+          <p>Only one primary (Main) account is permitted per mobile phone and IP address. If multiple accounts are detected on the same phone or IP address, the Main Account remains safe while extra accounts are automatically suspended.</p>
           <h4>3. Account Responsibility</h4>
           <p>You are responsible for keeping your login email, password, Banking PIN, QR login code, and UID secure. Official announcements from OSSIAN PRO are delivered strictly through the Messages section.</p>
           <h4>4. Application Request &amp; Approval</h4>
@@ -2770,10 +3028,9 @@
           <h4>About OSSIAN PRO</h4>
           <p>OSSIAN PRO is a fast, banking-grade secure Web Apps Launcher designed to bring all your favorite websites, tools, and official web apps together in one clean interface.</p>
           <h4>Key Features</h4>
-          <p>• Quick access to Web Official Apps, Popular Apps, Favorite Apps, and Quick Launch Apps.<br>
-          • External Google &amp; Web discovery when searching for apps not yet listed on OSSIAN PRO.<br>
-          • Banking-level security: SHA-256 hashing, permanent 4-digit Banking PIN lock, permanent anti-capture blackout shield, and 30s clipboard wipe.<br>
-          • Instant PWA Direct Download with live website updates, QR Login system, Feedback-gated submission, and 6-stage tracking.</p>
+          <p>• 4 Admin-Managed Pro Tools, Web Official Apps, Popular Apps, Favorite Apps, and Quick Launch Apps.<br>
+          • Balance &amp; 5,000 Free Registration Tokens for new verified Main Accounts.<br>
+          • Banking-level security: IP Address Tracker, Single-Mobile Account Guard, SHA-256 hashing, permanent 4-digit Banking PIN lock, permanent blackout shield, and 30s clipboard wipe.</p>
           <h4>Platform</h4>
           <p>Version 3.2 • Copyright &copy; 2026 OSSIAN PRO. All rights reserved.</p>
         </div>
@@ -2793,13 +3050,11 @@
 
         <div class="panel-card legal-box">
           <h4>1. Information We Store</h4>
-          <p>When you register on OSSIAN PRO, your account details (Name, permanent UID, Email, and permanent 5-digit Invite Code) along with your favorites, appointments, submitted applications, and preferences are stored securely to personalize your experience.</p>
-          <h4>2. How We Use Information</h4>
-          <p>Your information is used strictly to manage your account, display your Account Information, verify QR login, process upload access requests, track application statuses, and deliver official notifications when enabled.</p>
+          <p>When you register on OSSIAN PRO, your account details (Name, Balance, Tokens, permanent UID, Email, permanent 5-digit Invite Code, Device Fingerprint, and Public IP Address) are stored securely to protect your account and personalize your experience.</p>
+          <h4>2. IP &amp; Device Security Tracking</h4>
+          <p>We track device fingerprints and IP addresses strictly to prevent multi-account abuse, safeguard your Main Account, and enforce one account per mobile phone.</p>
           <h4>3. Banking-Level Data Protection</h4>
           <p>We protect your account with SHA-256 salted hashing, session integrity verification, anti-capture blackout privacy shielding, and automatic clipboard wiping. We never sell or rent your personal data.</p>
-          <h4>4. Updates</h4>
-          <p>We may update this Privacy Policy periodically to reflect improvements to OSSIAN PRO.</p>
           <p style="margin-top:12px; font-weight:700;">Copyright &copy; 2026 OSSIAN PRO. All rights reserved.</p>
         </div>
       </section>
@@ -2830,7 +3085,7 @@
     </nav>
   </div>
 
-  <!-- App Preview Modal -->
+  <!-- App / Tool Preview Modal -->
   <div class="modal-overlay" id="appModal" onclick="closeModalOnOverlay(event, 'appModal')">
     <div class="modal-sheet">
       <div class="sheet-handle"></div>
@@ -2936,62 +3191,28 @@
       const API_KEY = _j(["AIzaSyAmRa", "nnDqIGfpZb", "rM5UmQODj5", "Ww7AR6sHI"]);
       const PROJECT_ID = _j(["ossian", "-web"]);
       const BASE_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/apps";
+      const TOOLS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/tools";
       const MESSAGES_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/messages";
       const USERS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/users";
       const PROMO_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/promocodes";
       const FEEDBACK_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/feedback";
       const SUBMITTED_APPS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/submitted_apps";
       const APPOINTMENTS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/appointments";
-      const TOOLS_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/tools";
-      const SITE_CONFIG_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/site_config";
-      const SETTINGS_CONFIG_URL = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID + "/databases/(default)/documents/settings";
 
       const MAX_REG_PER_HOUR = 40;
       const HOUR_MS = 3600000;
       const LOCK_DURATION_MS = 60000;
       const QR_LOCK_DURATION_MS = 120000;
       const LAUNCH_TIMER_MS = 24 * 3600 * 1000;
+      const REGISTER_FREE_TOKENS = 5000;
       const SESSION_SECRET_KEY = "OSSIAN_PRO_BANK_SEC_V3";
 
-      const DEFAULT_FAVICON_HREF = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23fde047'/%3E%3Cstop offset='55%25' stop-color='%23f59e0b'/%3E%3Cstop offset='100%25' stop-color='%23b45309'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%230f172a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cpath d='M32 10 L36 22 L32 19 L28 22 Z' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='6' fill='url(%23g)'/%3E%3C/svg%3E";
-      const DEFAULT_HEADER_SVG =
-        '<svg viewBox="0 0 64 64" fill="none">' +
-          '<defs><linearGradient id="ossianGold" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">' +
-            '<stop offset="0%" stop-color="#fde047"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#b45309"/>' +
-          '</linearGradient></defs>' +
-          '<circle cx="32" cy="32" r="20" stroke="url(#ossianGold)" stroke-width="5.5"/>' +
-          '<path d="M32 6L36 16H28L32 6Z" fill="url(#ossianGold)"/>' +
-          '<circle cx="32" cy="32" r="7" fill="url(#ossianGold)"/>' +
-        '</svg>';
-      const DEFAULT_ME_SVG =
-        '<svg viewBox="0 0 64 64" fill="none">' +
-          '<defs><linearGradient id="ossianGoldMe" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">' +
-            '<stop offset="0%" stop-color="#fde047"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#b45309"/>' +
-          '</linearGradient></defs>' +
-          '<circle cx="32" cy="32" r="20" stroke="url(#ossianGoldMe)" stroke-width="5.5"/>' +
-          '<path d="M32 6L36 16H28L32 6Z" fill="url(#ossianGoldMe)"/>' +
-          '<circle cx="32" cy="32" r="7" fill="url(#ossianGoldMe)"/>' +
-        '</svg>';
-
-      const DEFAULT_WHATSAPP_CHANNEL_TOOL = {
-        id: "tool_whatsapp_channel",
-        name: "WhatsApp Channel",
-        url: "https://www.whatsapp.com/channel",
-        description: "Join the official OSSIAN PRO WhatsApp Channel for instant updates, announcements, and newly added apps.",
-        category: "Channel",
-        icon: "fa-brands fa-whatsapp",
-        isTool: true,
-        createdAt: 1
-      };
-
       let apps = [];
-      let adminTools = [DEFAULT_WHATSAPP_CHANNEL_TOOL];
-      let siteConfig = { siteIcon: "", websiteUrl: "" };
+      let adminTools = [];
       let officialMessages = [];
       let promoCodesList = [];
       let redeemedPromos = [];
       let submittedApps = [];
-      let allCloudSubmittedApps = [];
       let appointments = [];
       let uploadAccessMap = {};
       let messagesLoaded = false;
@@ -3009,12 +3230,11 @@
       let draftAutoRefreshSec = 15;
       let autoRefreshTimerId = null;
 
-      // External Google & Web Search State
-      let externalSearchCache = {};
-      let externalSearchResults = [];
-      let activeExternalQuery = "";
-      let externalSearchLoading = false;
-      let externalSearchTimer = null;
+      // Device & IP Security States
+      let currentPublicIp = "";
+      let currentDeviceId = "";
+      let currentHardwareFp = "";
+      let idbMainUidCache = "";
 
       // Banking Security States
       let blackoutShieldOn = true;
@@ -3070,6 +3290,324 @@
         try {
           window.localStorage.removeItem(key);
         } catch (e) {}
+      }
+
+      /* =======================================================
+         SINGLE-DEVICE FINGERPRINT + INDEXEDDB + IP TRACKER
+         ======================================================= */
+      function computeHardwareFingerprint() {
+        try {
+          var parts = [
+            navigator.platform || "",
+            navigator.language || "",
+            String(screen.width || 0) + "x" + String(screen.height || 0),
+            String(screen.colorDepth || 0),
+            String(window.devicePixelRatio || 1),
+            String(navigator.hardwareConcurrency || 0),
+            String(navigator.maxTouchPoints || 0),
+            (Intl.DateTimeFormat().resolvedOptions().timeZone || "")
+          ];
+          try {
+            var c = document.createElement("canvas");
+            c.width = 180;
+            c.height = 36;
+            var ctx = c.getContext("2d");
+            ctx.textBaseline = "top";
+            ctx.font = "14px Arial";
+            ctx.fillStyle = "#f59e0b";
+            ctx.fillRect(0, 0, 60, 20);
+            ctx.fillStyle = "#0f172a";
+            ctx.fillText("OSSIAN_PRO_FP_2026", 4, 4);
+            parts.push(c.toDataURL().slice(-64));
+          } catch (e) {}
+          return hashSecret(parts.join("|"));
+        } catch (e) {
+          return hashSecret(navigator.userAgent || "OSSIAN_DEV");
+        }
+      }
+
+      function openSecurityIndexedDb() {
+        return new Promise(function (resolve) {
+          try {
+            if (!window.indexedDB) { resolve(null); return; }
+            var req = window.indexedDB.open("ossian_sec_db", 1);
+            req.onupgradeneeded = function (ev) {
+              var db = ev.target.result;
+              if (!db.objectStoreNames.contains("device_meta")) {
+                db.createObjectStore("device_meta", { keyPath: "k" });
+              }
+            };
+            req.onsuccess = function (ev) { resolve(ev.target.result); };
+            req.onerror = function () { resolve(null); };
+          } catch (e) {
+            resolve(null);
+          }
+        });
+      }
+
+      async function idbGetMeta(key) {
+        var db = await openSecurityIndexedDb();
+        if (!db) return "";
+        return new Promise(function (resolve) {
+          try {
+            var tx = db.transaction("device_meta", "readonly");
+            var store = tx.objectStore("device_meta");
+            var req = store.get(key);
+            req.onsuccess = function () { resolve(req.result ? req.result.v : ""); };
+            req.onerror = function () { resolve(""); };
+          } catch (e) {
+            resolve("");
+          }
+        });
+      }
+
+      async function idbSetMeta(key, val) {
+        var db = await openSecurityIndexedDb();
+        if (!db) return;
+        try {
+          var tx = db.transaction("device_meta", "readwrite");
+          tx.objectStore("device_meta").put({ k: key, v: val });
+        } catch (e) {}
+      }
+
+      async function initDeviceAndIpSecurity() {
+        currentHardwareFp = computeHardwareFingerprint();
+        var localDevId = safeGet("ossian_device_id_v1", "");
+        var idbDevId = await idbGetMeta("device_id");
+        idbMainUidCache = await idbGetMeta("main_uid");
+
+        if (idbDevId) {
+          currentDeviceId = idbDevId;
+        } else if (localDevId) {
+          currentDeviceId = localDevId;
+        } else {
+          currentDeviceId = "DEV-" + currentHardwareFp.slice(0, 12).toUpperCase();
+        }
+        safeSet("ossian_device_id_v1", currentDeviceId);
+        await idbSetMeta("device_id", currentDeviceId);
+
+        var localMainUid = safeGet("ossian_main_uid_v1", "");
+        if (!idbMainUidCache && localMainUid) {
+          idbMainUidCache = localMainUid;
+          await idbSetMeta("main_uid", localMainUid);
+        } else if (idbMainUidCache && !localMainUid) {
+          safeSet("ossian_main_uid_v1", idbMainUidCache);
+        }
+
+        currentPublicIp = safeGet("ossian_last_ip_v1", "");
+        await fetchPublicIpAddress();
+        updateIpGuardUI();
+      }
+
+      async function fetchPublicIpAddress() {
+        var endpoints = [
+          { url: "https://api.ipify.org?format=json", pick: function (d) { return d && d.ip; } },
+          { url: "https://api64.ipify.org?format=json", pick: function (d) { return d && d.ip; } },
+          { url: "https://ipwho.is/", pick: function (d) { return d && d.ip; } }
+        ];
+        for (var i = 0; i < endpoints.length; i++) {
+          try {
+            var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+            var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 3200) : null;
+            var res = await fetch(endpoints[i].url, { cache: "no-store", signal: ctrl ? ctrl.signal : undefined });
+            if (timer) clearTimeout(timer);
+            if (res.ok) {
+              var data = await res.json();
+              var ip = String(endpoints[i].pick(data) || "").trim();
+              if (ip) {
+                currentPublicIp = ip;
+                safeSet("ossian_last_ip_v1", ip);
+                return ip;
+              }
+            }
+          } catch (e) {}
+        }
+        return currentPublicIp;
+      }
+
+      function updateIpGuardUI() {
+        var sub = document.getElementById("ipGuardStatusSub");
+        if (sub) {
+          sub.textContent = "IP: " + (currentPublicIp || "Detecting...") + " • Device: " + (currentDeviceId || "Active");
+        }
+      }
+
+      function findMainAccountMatch(allUsers, ip, devId, hwFp) {
+        var matches = (allUsers || []).filter(function (u) {
+          if (!u) return false;
+          var sameDev = devId && u.deviceId && u.deviceId === devId;
+          var sameHw = hwFp && u.hardwareFp && u.hardwareFp === hwFp;
+          var sameIp = ip && u.ipAddress && u.ipAddress === ip;
+          return sameDev || sameHw || sameIp;
+        });
+        if (!matches.length) return null;
+        matches.sort(function (a, b) {
+          if (a.isMainAccount && !b.isMainAccount) return -1;
+          if (!a.isMainAccount && b.isMainAccount) return 1;
+          return (a.createdAt || 0) - (b.createdAt || 0);
+        });
+        return matches[0];
+      }
+
+      function maskAccountRef(u) {
+        if (!u) return "Protected & Active";
+        var email = String(u.email || "");
+        var maskedEmail = email ? (email.slice(0, 2) + "***@" + (email.split("@")[1] || "***")) : "";
+        return (u.uid || "Main") + (maskedEmail ? " (" + maskedEmail + ")" : "") + " • Active";
+      }
+
+      async function patchUserSecurityInCloud(user) {
+        if (!user || !user.uid) return;
+        try {
+          var url = USERS_URL + "/" + encodeURIComponent(user.uid) +
+            "?updateMask.fieldPaths=ipAddress" +
+            "&updateMask.fieldPaths=ipHistory" +
+            "&updateMask.fieldPaths=deviceId" +
+            "&updateMask.fieldPaths=hardwareFp" +
+            "&updateMask.fieldPaths=isMainAccount" +
+            "&updateMask.fieldPaths=suspended" +
+            "&updateMask.fieldPaths=suspendReason" +
+            "&updateMask.fieldPaths=suspendedAt" +
+            "&updateMask.fieldPaths=tokens" +
+            "&key=" + encodeURIComponent(API_KEY);
+          await fetch(url, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fields: {
+                ipAddress: { stringValue: user.ipAddress || "" },
+                ipHistory: { stringValue: (user.ipHistory || []).join(",") },
+                deviceId: { stringValue: user.deviceId || "" },
+                hardwareFp: { stringValue: user.hardwareFp || "" },
+                isMainAccount: { booleanValue: Boolean(user.isMainAccount) },
+                suspended: { booleanValue: Boolean(user.suspended) },
+                suspendReason: { stringValue: user.suspendReason || "" },
+                suspendedAt: { integerValue: String(user.suspendedAt || 0) },
+                tokens: { integerValue: String(user.tokens || 0) }
+              }
+            })
+          });
+        } catch (e) {}
+      }
+
+      // Enforces: 1 Main Account per Device/IP stays safe; extra accounts are suspended
+      async function enforceDeviceAndIpSecurity(cloudUsersInput) {
+        var cloudUsers = Array.isArray(cloudUsersInput) ? cloudUsersInput : await fetchCloudUsersSilently();
+        var combinedMap = {};
+        registeredUsers.forEach(function (u) {
+          if (u && u.uid) combinedMap[u.uid] = u;
+        });
+        if (Array.isArray(cloudUsers)) {
+          cloudUsers.forEach(function (cu) {
+            if (!cu || !cu.uid) return;
+            var existing = combinedMap[cu.uid];
+            if (existing) {
+              existing.suspended = cu.suspended || existing.suspended;
+              existing.suspendReason = cu.suspendReason || existing.suspendReason;
+              existing.isMainAccount = cu.isMainAccount || existing.isMainAccount;
+              existing.ipAddress = cu.ipAddress || existing.ipAddress;
+              existing.deviceId = cu.deviceId || existing.deviceId;
+              existing.hardwareFp = cu.hardwareFp || existing.hardwareFp;
+              if (typeof cu.balance === "number") existing.balance = cu.balance;
+              if (typeof cu.tokens === "number") existing.tokens = cu.tokens;
+            } else {
+              combinedMap[cu.uid] = cu;
+            }
+          });
+        }
+
+        if (currentUser && currentUser.uid) {
+          if (!currentUser.deviceId) currentUser.deviceId = currentDeviceId;
+          if (!currentUser.hardwareFp) currentUser.hardwareFp = currentHardwareFp;
+          if (currentPublicIp) {
+            currentUser.ipAddress = currentPublicIp;
+            currentUser.ipHistory = Array.isArray(currentUser.ipHistory) ? currentUser.ipHistory : [];
+            if (currentUser.ipHistory.indexOf(currentPublicIp) === -1) {
+              currentUser.ipHistory.push(currentPublicIp);
+            }
+          }
+          combinedMap[currentUser.uid] = Object.assign({}, combinedMap[currentUser.uid] || {}, currentUser);
+        }
+
+        var allUsers = Object.keys(combinedMap).map(function (k) { return combinedMap[k]; });
+        if (!allUsers.length) return;
+
+        // Check accounts grouped by Device/Hardware/IP
+        var mainAccount = findMainAccountMatch(allUsers, currentPublicIp, currentDeviceId, currentHardwareFp);
+        if (mainAccount && idbMainUidCache && mainAccount.uid !== idbMainUidCache) {
+          var cachedMain = allUsers.find(function (u) { return u.uid === idbMainUidCache; });
+          if (cachedMain) mainAccount = cachedMain;
+        }
+
+        if (mainAccount) {
+          // Ensure Main Account is marked main and NEVER suspended by multi-account rule
+          if (!mainAccount.isMainAccount) {
+            mainAccount.isMainAccount = true;
+            if (!idbMainUidCache) {
+              idbMainUidCache = mainAccount.uid;
+              safeSet("ossian_main_uid_v1", mainAccount.uid);
+              idbSetMeta("main_uid", mainAccount.uid);
+            }
+            patchUserSecurityInCloud(mainAccount);
+          }
+
+          var deviceMatches = allUsers.filter(function (u) {
+            return (currentDeviceId && u.deviceId === currentDeviceId) ||
+                   (currentHardwareFp && u.hardwareFp === currentHardwareFp) ||
+                   (currentPublicIp && u.ipAddress === currentPublicIp);
+          });
+
+          for (var i = 0; i < deviceMatches.length; i++) {
+            var acc = deviceMatches[i];
+            if (acc.uid !== mainAccount.uid) {
+              if (!acc.suspended) {
+                acc.suspended = true;
+                acc.isMainAccount = false;
+                acc.tokens = 0;
+                acc.suspendReason = "Multiple accounts detected on same mobile device or IP address (" + (currentPublicIp || "Tracked") + "). Only Main Account (" + mainAccount.uid + ") remains active.";
+                acc.suspendedAt = Date.now();
+                patchUserSecurityInCloud(acc);
+              }
+            }
+          }
+        }
+
+        // Sync currentUser state
+        if (currentUser && combinedMap[currentUser.uid]) {
+          currentUser = Object.assign({}, currentUser, combinedMap[currentUser.uid]);
+          saveOrUpdateLocalUser(currentUser);
+          saveCurrentUserSession(currentUser);
+        }
+
+        updateSuspendedOverlay(mainAccount);
+        updateMeAccountUI();
+      }
+
+      function updateSuspendedOverlay(mainAccount) {
+        var overlay = document.getElementById("suspendedOverlay");
+        if (!overlay) return;
+        if (currentUser && currentUser.suspended) {
+          document.getElementById("suspAccountName").textContent = currentUser.name || "-";
+          document.getElementById("suspAccountUid").textContent = currentUser.uid || "-";
+          document.getElementById("suspAccountIp").textContent = currentUser.ipAddress || currentPublicIp || "Tracked";
+          document.getElementById("suspDeviceId").textContent = currentUser.deviceId || currentDeviceId || "-";
+          document.getElementById("suspendedReasonText").textContent =
+            currentUser.suspendReason ||
+            "Multiple accounts were detected on this mobile phone or IP address. Only your Main Account remains active.";
+          document.getElementById("suspMainAccountNote").textContent = mainAccount && mainAccount.uid !== currentUser.uid
+            ? maskAccountRef(mainAccount)
+            : "Main Account Protected & Active";
+          overlay.classList.add("open");
+        } else {
+          overlay.classList.remove("open");
+        }
+      }
+
+      function logoutSuspendedToMain() {
+        logoutUser();
+        document.getElementById("suspendedOverlay").classList.remove("open");
+        openAuthPage("login");
+        showToast("Logged out. Please sign in to your Main Account.");
       }
 
       function generateInviteCode() {
@@ -3140,102 +3678,13 @@
         return hashSecret("OSSIAN_PRO_QR_SIG::" + String(uid || "") + "::" + String(email || "").toLowerCase() + "::" + String(qrToken || ""));
       }
 
-      /* =======================================================
-         ADMIN-CONTROLLED WEBSITE ICON & LIVE WEBSITE LAUNCHER
-         ======================================================= */
-      function applyCustomSiteIcon(iconValue) {
-        var headerLogo = document.getElementById("headerBrandLogo");
-        var meAvatar = document.getElementById("meProfileAvatar");
-        var favicon = document.getElementById("siteFavicon");
-        var val = String(iconValue || "").trim();
-
-        if (!val) {
-          if (headerLogo) headerLogo.innerHTML = DEFAULT_HEADER_SVG;
-          if (meAvatar) meAvatar.innerHTML = DEFAULT_ME_SVG;
-          if (favicon) favicon.href = DEFAULT_FAVICON_HREF;
-          return;
+      function formatNumber(n) {
+        var num = Number(n) || 0;
+        try {
+          return num.toLocaleString();
+        } catch (e) {
+          return String(num);
         }
-
-        if (/^(https?:\/\/|data:image\/)/i.test(val)) {
-          if (headerLogo) {
-            headerLogo.innerHTML = '<img src="' + escapeHtml(val) + '" alt="OSSIAN PRO" onerror="this.parentElement.innerHTML=\'' + DEFAULT_HEADER_SVG.replace(/'/g, "\\'") + '\'" />';
-          }
-          if (meAvatar) {
-            meAvatar.innerHTML = '<img src="' + escapeHtml(val) + '" alt="OSSIAN PRO" onerror="this.parentElement.innerHTML=\'' + DEFAULT_ME_SVG.replace(/'/g, "\\'") + '\'" />';
-          }
-          if (favicon) favicon.href = val;
-        } else if (/^(fa-(solid|regular|brands)\s+)?fa-[a-z0-9-]+$/i.test(val)) {
-          var faClass = /^fa-(solid|regular|brands)\s+/i.test(val) ? val : ("fa-solid " + val);
-          if (headerLogo) {
-            headerLogo.innerHTML = '<i class="' + escapeHtml(faClass) + ' gold-icon" style="font-size:20px;"></i>';
-          }
-          if (meAvatar) {
-            meAvatar.innerHTML = '<i class="' + escapeHtml(faClass) + ' gold-icon" style="font-size:26px;"></i>';
-          }
-          if (favicon) favicon.href = DEFAULT_FAVICON_HREF;
-        } else {
-          if (headerLogo) headerLogo.innerHTML = DEFAULT_HEADER_SVG;
-          if (meAvatar) meAvatar.innerHTML = DEFAULT_ME_SVG;
-          if (favicon) favicon.href = DEFAULT_FAVICON_HREF;
-        }
-      }
-
-      async function fetchSiteConfig() {
-        var urlsToCheck = [SITE_CONFIG_URL, SETTINGS_CONFIG_URL];
-        var foundIcon = "";
-        var foundSiteUrl = "";
-
-        for (var uIdx = 0; uIdx < urlsToCheck.length; uIdx++) {
-          try {
-            const res = await fetch(urlsToCheck[uIdx] + "?pageSize=20&key=" + encodeURIComponent(API_KEY), {
-              method: "GET",
-              cache: "no-store"
-            });
-            const data = await res.json();
-            if (res.ok && data && Array.isArray(data.documents) && data.documents.length > 0) {
-              var chosen = data.documents.find(function (d) {
-                var docId = (d.name || "").split("/").pop().toLowerCase();
-                return docId === "main" || docId === "config" || docId === "site" || docId === "branding";
-              }) || data.documents[0];
-
-              var f = (chosen && chosen.fields) || {};
-              var iconField = f.siteIcon || f.icon || f.logoUrl || f.siteLogo || f.iconUrl || f.brandIcon || f.favicon || f.logo;
-              var siteField = f.websiteUrl || f.siteUrl || f.url || f.homeUrl;
-              if (iconField && iconField.stringValue) {
-                foundIcon = String(iconField.stringValue).trim();
-              }
-              if (siteField && siteField.stringValue) {
-                foundSiteUrl = String(siteField.stringValue).trim();
-              }
-              if (foundIcon || foundSiteUrl) break;
-            }
-          } catch (e) {}
-        }
-
-        siteConfig.siteIcon = foundIcon;
-        siteConfig.websiteUrl = foundSiteUrl;
-        safeSet("ossian_site_config_v1", JSON.stringify(siteConfig));
-        applyCustomSiteIcon(siteConfig.siteIcon);
-      }
-
-      function openLiveWebsiteTool() {
-        var target = "";
-        if (siteConfig && siteConfig.websiteUrl) {
-          target = normalizeUrl(siteConfig.websiteUrl);
-        }
-        if (!target || target === "#") {
-          var currentHref = String(window.location.href || "").split("#")[0];
-          if (/^https?:\/\//i.test(currentHref)) {
-            target = currentHref;
-          } else {
-            target = "https://" + PROJECT_ID + ".web.app";
-          }
-        }
-        var opened = window.open(target, "_blank", "noopener,noreferrer");
-        if (!opened) {
-          window.location.href = target;
-        }
-        showToast("Opening OSSIAN PRO website...");
       }
 
       /* =======================================================
@@ -3690,11 +4139,12 @@
             : "Re-enabling in 1 second...";
         }
         if (sub) {
-          sub.textContent = "Blackout Shield Permanently ON • " + (bankingPinHash ? "Permanent PIN Active" : "PIN Not Set");
+          sub.textContent = "IP Guard Active • " + (bankingPinHash ? "Permanent PIN Active" : "Blackout ON");
         }
         if (extra) {
           extra.style.display = bankingPinHash ? "grid" : "none";
         }
+        updateIpGuardUI();
       }
 
       function openBankingSecurityPage() {
@@ -3721,7 +4171,7 @@
         btn.disabled = true;
         var ok = await syncFeedbackToCloudSilently({
           option: "Customer Service",
-          message: "Contact: " + contact + "\nIssue: " + msg,
+          message: "Contact: " + contact + "\nIP: " + (currentPublicIp || "Unknown") + "\nDevice: " + (currentDeviceId || "-") + "\nIssue: " + msg,
           wordCount: countWords(msg),
           uid: currentUser ? currentUser.uid : "locked_user",
           email: currentUser ? currentUser.email : contact,
@@ -3865,9 +4315,7 @@
         if (pendingLaunchTarget) {
           var target = pendingLaunchTarget;
           pendingLaunchTarget = null;
-          if (!target.isExternal && !target.isTool) {
-            trackAppOpen(target.id);
-          }
+          trackAppOpen(target.id);
           window.open(target.url, "_blank", "noopener,noreferrer");
         }
       });
@@ -3883,13 +4331,6 @@
         try { submittedApps = JSON.parse(safeGet("ossian_submitted_apps_v1", "[]")) || []; } catch (e) { submittedApps = []; }
         try { appointments = JSON.parse(safeGet("ossian_appointments_v1", "[]")) || []; } catch (e) { appointments = []; }
         try { uploadAccessMap = JSON.parse(safeGet("ossian_upload_access_v1", "{}")) || {}; } catch (e) { uploadAccessMap = {}; }
-        try {
-          var cachedSiteCfg = JSON.parse(safeGet("ossian_site_config_v1", "null"));
-          if (cachedSiteCfg) {
-            siteConfig = cachedSiteCfg;
-            applyCustomSiteIcon(siteConfig.siteIcon);
-          }
-        } catch (e) {}
 
         notificationsOn = safeGet("ossian_notifications_v1", "on") !== "off";
         autoRefreshOn = safeGet("ossian_autorefresh_on_v1", "on") !== "off";
@@ -3938,6 +4379,14 @@
             u.passwordHash = hashSecret(u.password);
             usersChanged = true;
           }
+          if (typeof u.balance !== "number") {
+            u.balance = 0;
+            usersChanged = true;
+          }
+          if (typeof u.tokens !== "number") {
+            u.tokens = u.suspended ? 0 : REGISTER_FREE_TOKENS;
+            usersChanged = true;
+          }
           dedupedUsers.push(u);
         });
         registeredUsers = dedupedUsers;
@@ -3954,6 +4403,8 @@
             currentUser.myInviteCode = ensureValid5DigitCode(currentUser.myInviteCode);
             if (!currentUser.qrToken) currentUser.qrToken = generateQrToken();
             if (!currentUser.passwordHash && currentUser.password) currentUser.passwordHash = hashSecret(currentUser.password);
+            if (typeof currentUser.balance !== "number") currentUser.balance = 0;
+            if (typeof currentUser.tokens !== "number") currentUser.tokens = currentUser.suspended ? 0 : REGISTER_FREE_TOKENS;
             registeredUsers.push(currentUser);
             safeSet("ossian_users_v1", JSON.stringify(registeredUsers));
           }
@@ -4023,6 +4474,15 @@
           cat === "own apps";
       }
 
+      function isToolItem(app) {
+        if (!app) return false;
+        if (app.isTool || app.isHomeTool) return true;
+        var cat = String(app.category || "").trim().toLowerCase();
+        var sec = String(app.section || "").trim().toLowerCase();
+        return cat === "tool" || cat === "tools" || cat === "pro tool" || cat === "pro tools" || cat === "4 tools" ||
+               sec === "tool" || sec === "tools";
+      }
+
       function parseFirestoreDoc(docObj) {
         var f = docObj.fields || {};
         return {
@@ -4031,33 +4491,23 @@
           url: (f.url && f.url.stringValue) || "",
           description: (f.description && f.description.stringValue) || "",
           category: (f.category && f.category.stringValue) || "Other",
+          section: (f.section && f.section.stringValue) || "",
           icon: (f.icon && f.icon.stringValue) || "",
           isOwn: f.isOwn && typeof f.isOwn.booleanValue === "boolean" ? f.isOwn.booleanValue : false,
           isOfficial: f.isOfficial && typeof f.isOfficial.booleanValue === "boolean" ? f.isOfficial.booleanValue : false,
           isTool: f.isTool && typeof f.isTool.booleanValue === "boolean" ? f.isTool.booleanValue : false,
+          isHomeTool: f.isHomeTool && typeof f.isHomeTool.booleanValue === "boolean" ? f.isHomeTool.booleanValue : false,
           showOnHome: f.showOnHome && typeof f.showOnHome.booleanValue === "boolean" ? f.showOnHome.booleanValue : true,
-          createdAt: Number((f.createdAt && (f.createdAt.integerValue || f.createdAt.doubleValue)) || 0)
-        };
-      }
-
-      function parseFirestoreTool(docObj) {
-        var f = docObj.fields || {};
-        var nameVal = (f.name && f.name.stringValue) || (f.title && f.title.stringValue) || "";
-        var urlVal = (f.url && f.url.stringValue) || (f.link && f.link.stringValue) || "";
-        return {
-          id: "tool_" + (docObj.name || "").split("/").pop(),
-          name: nameVal,
-          url: urlVal,
-          description: (f.description && f.description.stringValue) || "Official tool added from OSSIAN PRO Admin Panel.",
-          category: (f.category && f.category.stringValue) || "Channel & Tool",
-          icon: (f.icon && f.icon.stringValue) || "",
-          isTool: true,
+          order: Number((f.order && (f.order.integerValue || f.order.doubleValue)) || (f.slot && (f.slot.integerValue || f.slot.doubleValue)) || 0),
           createdAt: Number((f.createdAt && (f.createdAt.integerValue || f.createdAt.doubleValue)) || 0)
         };
       }
 
       function parseFirestoreUser(docObj) {
         var f = docObj.fields || {};
+        var ipHistRaw = (f.ipHistory && f.ipHistory.stringValue) || "";
+        var balVal = f.balance ? Number(f.balance.integerValue || f.balance.doubleValue || 0) : 0;
+        var tokVal = f.tokens ? Number(f.tokens.integerValue || f.tokens.doubleValue || 0) : 0;
         return {
           uid: (f.uid && f.uid.stringValue) || (docObj.name || "").split("/").pop(),
           name: (f.name && f.name.stringValue) || "",
@@ -4068,6 +4518,16 @@
           myInviteCode: (f.myInviteCode && f.myInviteCode.stringValue) || "",
           referredBy: (f.referredBy && f.referredBy.stringValue) || "",
           qrToken: (f.qrToken && f.qrToken.stringValue) || "",
+          balance: isNaN(balVal) ? 0 : balVal,
+          tokens: isNaN(tokVal) ? 0 : tokVal,
+          ipAddress: (f.ipAddress && f.ipAddress.stringValue) || "",
+          ipHistory: ipHistRaw ? ipHistRaw.split(",").filter(Boolean) : [],
+          deviceId: (f.deviceId && f.deviceId.stringValue) || "",
+          hardwareFp: (f.hardwareFp && f.hardwareFp.stringValue) || "",
+          isMainAccount: f.isMainAccount && typeof f.isMainAccount.booleanValue === "boolean" ? f.isMainAccount.booleanValue : false,
+          suspended: f.suspended && typeof f.suspended.booleanValue === "boolean" ? f.suspended.booleanValue : false,
+          suspendReason: (f.suspendReason && f.suspendReason.stringValue) || "",
+          suspendedAt: Number((f.suspendedAt && (f.suspendedAt.integerValue || f.suspendedAt.doubleValue)) || 0),
           canSubmitApp: (f.canSubmitApp && f.canSubmitApp.booleanValue === true) ||
                         (f.uploadApproved && f.uploadApproved.booleanValue === true) ||
                         (f.submitApproved && f.submitApproved.booleanValue === true),
@@ -4220,6 +4680,16 @@
                 myInviteCode: { stringValue: user.myInviteCode },
                 referredBy: { stringValue: user.referredBy || "" },
                 qrToken: { stringValue: user.qrToken || "" },
+                balance: { integerValue: String(user.balance || 0) },
+                tokens: { integerValue: String(user.tokens || 0) },
+                ipAddress: { stringValue: user.ipAddress || currentPublicIp || "" },
+                ipHistory: { stringValue: (user.ipHistory || []).join(",") },
+                deviceId: { stringValue: user.deviceId || currentDeviceId || "" },
+                hardwareFp: { stringValue: user.hardwareFp || currentHardwareFp || "" },
+                isMainAccount: { booleanValue: Boolean(user.isMainAccount) },
+                suspended: { booleanValue: Boolean(user.suspended) },
+                suspendReason: { stringValue: user.suspendReason || "" },
+                suspendedAt: { integerValue: String(user.suspendedAt || 0) },
                 canSubmitApp: { booleanValue: false },
                 createdAt: { integerValue: String(user.createdAt) }
               }
@@ -4264,6 +4734,17 @@
           var cloudUser = await fetchCloudUserByUidSilently(currentUser.uid);
           if (cloudUser) {
             if (cloudUser.canSubmitApp) foundApproved = true;
+            if (typeof cloudUser.balance === "number") currentUser.balance = cloudUser.balance;
+            if (typeof cloudUser.tokens === "number") currentUser.tokens = cloudUser.tokens;
+            if (cloudUser.suspended) {
+              currentUser.suspended = true;
+              currentUser.suspendReason = cloudUser.suspendReason || currentUser.suspendReason;
+            }
+            saveOrUpdateLocalUser(currentUser);
+            saveCurrentUserSession(currentUser);
+            updateMeAccountUI();
+            updateSuspendedOverlay(null);
+
             if (!bankingPinHash && cloudUser.bankingPinHash) {
               bankingPinHash = cloudUser.bankingPinHash;
               safeSet("ossian_banking_pin_v1", bankingPinHash);
@@ -4323,34 +4804,56 @@
         updateSettingsRowSummaries();
       }
 
+      async function fetchAdminToolsSilently() {
+        try {
+          const res = await fetch(TOOLS_URL + "?pageSize=20&key=" + encodeURIComponent(API_KEY), {
+            method: "GET",
+            cache: "no-store"
+          });
+          const data = await res.json();
+          if (res.ok && data && Array.isArray(data.documents)) {
+            adminTools = data.documents.map(parseFirestoreDoc).filter(function (t) {
+              return t.name || t.url;
+            });
+            adminTools.forEach(function (t) { t.isTool = true; });
+            adminTools.sort(function (a, b) {
+              if ((a.order || 0) !== (b.order || 0)) return (a.order || 0) - (b.order || 0);
+              return (b.createdAt || 0) - (a.createdAt || 0);
+            });
+          } else {
+            adminTools = [];
+          }
+        } catch (e) {
+          adminTools = [];
+        }
+      }
+
       async function fetchApps(showMsg) {
         dbStatusMessage = "Loading...";
         setDbStatus('<i class="fa-solid fa-spinner fa-spin gold-icon"></i> Loading...', "#64748b");
         updateSyncUI();
         hideErrorBanner();
         try {
-          const res = await fetch(BASE_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
-            method: "GET",
-            cache: "no-store"
-          });
-          const data = await res.json();
+          const [appsRes] = await Promise.all([
+            fetch(BASE_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
+              method: "GET",
+              cache: "no-store"
+            }),
+            fetchAdminToolsSilently()
+          ]);
+          const data = await appsRes.json();
 
-          if (!res.ok) {
-            const msg = (data && data.error && data.error.message) || ("HTTP " + res.status);
+          if (!appsRes.ok) {
+            const msg = (data && data.error && data.error.message) || ("HTTP " + appsRes.status);
             throw new Error(msg);
           }
 
-          var allDocs = (data.documents || []).map(parseFirestoreDoc);
-          apps = allDocs.filter(function (a) {
-            var catLow = String(a.category || "").toLowerCase();
-            return !a.isTool && catLow !== "tools_page" && catLow !== "admin tool";
-          });
+          apps = (data.documents || []).map(parseFirestoreDoc);
           apps.sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
-
           isLoaded = true;
           dbStatusMessage = "Cloud Connected";
           setDbStatus('<i class="fa-solid fa-circle-check"></i> Cloud Connected', "#10b981");
-          if (showMsg) showToast("Apps refreshed!");
+          if (showMsg) showToast("Apps & tools refreshed!");
         } catch (err) {
           isLoaded = true;
           const errText = err && err.message ? err.message : "Network error";
@@ -4359,59 +4862,6 @@
           showErrorBanner("System Error: " + errText + ". Please check your internet connection.");
         }
         renderAll();
-      }
-
-      async function fetchAdminTools(showMsg) {
-        var cloudTools = [];
-        try {
-          const res = await fetch(TOOLS_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
-            method: "GET",
-            cache: "no-store"
-          });
-          const data = await res.json();
-          if (res.ok && data && Array.isArray(data.documents)) {
-            cloudTools = data.documents.map(parseFirestoreTool).filter(function (t) {
-              return t.name && t.url;
-            });
-          }
-        } catch (e) {}
-
-        // Also include any apps marked with isTool: true from Admin Panel
-        try {
-          const appRes = await fetch(BASE_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
-            method: "GET",
-            cache: "no-store"
-          });
-          const appData = await appRes.json();
-          if (appRes.ok && appData && Array.isArray(appData.documents)) {
-            appData.documents.map(parseFirestoreDoc).forEach(function (item) {
-              var catLow = String(item.category || "").toLowerCase();
-              if (item.isTool || catLow === "tools_page" || catLow === "admin tool") {
-                item.isTool = true;
-                cloudTools.push(item);
-              }
-            });
-          }
-        } catch (e) {}
-
-        var merged = [];
-        var seenNames = {};
-        cloudTools.sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
-        cloudTools.forEach(function (t) {
-          var key = String(t.name || "").trim().toLowerCase();
-          if (!key || seenNames[key]) return;
-          seenNames[key] = true;
-          merged.push(t);
-        });
-
-        // Include default WhatsApp Channel example tool if Admin hasn't overridden it
-        if (!seenNames["whatsapp channel"]) {
-          merged.push(DEFAULT_WHATSAPP_CHANNEL_TOOL);
-        }
-
-        adminTools = merged;
-        renderAdminToolsGrid();
-        if (showMsg) showToast("Channels & Tools refreshed!");
       }
 
       async function fetchMessages(showMsg) {
@@ -4467,14 +4917,13 @@
             }
           }
 
-          const res = await fetch(SUBMITTED_APPS_URL + "?pageSize=200&key=" + encodeURIComponent(API_KEY), {
+          const res = await fetch(SUBMITTED_APPS_URL + "?pageSize=100&key=" + encodeURIComponent(API_KEY), {
             method: "GET",
             cache: "no-store"
           });
           const data = await res.json();
           if (res.ok && data && Array.isArray(data.documents)) {
             var cloudSubs = data.documents.map(parseFirestoreSubmittedApp);
-            allCloudSubmittedApps = cloudSubs;
             cloudSubs.forEach(function (cs) {
               var localIdx = submittedApps.findIndex(function (ls) { return ls.id === cs.id; });
               if (localIdx !== -1) {
@@ -4653,174 +5102,6 @@
         }
       }
 
-      /* =======================================================
-         EXTERNAL GOOGLE & WEB SEARCH FALLBACK
-         ======================================================= */
-      function buildImmediateExternalResults(query) {
-        var trimmed = String(query || "").trim();
-        if (!trimmed) return [];
-        var list = [];
-
-        // If query looks like a domain (e.g. canva.com or daraz.pk), add direct site card
-        if (/^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(trimmed) && !/\s/.test(trimmed)) {
-          var directUrl = normalizeUrl(trimmed);
-          list.push({
-            id: "ext_domain_" + hashSecret(trimmed.toLowerCase()),
-            name: trimmed.replace(/^https?:\/\//i, "").replace(/^www\./i, "").split("/")[0],
-            url: directUrl,
-            description: "Direct website result from external web search for " + trimmed + ".",
-            category: "Web Result",
-            icon: "",
-            isExternal: true
-          });
-        }
-
-        // Direct Google Search launcher card
-        list.push({
-          id: "ext_google_" + hashSecret(trimmed.toLowerCase()),
-          name: "Google: " + trimmed,
-          url: "https://www.google.com/search?q=" + encodeURIComponent(trimmed),
-          description: "Search \"" + trimmed + "\" directly on Google to find its official website and pages.",
-          category: "Google Search",
-          icon: "fa-brands fa-google",
-          isExternal: true
-        });
-
-        return list;
-      }
-
-      function fetchItunesAppsJsonp(query) {
-        return new Promise(function (resolve) {
-          var cbName = "__ossianItunesCb_" + Date.now() + "_" + Math.floor(Math.random() * 9999);
-          var script = document.createElement("script");
-          var done = false;
-
-          function cleanup() {
-            if (script.parentNode) script.parentNode.removeChild(script);
-            try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
-          }
-
-          var timer = setTimeout(function () {
-            if (done) return;
-            done = true;
-            cleanup();
-            resolve([]);
-          }, 4500);
-
-          window[cbName] = function (data) {
-            if (done) return;
-            done = true;
-            clearTimeout(timer);
-            cleanup();
-            if (!data || !Array.isArray(data.results)) {
-              resolve([]);
-              return;
-            }
-            var mapped = data.results.map(function (item) {
-              var targetUrl = item.sellerUrl || item.trackViewUrl || ("https://www.google.com/search?q=" + encodeURIComponent(item.trackName || query));
-              return {
-                id: "ext_itunes_" + String(item.trackId || hashSecret(item.trackName || "")),
-                name: item.trackName || query,
-                url: normalizeUrl(targetUrl),
-                description: (item.description ? String(item.description).slice(0, 220) + "..." : ("Found via external Web/App search for " + query)),
-                category: "Google / Web",
-                icon: item.artworkUrl100 || item.artworkUrl60 || "",
-                isExternal: true
-              };
-            });
-            resolve(mapped);
-          };
-
-          script.src = "https://itunes.apple.com/search?term=" + encodeURIComponent(query) + "&entity=software&limit=4&callback=" + cbName;
-          script.onerror = function () {
-            if (done) return;
-            done = true;
-            clearTimeout(timer);
-            cleanup();
-            resolve([]);
-          };
-          document.body.appendChild(script);
-        });
-      }
-
-      async function fetchWikipediaWebResults(query) {
-        try {
-          var url = "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=" +
-            encodeURIComponent(query) + "&gsrlimit=3&prop=extracts|info&inprop=url&exintro=1&explaintext=1&format=json&origin=*";
-          const res = await fetch(url, { method: "GET" });
-          const data = await res.json();
-          if (!res.ok || !data || !data.query || !data.query.pages) return [];
-          var pages = Object.keys(data.query.pages).map(function (k) { return data.query.pages[k]; });
-          pages.sort(function (a, b) { return (a.index || 0) - (b.index || 0); });
-          return pages.map(function (p) {
-            var wikiUrl = p.fullurl || ("https://en.wikipedia.org/?curid=" + p.pageid);
-            return {
-              id: "ext_wiki_" + String(p.pageid),
-              name: p.title || query,
-              url: wikiUrl,
-              description: (p.extract ? String(p.extract).slice(0, 220) + "..." : "External web result found for " + query),
-              category: "Web Info",
-              icon: "fa-solid fa-globe",
-              isExternal: true
-            };
-          });
-        } catch (e) {
-          return [];
-        }
-      }
-
-      function scheduleExternalSearch(rawQuery) {
-        var q = String(rawQuery || "").trim();
-        var qKey = q.toLowerCase();
-        activeExternalQuery = qKey;
-
-        if (!q || q.length < 2) {
-          externalSearchResults = [];
-          externalSearchLoading = false;
-          clearTimeout(externalSearchTimer);
-          return;
-        }
-
-        if (externalSearchCache[qKey]) {
-          externalSearchResults = externalSearchCache[qKey];
-          externalSearchLoading = false;
-          return;
-        }
-
-        externalSearchResults = buildImmediateExternalResults(q);
-        externalSearchLoading = true;
-        clearTimeout(externalSearchTimer);
-
-        externalSearchTimer = setTimeout(async function () {
-          var immediate = buildImmediateExternalResults(q);
-          var results = await Promise.all([
-            fetchItunesAppsJsonp(q),
-            fetchWikipediaWebResults(q)
-          ]);
-          var itunesList = results[0] || [];
-          var wikiList = results[1] || [];
-
-          var combined = [];
-          var seen = {};
-          immediate.concat(itunesList).concat(wikiList).forEach(function (item) {
-            var k = (item.name || "").toLowerCase() + "::" + (item.url || "").toLowerCase();
-            if (seen[k]) return;
-            seen[k] = true;
-            combined.push(item);
-          });
-
-          externalSearchCache[qKey] = combined;
-          if (activeExternalQuery === qKey) {
-            externalSearchResults = combined;
-            externalSearchLoading = false;
-            renderHome();
-            renderAppsPage();
-            renderSuggestions("homeSearchInput", "homeSuggestions");
-            renderSuggestions("appsSearchInput", "appsSuggestions");
-          }
-        }, 350);
-      }
-
       function showErrorBanner(text) {
         var el = document.getElementById("errorBanner");
         el.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + escapeHtml(text);
@@ -4842,7 +5123,7 @@
         document.body.classList.toggle("dark", isDark);
         updateAppearanceUI();
       }
-
+      
       function setThemeMode(mode) {
         var isDark = mode === "dark";
         document.body.classList.toggle("dark", isDark);
@@ -4913,16 +5194,6 @@
         return clean;
       }
 
-      function normalizeCompareUrl(url) {
-        var clean = String(url || "").trim().toLowerCase();
-        clean = clean.replace(/^https?:\/\//i, "").replace(/^www\./i, "").replace(/\/+$/, "");
-        return clean;
-      }
-
-      function normalizeCompareName(name) {
-        return String(name || "").trim().toLowerCase().replace(/\s+/g, " ");
-      }
-
       function getDomain(url) {
         try {
           return new URL(normalizeUrl(url)).hostname;
@@ -4942,42 +5213,39 @@
 
       function getCategoryFaIcon(cat) {
         var c = String(cat || "").toLowerCase();
-        if (c.includes("google")) return "fa-brands fa-google";
-        if (c.includes("channel") || c.includes("whatsapp")) return "fa-brands fa-whatsapp";
-        if (c.includes("official") || c.includes("own")) return "fa-solid fa-certificate";
-        if (c.includes("fav")) return "fa-solid fa-heart";
-        if (c.includes("popular") || c.includes("most")) return "fa-solid fa-fire";
-        if (c.includes("shop") || c.includes("store") || c.includes("mart")) return "fa-solid fa-cart-shopping";
-        if (c.includes("game")) return "fa-solid fa-gamepad";
-        if (c.includes("video") || c.includes("movie") || c.includes("media") || c.includes("entertain")) return "fa-solid fa-film";
-        if (c.includes("music") || c.includes("audio")) return "fa-solid fa-music";
-        if (c.includes("social") || c.includes("chat")) return "fa-solid fa-comments";
-        if (c.includes("tool") || c.includes("util")) return "fa-solid fa-screwdriver-wrench";
-        if (c.includes("edu") || c.includes("study") || c.includes("learn")) return "fa-solid fa-graduation-cap";
-        if (c.includes("news") || c.includes("blog")) return "fa-solid fa-newspaper";
-        if (c.includes("fin") || c.includes("pay") || c.includes("bank")) return "fa-solid fa-wallet";
-        if (c.includes("ai")) return "fa-solid fa-wand-magic-sparkles";
-        return "fa-solid fa-globe";
+        if (c.includes("official") || c.includes("own")) return "fa-certificate";
+        if (c.includes("fav")) return "fa-heart";
+        if (c.includes("popular") || c.includes("most")) return "fa-fire";
+        if (c.includes("shop") || c.includes("store") || c.includes("mart")) return "fa-cart-shopping";
+        if (c.includes("game")) return "fa-gamepad";
+        if (c.includes("video") || c.includes("movie") || c.includes("media") || c.includes("entertain")) return "fa-film";
+        if (c.includes("music") || c.includes("audio")) return "fa-music";
+        if (c.includes("social") || c.includes("chat")) return "fa-comments";
+        if (c.includes("tool") || c.includes("util")) return "fa-screwdriver-wrench";
+        if (c.includes("edu") || c.includes("study") || c.includes("learn")) return "fa-graduation-cap";
+        if (c.includes("news") || c.includes("blog")) return "fa-newspaper";
+        if (c.includes("fin") || c.includes("pay") || c.includes("bank")) return "fa-wallet";
+        if (c.includes("ai")) return "fa-wand-magic-sparkles";
+        return "fa-globe";
       }
 
       function createAppIconHtml(app, sizeClass) {
         var cls = sizeClass || "";
         var customIcon = String(app.icon || "").trim();
-        var faFallback = getCategoryFaIcon(app.category);
+        var faFallback = getCategoryFaIcon(app.category || (app.isTool ? "Tools" : ""));
 
-        if (/^(fa-(solid|regular|brands)\s+)?fa-[a-z0-9-]+$/i.test(customIcon)) {
-          var fullFa = /^fa-(solid|regular|brands)\s+/i.test(customIcon) ? customIcon : ("fa-solid " + customIcon);
-          return '<div class="app-icon-box ' + cls + '"><i class="' + escapeHtml(fullFa) + ' gold-icon"></i></div>';
+        if (/^fa-[a-z0-9-]+$/i.test(customIcon)) {
+          return '<div class="app-icon-box ' + cls + '"><i class="fa-solid ' + escapeHtml(customIcon) + ' gold-icon"></i></div>';
         }
-        if (/^(https?:\/\/|data:image\/)/i.test(customIcon)) {
-          return '<div class="app-icon-box ' + cls + '"><img src="' + escapeHtml(customIcon) + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="' + faFallback + ' gold-icon" style="display:none;"></i></div>';
+        if (/^https?:\/\//i.test(customIcon)) {
+          return '<div class="app-icon-box ' + cls + '"><img src="' + escapeHtml(customIcon) + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="fa-solid ' + faFallback + ' gold-icon" style="display:none;"></i></div>';
         }
         var domain = getDomain(app.url);
         if (domain) {
           var fav = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=128";
-          return '<div class="app-icon-box ' + cls + '"><img src="' + fav + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="' + faFallback + ' gold-icon" style="display:none;"></i></div>';
+          return '<div class="app-icon-box ' + cls + '"><img src="' + fav + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';"><i class="fa-solid ' + faFallback + ' gold-icon" style="display:none;"></i></div>';
         }
-        return '<div class="app-icon-box ' + cls + '"><i class="' + faFallback + ' gold-icon"></i></div>';
+        return '<div class="app-icon-box ' + cls + '"><i class="fa-solid ' + faFallback + ' gold-icon"></i></div>';
       }
 
       function createLauncherGridHtml(list, emptyIcon, emptyText) {
@@ -4995,21 +5263,57 @@
         }).join("");
       }
 
-      function createExternalGridHtml(rawQuery) {
-        var results = externalSearchResults || [];
-        var bannerHtml = '<div class="external-grid-banner">' +
-          '<span><i class="fa-brands fa-google gold-icon"></i> Google &amp; External Web Results for "' + escapeHtml(rawQuery) + '"</span>' +
-          (externalSearchLoading ? '<i class="fa-solid fa-spinner fa-spin"></i>' : '') +
-        '</div>';
-        if (results.length === 0) {
-          return bannerHtml + '<div class="grid-empty-state"><i class="fa-solid fa-spinner fa-spin gold-icon"></i>Searching Google &amp; Web...</div>';
+      function getHomeToolsList() {
+        var seen = {};
+        var combined = [];
+        adminTools.forEach(function (t) {
+          if (t && t.id && !seen[t.id]) {
+            seen[t.id] = true;
+            combined.push(t);
+          }
+        });
+        apps.forEach(function (a) {
+          if (a && isToolItem(a) && !seen[a.id]) {
+            seen[a.id] = true;
+            combined.push(a);
+          }
+        });
+        return combined;
+      }
+
+      function renderHomeTools(query) {
+        var grid = document.getElementById("homeToolsGrid");
+        var badge = document.getElementById("toolsCountBadge");
+        if (!grid) return;
+
+        var allTools = getHomeToolsList();
+        var filtered = allTools.filter(function (t) { return matchesQuery(t, query); }).slice(0, 4);
+
+        if (badge) {
+          badge.textContent = Math.min(4, allTools.length) + " / 4 Tools";
         }
-        return bannerHtml + results.map(function (item) {
-          return '<div class="launcher-item" onclick="openAppModal(\'' + escapeHtml(item.id) + '\')">' +
-            createAppIconHtml(item, "") +
-            '<div class="launcher-name">' + escapeHtml(item.name) + '</div>' +
-          '</div>';
-        }).join("");
+
+        if (!isLoaded) {
+          grid.innerHTML = '<div class="grid-empty-state"><i class="fa-solid fa-spinner fa-spin gold-icon"></i>Loading tools...</div>';
+          return;
+        }
+
+        var html = "";
+        for (var i = 0; i < 4; i++) {
+          var item = filtered[i];
+          if (item) {
+            html += '<div class="launcher-item" onclick="openAppModal(\'' + escapeHtml(item.id) + '\')">' +
+              createAppIconHtml(item, "") +
+              '<div class="launcher-name">' + escapeHtml(item.name) + '</div>' +
+            '</div>';
+          } else {
+            html += '<div class="launcher-item tool-slot-empty" onclick="showToast(\'Admin Panel se Tool ' + (i + 1) + ' add karein\')">' +
+              '<div class="app-icon-box"><i class="fa-solid fa-wrench gold-icon"></i></div>' +
+              '<div class="launcher-name">Tool ' + (i + 1) + '</div>' +
+            '</div>';
+          }
+        }
+        grid.innerHTML = html;
       }
 
       function matchesQuery(app, query) {
@@ -5021,41 +5325,40 @@
       }
 
       function renderSuggestions(inputId, boxId) {
-        var raw = document.getElementById(inputId).value.trim();
-        var val = raw.toLowerCase();
+        var val = document.getElementById(inputId).value.trim().toLowerCase();
         var box = document.getElementById(boxId);
-        if (!val) {
+        var searchPool = getHomeToolsList().concat(apps);
+        var seen = {};
+        var uniquePool = searchPool.filter(function (item) {
+          if (!item || !item.id || seen[item.id]) return false;
+          seen[item.id] = true;
+          return true;
+        });
+
+        if (!val || uniquePool.length === 0) {
           box.classList.remove("show");
           box.innerHTML = "";
           return;
         }
-        var matches = apps.filter(function (a) { return matchesQuery(a, val); }).slice(0, 6);
-        var showingExternal = false;
-        if (matches.length === 0 && val.length >= 2) {
-          showingExternal = true;
-          matches = (externalSearchResults.length > 0 ? externalSearchResults : buildImmediateExternalResults(raw)).slice(0, 6);
-        }
+        var matches = uniquePool.filter(function (a) { return matchesQuery(a, val); }).slice(0, 6);
         if (matches.length === 0) {
           box.classList.remove("show");
           box.innerHTML = "";
           return;
         }
-        box.innerHTML = (showingExternal
-          ? '<div style="padding:7px 14px;font-size:11px;font-weight:800;color:var(--primary);background:var(--gold-bg);border-bottom:1px solid var(--border);"><i class="fa-brands fa-google"></i> Not in OSSIAN PRO — Google &amp; External Results</div>'
-          : '') +
-          matches.map(function (a) {
-            var iconCls = getCategoryFaIcon(a.category);
-            return '<div class="suggestion-item" onclick="pickSuggestion(\'' + escapeHtml(a.id) + '\', \'' + boxId + '\')">' +
-              '<div class="suggestion-left">' +
-                '<span class="gold-badge-icon" style="width:26px;height:26px;font-size:12px;"><i class="' + iconCls + ' gold-icon"></i></span>' +
-                '<div style="min-width:0;">' +
-                  '<div class="suggestion-name">' + escapeHtml(a.name) + '</div>' +
-                  '<div class="suggestion-cat">' + escapeHtml(a.category || "Other") + '</div>' +
-                '</div>' +
+        box.innerHTML = matches.map(function (a) {
+          var iconCls = getCategoryFaIcon(a.category || (a.isTool ? "Tools" : ""));
+          return '<div class="suggestion-item" onclick="pickSuggestion(\'' + escapeHtml(a.id) + '\', \'' + boxId + '\')">' +
+            '<div class="suggestion-left">' +
+              '<span class="gold-badge-icon" style="width:26px;height:26px;font-size:12px;"><i class="fa-solid ' + iconCls + ' gold-icon"></i></span>' +
+              '<div style="min-width:0;">' +
+                '<div class="suggestion-name">' + escapeHtml(a.name) + '</div>' +
+                '<div class="suggestion-cat">' + escapeHtml(a.category || (a.isTool ? "Tools" : "Other")) + '</div>' +
               '</div>' +
-              '<i class="fa-solid fa-arrow-up-right-from-square gold-icon" style="font-size:12px;"></i>' +
-            '</div>';
-          }).join("");
+            '</div>' +
+            '<i class="fa-solid fa-arrow-up-right-from-square gold-icon" style="font-size:12px;"></i>' +
+          '</div>';
+        }).join("");
         box.classList.add("show");
       }
 
@@ -5073,33 +5376,14 @@
         renderHome();
         renderAppsPage();
         renderMePage();
-        renderAdminToolsGrid();
         updateSyncUI();
       }
 
-      function renderAdminToolsGrid() {
-        var grid = document.getElementById("adminToolsGrid");
-        if (!grid) return;
-        grid.innerHTML = createLauncherGridHtml(
-          adminTools,
-          "fa-toolbox",
-          "No tools available yet."
-        );
-        var sub = document.getElementById("toolsRowSub");
-        if (sub) {
-          sub.textContent = adminTools.length + " tool" + (adminTools.length === 1 ? "" : "s") + " • WhatsApp Channel & admin tools";
-        }
-      }
-
-      function openToolsPage() {
-        renderAdminToolsGrid();
-        openSubPage("me-tools");
-        fetchAdminTools(false);
-      }
-
       function renderHome() {
-        var rawQuery = document.getElementById("homeSearchInput").value.trim();
-        var query = rawQuery.toLowerCase();
+        var query = document.getElementById("homeSearchInput").value.trim().toLowerCase();
+
+        // 0th: 4 Admin Tools BEFORE Web Official App
+        renderHomeTools(query);
 
         var officialApps = apps
           .filter(function (a) { return isOfficialApp(a) && matchesQuery(a, query); })
@@ -5139,20 +5423,15 @@
         );
 
         var allFiltered = apps.filter(function (a) { return matchesQuery(a, query); });
-        if (query.length >= 2 && allFiltered.length === 0 && isLoaded) {
-          document.getElementById("homeAllAppsGrid").innerHTML = createExternalGridHtml(rawQuery);
-        } else {
-          document.getElementById("homeAllAppsGrid").innerHTML = createLauncherGridHtml(
-            allFiltered,
-            "fa-folder-open",
-            "No apps found."
-          );
-        }
+        document.getElementById("homeAllAppsGrid").innerHTML = createLauncherGridHtml(
+          allFiltered,
+          "fa-folder-open",
+          "No apps found."
+        );
       }
 
       function renderAppsPage() {
-        var rawQuery = document.getElementById("appsSearchInput").value.trim();
-        var query = rawQuery.toLowerCase();
+        var query = document.getElementById("appsSearchInput").value.trim().toLowerCase();
         var catSet = {};
         apps.forEach(function (a) {
           var cat = a.category || "Other";
@@ -5161,24 +5440,30 @@
             catSet[cat] = true;
           }
         });
-        var categories = ["All", "Web Official App", "Popular", "Favorites"].concat(Object.keys(catSet));
+        var categories = ["All", "Tools", "Web Official App", "Popular", "Favorites"].concat(
+          Object.keys(catSet).filter(function (c) { return c !== "Tools"; })
+        );
 
-        if (if (categories.indexOf(activeCategory) === -1) activeCategory = "All";
+        if (categories.indexOf(activeCategory) === -1) activeCategory = "All";
 
         document.getElementById("categoryChips").innerHTML = categories.map(function (cat) {
           var iconCls = cat === "All"
-            ? "fa-solid fa-layer-group"
-            : (cat === "Web Official App"
-              ? "fa-solid fa-certificate"
-              : (cat === "Popular"
-                ? "fa-solid fa-fire"
-                : (cat === "Favorites" ? "fa-solid fa-heart" : getCategoryFaIcon(cat))));
+            ? "fa-layer-group"
+            : (cat === "Tools"
+              ? "fa-toolbox"
+              : (cat === "Web Official App"
+                ? "fa-certificate"
+                : (cat === "Popular"
+                  ? "fa-fire"
+                  : (cat === "Favorites" ? "fa-heart" : getCategoryFaIcon(cat)))));
           return '<button class="chip ' + (cat === activeCategory ? "active" : "") + '" onclick="selectCategory(\'' + escapeHtml(cat) + '\')">' +
-            '<i class="' + iconCls + '"></i> ' + escapeHtml(cat) + '</button>';
+            '<i class="fa-solid ' + iconCls + '"></i> ' + escapeHtml(cat) + '</button>';
         }).join("");
 
         var filtered;
-        if (activeCategory === "Popular") {
+        if (activeCategory === "Tools") {
+          filtered = getHomeToolsList().filter(function (a) { return matchesQuery(a, query); });
+        } else if (activeCategory === "Popular") {
           filtered = apps
             .filter(function (a) { return (usageMap[a.id] || 0) > 0 && matchesQuery(a, query); })
             .sort(function (a, b) { return (usageMap[b.id] || 0) - (usageMap[a.id] || 0); });
@@ -5196,20 +5481,17 @@
           });
         }
 
-        if (query.length >= 2 && filtered.length === 0 && isLoaded) {
-          document.getElementById("allAppsGrid").innerHTML = createExternalGridHtml(rawQuery);
-        } else {
-          document.getElementById("allAppsGrid").innerHTML = createLauncherGridHtml(
-            filtered,
-            "fa-folder-open",
-            "No apps found in this category."
-          );
-        }
+        document.getElementById("allAppsGrid").innerHTML = createLauncherGridHtml(
+          filtered,
+          "fa-folder-open",
+          "No apps found in this category."
+        );
       }
 
       function renderMePage() {
+        var combinedSearchPool = apps.concat(adminTools);
         var recentApps = recentIds.map(function (id) {
-          return apps.find(function (a) { return a.id === id; });
+          return combinedSearchPool.find(function (a) { return a.id === id; });
         }).filter(Boolean);
 
         document.getElementById("recentAppsGrid").innerHTML = createLauncherGridHtml(
@@ -5239,17 +5521,34 @@
         var msgSubEl = document.getElementById("messagesRowSub");
         var promoSubEl = document.getElementById("promoRowSub");
         var logoutBtn = document.getElementById("logoutBtn");
+        var meBalEl = document.getElementById("meBalanceVal");
+        var meTokEl = document.getElementById("meTokensVal");
+        var heroBalEl = document.getElementById("heroBalanceVal");
+        var heroTokEl = document.getElementById("heroTokensVal");
+        var heroTitleEl = document.getElementById("heroWelcomeTitle");
 
         if (currentUser) {
+          var bal = typeof currentUser.balance === "number" ? currentUser.balance : 0;
+          var tok = typeof currentUser.tokens === "number" ? currentUser.tokens : 0;
           titleEl.textContent = currentUser.name;
           subEl.textContent = "UID: " + currentUser.uid + " • Code: " + currentUser.myInviteCode;
           authSubEl.textContent = "Logged in as " + currentUser.name + " (Switch account)";
           logoutBtn.style.opacity = "1";
+          if (meBalEl) meBalEl.textContent = formatNumber(bal);
+          if (meTokEl) meTokEl.textContent = formatNumber(tok);
+          if (heroBalEl) heroBalEl.textContent = formatNumber(bal);
+          if (heroTokEl) heroTokEl.textContent = formatNumber(tok);
+          if (heroTitleEl) heroTitleEl.innerHTML = '<i class="fa-solid fa-crown gold-icon"></i> ' + escapeHtml(currentUser.name);
         } else {
           titleEl.textContent = "OSSIAN PRO";
-          subEl.textContent = "Login or register to open apps & manage account";
+          subEl.textContent = "Register to get 5K free tokens & open apps";
           authSubEl.textContent = "Sign in with email or QR code";
           logoutBtn.style.opacity = "0.65";
+          if (meBalEl) meBalEl.textContent = "0";
+          if (meTokEl) meTokEl.textContent = "0";
+          if (heroBalEl) heroBalEl.textContent = "0";
+          if (heroTokEl) heroTokEl.textContent = "0";
+          if (heroTitleEl) heroTitleEl.innerHTML = '<i class="fa-solid fa-crown gold-icon"></i> Welcome to OSSIAN PRO';
         }
 
         if (officialMessages.length > 0) {
@@ -5267,9 +5566,11 @@
 
       function updateSyncUI() {
         var statusEl = document.getElementById("syncStatusText");
+        var toolsEl = document.getElementById("syncToolsCount");
         var uploadedEl = document.getElementById("syncUploadedCount");
         var msgsEl = document.getElementById("syncMessagesCount");
         if (statusEl) statusEl.textContent = dbStatusMessage;
+        if (toolsEl) toolsEl.textContent = Math.min(4, getHomeToolsList().length) + " / 4";
         if (uploadedEl) uploadedEl.textContent = getCurrentUserSubmittedApps().length;
         if (msgsEl) msgsEl.textContent = officialMessages.length;
       }
@@ -5346,13 +5647,12 @@
         if (!autoRefreshOn) return;
         autoRefreshTimerId = setInterval(function () {
           fetchApps(false);
-          fetchAdminTools(false);
-          fetchSiteConfig();
           fetchMessages(false);
           fetchPromoCodes();
           fetchSubmittedAppsStatus(false);
           fetchAppointments(false);
           fetchUploadApprovalStatus(false);
+          enforceDeviceAndIpSecurity();
           if (swRegistration) swRegistration.update().catch(function () {});
         }, autoRefreshSec * 1000);
       }
@@ -5597,13 +5897,10 @@
       }
 
       function openSubmitAppPage() {
-        var dupBox = document.getElementById("submitDuplicateError");
-        if (dupBox) dupBox.classList.remove("show");
         renderSubmitAppLockState();
         renderSubmittedAppsList();
         openSubPage("settings-submit-app");
         fetchUploadApprovalStatus(false);
-        fetchSubmittedAppsStatus(false);
       }
 
       function openAppointmentsPage() {
@@ -5620,13 +5917,12 @@
 
       function syncNowFromPage() {
         fetchApps(true);
-        fetchAdminTools(false);
-        fetchSiteConfig();
         fetchMessages(false);
         fetchPromoCodes();
         fetchSubmittedAppsStatus(false);
         fetchAppointments(false);
         fetchUploadApprovalStatus(false);
+        fetchPublicIpAddress().then(function () { enforceDeviceAndIpSecurity(); });
         if (swRegistration) swRegistration.update().catch(function () {});
         updateSyncUI();
       }
@@ -5684,8 +5980,11 @@
           return;
         }
 
+        if (!currentPublicIp) await fetchPublicIpAddress();
+
         var passSha = await sha256Salted(password, email);
         var passLegacy = hashSecret(password);
+        var cloudUsers = await fetchCloudUsersSilently();
 
         var matched = registeredUsers.find(function (u) {
           return u.email.toLowerCase() === email &&
@@ -5694,32 +5993,38 @@
              (u.passwordHash && u.passwordHash === passLegacy));
         });
 
-        if (!matched) {
-          var cloudUsers = await fetchCloudUsersSilently();
-          if (cloudUsers) {
-            var cloudMatch = cloudUsers.find(function (cu) {
-              return cu.email.toLowerCase() === email &&
-                ((cu.passwordSha256 && cu.passwordSha256 === passSha) ||
-                 (cu.passwordHash && cu.passwordHash === passLegacy));
+        if (cloudUsers) {
+          var cloudMatch = cloudUsers.find(function (cu) {
+            return cu.email.toLowerCase() === email &&
+              ((cu.passwordSha256 && cu.passwordSha256 === passSha) ||
+               (cu.passwordHash && cu.passwordHash === passLegacy));
+          });
+          if (cloudMatch) {
+            matched = Object.assign({}, matched || {}, {
+              uid: cloudMatch.uid,
+              name: cloudMatch.name,
+              email: cloudMatch.email,
+              password: password,
+              passwordHash: passLegacy,
+              passwordSha256: passSha,
+              bankingPinHash: cloudMatch.bankingPinHash || "",
+              myInviteCode: ensureValid5DigitCode(cloudMatch.myInviteCode),
+              referredBy: cloudMatch.referredBy || "",
+              qrToken: cloudMatch.qrToken || generateQrToken(),
+              balance: typeof cloudMatch.balance === "number" ? cloudMatch.balance : 0,
+              tokens: typeof cloudMatch.tokens === "number" ? cloudMatch.tokens : 0,
+              ipAddress: cloudMatch.ipAddress || currentPublicIp || "",
+              ipHistory: cloudMatch.ipHistory || [],
+              deviceId: cloudMatch.deviceId || currentDeviceId,
+              hardwareFp: cloudMatch.hardwareFp || currentHardwareFp,
+              isMainAccount: cloudMatch.isMainAccount,
+              suspended: cloudMatch.suspended,
+              suspendReason: cloudMatch.suspendReason || "",
+              suspendedAt: cloudMatch.suspendedAt || 0,
+              createdAt: cloudMatch.createdAt || Date.now()
             });
-            if (cloudMatch) {
-              matched = {
-                uid: cloudMatch.uid,
-                name: cloudMatch.name,
-                email: cloudMatch.email,
-                password: password,
-                passwordHash: passLegacy,
-                passwordSha256: passSha,
-                bankingPinHash: cloudMatch.bankingPinHash || "",
-                myInviteCode: ensureValid5DigitCode(cloudMatch.myInviteCode),
-                referredBy: cloudMatch.referredBy || "",
-                qrToken: cloudMatch.qrToken || generateQrToken(),
-                createdAt: cloudMatch.createdAt || Date.now()
-              };
-              if (cloudMatch.canSubmitApp) {
-                setUserUploadApprovalState(cloudMatch.uid, "approved");
-              }
-              saveOrUpdateLocalUser(matched);
+            if (cloudMatch.canSubmitApp) {
+              setUserUploadApprovalState(cloudMatch.uid, "approved");
             }
           }
         }
@@ -5750,11 +6055,22 @@
         if (!matched.passwordSha256) matched.passwordSha256 = passSha;
         matched.myInviteCode = ensureValid5DigitCode(matched.myInviteCode);
         if (!matched.qrToken) matched.qrToken = generateQrToken();
-        saveOrUpdateLocalUser(matched);
+        if (typeof matched.balance !== "number") matched.balance = 0;
+        if (typeof matched.tokens !== "number") matched.tokens = matched.suspended ? 0 : REGISTER_FREE_TOKENS;
+        if (!matched.deviceId) matched.deviceId = currentDeviceId;
+        if (!matched.hardwareFp) matched.hardwareFp = currentHardwareFp;
+        if (currentPublicIp) {
+          matched.ipAddress = currentPublicIp;
+          matched.ipHistory = Array.isArray(matched.ipHistory) ? matched.ipHistory : [];
+          if (matched.ipHistory.indexOf(currentPublicIp) === -1) matched.ipHistory.push(currentPublicIp);
+        }
 
+        saveOrUpdateLocalUser(matched);
         saveCurrentUserSession(matched);
-        if (matched.bankingPinHash && !bankingPinHash) {
-          bankingPinHash = matched.bankingPinHash;
+        await enforceDeviceAndIpSecurity(cloudUsers);
+
+        if (currentUser && currentUser.bankingPinHash && !bankingPinHash) {
+          bankingPinHash = currentUser.bankingPinHash;
           safeSet("ossian_banking_pin_v1", bankingPinHash);
           updateBankingSecurityUI();
         }
@@ -5765,7 +6081,9 @@
         fetchSubmittedAppsStatus(false);
         fetchUploadApprovalStatus(false);
         switchTab("me");
-        showToast("Welcome back, " + currentUser.name + "!");
+        showToast(currentUser && currentUser.suspended
+          ? "Account Suspended! Only Main Account is allowed."
+          : "Welcome back, " + currentUser.name + "!");
       });
 
       document.getElementById("registerForm").addEventListener("submit", async function (e) {
@@ -5798,6 +6116,8 @@
         var regBtn = document.getElementById("registerSubmitBtn");
         regBtn.disabled = true;
 
+        if (!currentPublicIp) await fetchPublicIpAddress();
+
         var existsLocal = registeredUsers.some(function (u) {
           return u.email.toLowerCase() === email;
         });
@@ -5807,27 +6127,35 @@
           return u.email.toLowerCase() === email;
         });
 
-        regBtn.disabled = false;
-
         if (existsLocal || existsCloud) {
+          regBtn.disabled = false;
           showToast("Only one account per email is allowed! Please login.");
           switchAuthTab("login");
           document.getElementById("loginEmail").value = email;
           return;
         }
 
+        var combinedUsers = registeredUsers.slice();
+        if (Array.isArray(cloudUsers)) {
+          cloudUsers.forEach(function (cu) {
+            if (!combinedUsers.some(function (lu) { return lu.uid === cu.uid; })) {
+              combinedUsers.push(cu);
+            }
+          });
+        }
+
+        // Check if this mobile phone or IP address already has a Main Account
+        var existingMain = findMainAccountMatch(combinedUsers, currentPublicIp, currentDeviceId, currentHardwareFp);
+        if (!existingMain && idbMainUidCache) {
+          existingMain = combinedUsers.find(function (u) { return u.uid === idbMainUidCache; }) || { uid: idbMainUidCache, isMainAccount: true };
+        }
+
         var usedUids = {};
         var usedCodes = {};
-        registeredUsers.forEach(function (u) {
+        combinedUsers.forEach(function (u) {
           usedUids[u.uid] = true;
           usedCodes[u.myInviteCode] = true;
         });
-        if (Array.isArray(cloudUsers)) {
-          cloudUsers.forEach(function (u) {
-            usedUids[u.uid] = true;
-            usedCodes[u.myInviteCode] = true;
-          });
-        }
 
         var newUid = generateUid();
         while (usedUids[newUid]) newUid = generateUid();
@@ -5836,6 +6164,8 @@
 
         var passSha = await sha256Salted(password, email);
         var now = Date.now();
+        var isDuplicateDeviceOrIp = Boolean(existingMain);
+
         var newUser = {
           uid: newUid,
           name: name,
@@ -5847,22 +6177,50 @@
           myInviteCode: newInviteCode,
           referredBy: referredBy,
           qrToken: generateQrToken(),
+          balance: 0,
+          tokens: isDuplicateDeviceOrIp ? 0 : REGISTER_FREE_TOKENS,
+          ipAddress: currentPublicIp || "",
+          ipHistory: currentPublicIp ? [currentPublicIp] : [],
+          deviceId: currentDeviceId,
+          hardwareFp: currentHardwareFp,
+          isMainAccount: !isDuplicateDeviceOrIp,
+          suspended: isDuplicateDeviceOrIp,
+          suspendReason: isDuplicateDeviceOrIp
+            ? "Multiple accounts detected on same mobile phone or IP address (" + (currentPublicIp || "Tracked") + "). Only your Main Account (" + (existingMain.uid || "Primary") + ") stays active."
+            : "",
+          suspendedAt: isDuplicateDeviceOrIp ? now : 0,
           createdAt: now
         };
+
+        if (!isDuplicateDeviceOrIp) {
+          idbMainUidCache = newUid;
+          safeSet("ossian_main_uid_v1", newUid);
+          await idbSetMeta("main_uid", newUid);
+        } else if (existingMain && existingMain.uid && !existingMain.isMainAccount) {
+          existingMain.isMainAccount = true;
+          patchUserSecurityInCloud(existingMain);
+        }
 
         registeredUsers.push(newUser);
         regTimestamps.push(now);
         saveCurrentUserSession(newUser);
         safeSet("ossian_users_v1", JSON.stringify(registeredUsers));
         safeSet("ossian_reg_ts_v1", JSON.stringify(regTimestamps));
-        syncUserToCloudSilently(newUser);
+        await syncUserToCloudSilently(newUser);
+        regBtn.disabled = false;
 
         document.getElementById("registerForm").reset();
         updateMeAccountUI();
         updateSettingsRowSummaries();
         updateSyncUI();
+        updateSuspendedOverlay(existingMain);
         switchTab("me");
-        showToast("Account created! Invite Code: " + newUser.myInviteCode);
+
+        if (isDuplicateDeviceOrIp) {
+          showToast("Multiple accounts detected! Extra account suspended; Main Account is safe.");
+        } else {
+          showToast("Registered! 5,000 Free Tokens added • Invite Code: " + newUser.myInviteCode);
+        }
       });
 
       /* =======================================================
@@ -6272,23 +6630,29 @@
           if (cloudUser.canSubmitApp) {
             setUserUploadApprovalState(cloudUser.uid, "approved");
           }
-          if (!matchedUser) {
-            matchedUser = {
-              uid: cloudUser.uid,
-              name: cloudUser.name || payload.n || "OSSIAN PRO User",
-              email: cloudUser.email,
-              password: "",
-              passwordHash: cloudUser.passwordHash || "",
-              passwordSha256: cloudUser.passwordSha256 || "",
-              bankingPinHash: cloudUser.bankingPinHash || "",
-              myInviteCode: ensureValid5DigitCode(cloudUser.myInviteCode),
-              referredBy: cloudUser.referredBy || "",
-              qrToken: cloudUser.qrToken || targetToken,
-              createdAt: cloudUser.createdAt || Date.now()
-            };
-          } else if (cloudUser.bankingPinHash && !matchedUser.bankingPinHash) {
-            matchedUser.bankingPinHash = cloudUser.bankingPinHash;
-          }
+          matchedUser = Object.assign({}, matchedUser || {}, {
+            uid: cloudUser.uid,
+            name: cloudUser.name || payload.n || "OSSIAN PRO User",
+            email: cloudUser.email,
+            password: (matchedUser && matchedUser.password) || "",
+            passwordHash: cloudUser.passwordHash || "",
+            passwordSha256: cloudUser.passwordSha256 || "",
+            bankingPinHash: cloudUser.bankingPinHash || "",
+            myInviteCode: ensureValid5DigitCode(cloudUser.myInviteCode),
+            referredBy: cloudUser.referredBy || "",
+            qrToken: cloudUser.qrToken || targetToken,
+            balance: typeof cloudUser.balance === "number" ? cloudUser.balance : 0,
+            tokens: typeof cloudUser.tokens === "number" ? cloudUser.tokens : 0,
+            ipAddress: cloudUser.ipAddress || currentPublicIp || "",
+            ipHistory: cloudUser.ipHistory || [],
+            deviceId: cloudUser.deviceId || currentDeviceId,
+            hardwareFp: cloudUser.hardwareFp || currentHardwareFp,
+            isMainAccount: cloudUser.isMainAccount,
+            suspended: cloudUser.suspended,
+            suspendReason: cloudUser.suspendReason || "",
+            suspendedAt: cloudUser.suspendedAt || 0,
+            createdAt: cloudUser.createdAt || Date.now()
+          });
         }
 
         if (!matchedUser || matchedUser.qrToken !== targetToken) {
@@ -6300,11 +6664,21 @@
         qrLockUntil = 0;
         safeSet("ossian_qr_fails_v1", "0");
         safeSet("ossian_qr_lock_v1", "0");
-        saveOrUpdateLocalUser(matchedUser);
 
+        if (!matchedUser.deviceId) matchedUser.deviceId = currentDeviceId;
+        if (!matchedUser.hardwareFp) matchedUser.hardwareFp = currentHardwareFp;
+        if (currentPublicIp) {
+          matchedUser.ipAddress = currentPublicIp;
+          matchedUser.ipHistory = Array.isArray(matchedUser.ipHistory) ? matchedUser.ipHistory : [];
+          if (matchedUser.ipHistory.indexOf(currentPublicIp) === -1) matchedUser.ipHistory.push(currentPublicIp);
+        }
+
+        saveOrUpdateLocalUser(matchedUser);
         saveCurrentUserSession(matchedUser);
-        if (matchedUser.bankingPinHash && !bankingPinHash) {
-          bankingPinHash = matchedUser.bankingPinHash;
+        await enforceDeviceAndIpSecurity();
+
+        if (currentUser && currentUser.bankingPinHash && !bankingPinHash) {
+          bankingPinHash = currentUser.bankingPinHash;
           safeSet("ossian_banking_pin_v1", bankingPinHash);
           updateBankingSecurityUI();
         }
@@ -6314,7 +6688,9 @@
         fetchSubmittedAppsStatus(false);
         fetchUploadApprovalStatus(false);
         switchTab("me");
-        showToast("QR Login successful! Welcome, " + currentUser.name);
+        showToast(currentUser && currentUser.suspended
+          ? "Account Suspended! Only Main Account is allowed."
+          : "QR Login successful! Welcome, " + currentUser.name);
       }
 
       /* Promo Code Form */
@@ -6534,58 +6910,9 @@
           '</div>';
       }
 
-      /* Submit Application Page (with Duplicate Check: "this appointment already uploaded") */
-      async function isDuplicateAppOrWebsite(name, url) {
-        var targetName = normalizeCompareName(name);
-        var targetUrl = normalizeCompareUrl(url);
-        var combinedList = [];
-
-        apps.forEach(function (a) { combinedList.push(a); });
-        submittedApps.forEach(function (a) { combinedList.push(a); });
-        allCloudSubmittedApps.forEach(function (a) { combinedList.push(a); });
-
-        try {
-          const resApps = await fetch(BASE_URL + "?pageSize=200&key=" + encodeURIComponent(API_KEY), {
-            method: "GET",
-            cache: "no-store"
-          });
-          const dataApps = await resApps.json();
-          if (resApps.ok && dataApps && Array.isArray(dataApps.documents)) {
-            dataApps.documents.map(parseFirestoreDoc).forEach(function (item) {
-              combinedList.push(item);
-            });
-          }
-        } catch (e) {}
-
-        try {
-          const resSub = await fetch(SUBMITTED_APPS_URL + "?pageSize=200&key=" + encodeURIComponent(API_KEY), {
-            method: "GET",
-            cache: "no-store"
-          });
-          const dataSub = await resSub.json();
-          if (resSub.ok && dataSub && Array.isArray(dataSub.documents)) {
-            allCloudSubmittedApps = dataSub.documents.map(parseFirestoreSubmittedApp);
-            allCloudSubmittedApps.forEach(function (item) {
-              combinedList.push(item);
-            });
-          }
-        } catch (e) {}
-
-        return combinedList.some(function (existing) {
-          if (!existing) return false;
-          var exUrl = normalizeCompareUrl(existing.url);
-          var exName = normalizeCompareName(existing.name);
-          var urlMatched = targetUrl && exUrl && exUrl === targetUrl;
-          var nameMatched = targetName && exName && exName === targetName;
-          return urlMatched || nameMatched;
-        });
-      }
-
+      /* Submit Application Page */
       document.getElementById("submitAppForm").addEventListener("submit", async function (e) {
         e.preventDefault();
-        var dupErrBox = document.getElementById("submitDuplicateError");
-        if (dupErrBox) dupErrBox.classList.remove("show");
-
         if (!currentUser) {
           showToast("Please login or register first!");
           openAuthPage("login");
@@ -6613,17 +6940,6 @@
           return;
         }
 
-        var subBtn = document.getElementById("submitAppBtn");
-        if (subBtn) subBtn.disabled = true;
-
-        var duplicateFound = await isDuplicateAppOrWebsite(name, url);
-        if (duplicateFound) {
-          if (subBtn) subBtn.disabled = false;
-          if (dupErrBox) dupErrBox.classList.add("show");
-          showToast("this appointment already uploaded");
-          return;
-        }
-
         var appItem = {
           id: "sub_" + Date.now() + "_" + Math.floor(1000 + Math.random() * 9000),
           name: name,
@@ -6640,7 +6956,6 @@
         };
 
         submittedApps.unshift(appItem);
-        allCloudSubmittedApps.unshift(appItem);
         safeSet("ossian_submitted_apps_v1", JSON.stringify(submittedApps));
         document.getElementById("submitAppForm").reset();
         renderSubmittedAppsList();
@@ -6648,7 +6963,6 @@
         updateSyncUI();
 
         var synced = await syncSubmittedAppToCloudSilently(appItem, false);
-        if (subBtn) subBtn.disabled = false;
         if (synced) {
           showToast("Submitted to Admin Panel! Status: Pending.");
         }
@@ -6859,7 +7173,7 @@
           body.innerHTML =
             '<div style="text-align:center; padding:18px 10px;">' +
               '<i class="fa-solid fa-user-lock gold-icon" style="font-size:32px; margin-bottom:10px;"></i>' +
-              '<p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">You are not logged in yet. Please login or register to view your account information.</p>' +
+              '<p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">You are not logged in yet. Register now to get 5,000 Free Tokens and view your account information.</p>' +
               '<button class="btn btn-primary" onclick="openAuthPage(\'register\')">' +
                 '<i class="fa-solid fa-user-plus"></i> Register / Login' +
               '</button>' +
@@ -6872,12 +7186,29 @@
           ? escapeHtml(passValue)
           : "•".repeat(Math.max(6, String(passValue).length));
         var myCode = ensureValid5DigitCode(currentUser.myInviteCode);
+        var bal = typeof currentUser.balance === "number" ? currentUser.balance : 0;
+        var tok = typeof currentUser.tokens === "number" ? currentUser.tokens : 0;
+        var statusLabel = currentUser.suspended
+          ? '<span style="color:#ef4444;">Suspended (Duplicate Account)</span>'
+          : '<span style="color:#10b981;">Main Account • Active</span>';
 
         body.innerHTML =
           '<div class="info-kv-list">' +
             '<div class="info-kv-item">' +
               '<div><div class="info-kv-label">1. Name</div><div class="info-kv-val">' + escapeHtml(currentUser.name) + '</div></div>' +
               '<i class="fa-solid fa-user gold-icon"></i>' +
+            '</div>' +
+            '<div class="info-kv-item">' +
+              '<div><div class="info-kv-label">Balance</div><div class="info-kv-val">' + formatNumber(bal) + '</div></div>' +
+              '<i class="fa-solid fa-wallet gold-icon"></i>' +
+            '</div>' +
+            '<div class="info-kv-item">' +
+              '<div><div class="info-kv-label">Tokens (5K Free on Register)</div><div class="info-kv-val">' + formatNumber(tok) + ' Tokens</div></div>' +
+              '<i class="fa-solid fa-coins gold-icon"></i>' +
+            '</div>' +
+            '<div class="info-kv-item">' +
+              '<div><div class="info-kv-label">Account Security Status</div><div class="info-kv-val">' + statusLabel + '</div></div>' +
+              '<i class="fa-solid fa-shield-halved gold-icon"></i>' +
             '</div>' +
             '<div class="info-kv-item">' +
               '<div><div class="info-kv-label">2. UID (Permanent)</div><div class="info-kv-val">' + escapeHtml(currentUser.uid) + '</div></div>' +
@@ -6896,6 +7227,14 @@
             '<div class="info-kv-item">' +
               '<div><div class="info-kv-label">5. Invite Code (Permanent)</div><div class="info-kv-val">' + escapeHtml(myCode) + '</div></div>' +
               '<button class="btn btn-secondary btn-sm" onclick="copyTextValue(\'' + escapeHtml(myCode) + '\', \'Invite code copied!\')"><i class="fa-solid fa-copy gold-icon"></i></button>' +
+            '</div>' +
+            '<div class="info-kv-item">' +
+              '<div><div class="info-kv-label">6. Tracked IP Address</div><div class="info-kv-val">' + escapeHtml(currentUser.ipAddress || currentPublicIp || "Detecting...") + '</div></div>' +
+              '<i class="fa-solid fa-network-wired gold-icon"></i>' +
+            '</div>' +
+            '<div class="info-kv-item">' +
+              '<div><div class="info-kv-label">7. Mobile Device ID</div><div class="info-kv-val">' + escapeHtml(currentUser.deviceId || currentDeviceId || "-") + '</div></div>' +
+              '<i class="fa-solid fa-mobile-screen gold-icon"></i>' +
             '</div>' +
           '</div>';
       }
@@ -6947,6 +7286,7 @@
         }
         stopQrScanner();
         saveCurrentUserSession(null);
+        document.getElementById("suspendedOverlay").classList.remove("open");
         updateMeAccountUI();
         updateSettingsRowSummaries();
         renderSubmitAppLockState();
@@ -6997,30 +7337,20 @@
         if (currentModalId) toggleFavorite(currentModalId);
       }
 
-      function findAnyAppById(id) {
-        var found = apps.find(function (a) { return a.id === id; });
-        if (found) return found;
-        found = adminTools.find(function (t) { return t.id === id; });
-        if (found) return found;
-        found = externalSearchResults.find(function (x) { return x.id === id; });
-        if (found) return found;
-        var cacheKeys = Object.keys(externalSearchCache);
-        for (var i = 0; i < cacheKeys.length; i++) {
-          var arr = externalSearchCache[cacheKeys[i]] || [];
-          found = arr.find(function (x) { return x.id === id; });
-          if (found) return found;
-        }
-        return null;
-      }
-
       function openAppModal(id) {
         if (!currentUser) {
           showToast("Please register or login first to open apps!");
           openAuthPage("register");
           return;
         }
+        if (currentUser.suspended) {
+          updateSuspendedOverlay(null);
+          showToast("Suspended account cannot open apps!");
+          return;
+        }
 
-        var app = findAnyAppById(id);
+        var app = apps.find(function (a) { return a.id === id; }) ||
+                  adminTools.find(function (t) { return t.id === id; });
         if (!app) return;
         currentModalId = id;
         var safeUrl = normalizeUrl(app.url);
@@ -7030,15 +7360,9 @@
         iconContainer.outerHTML = createAppIconHtml(app, "lg").replace('class="app-icon-box lg"', 'id="modalIconBox" class="app-icon-box lg"');
 
         document.getElementById("modalAppName").textContent = app.name;
-        document.getElementById("modalAppCat").textContent = app.category || "Other";
+        document.getElementById("modalAppCat").textContent = app.category || (app.isTool ? "Tools" : "Other");
         document.getElementById("modalAppUrl").textContent = safeUrl;
         document.getElementById("modalAppDesc").textContent = app.description || "Launch this web app directly from OSSIAN PRO.";
-
-        var favBtn = document.getElementById("modalFavBtn");
-        if (favBtn) {
-          favBtn.style.display = (app.isExternal || app.isTool) ? "none" : "";
-        }
-
         var launchLink = document.getElementById("modalLaunchLink");
         launchLink.href = safeUrl;
         launchLink.onclick = function (ev) {
@@ -7049,27 +7373,26 @@
             openAuthPage("register");
             return false;
           }
+          if (currentUser.suspended) {
+            ev.preventDefault();
+            closeModal("appModal");
+            updateSuspendedOverlay(null);
+            return false;
+          }
           if (bankingPinHash) {
             ev.preventDefault();
             if (updatePinLockTimerUI()) {
               showToast("PIN locked! Please wait for timer.");
               return false;
             }
-            pendingLaunchTarget = {
-              id: id,
-              url: safeUrl,
-              isExternal: !!app.isExternal,
-              isTool: !!app.isTool
-            };
+            pendingLaunchTarget = { id: id, url: safeUrl };
             document.getElementById("appPinTargetName").textContent =
               "Paste or enter your saved 4-digit PIN to open " + app.name;
             document.getElementById("appPinInput").value = "";
             document.getElementById("appPinVerifyModal").classList.add("open");
             return false;
           }
-          if (!app.isExternal && !app.isTool) {
-            trackAppOpen(id);
-          }
+          trackAppOpen(id);
         };
 
         updateModalFavBtn();
@@ -7139,7 +7462,7 @@
         var toast = document.getElementById("toast");
         var icon = toast.querySelector("i");
         var lower = String(msg || "").toLowerCase();
-        if (lower.includes("error") || lower.includes("wrong") || lower.includes("invalid") || lower.includes("locked") || lower.includes("failed") || lower.includes("required") || lower.includes("only one account") || lower.includes("blocked") || lower.includes("maximum") || lower.includes("already uploaded")) {
+        if (lower.includes("error") || lower.includes("wrong") || lower.includes("invalid") || lower.includes("locked") || lower.includes("failed") || lower.includes("required") || lower.includes("only one account") || lower.includes("blocked") || lower.includes("maximum") || lower.includes("suspended")) {
           icon.className = "fa-solid fa-triangle-exclamation";
           icon.style.color = "#ef4444";
         } else {
@@ -7177,8 +7500,6 @@
       window.openMessagesPage = openMessagesPage;
       window.openRecentPage = openRecentPage;
       window.openPromoPage = openPromoPage;
-      window.openToolsPage = openToolsPage;
-      window.fetchAdminTools = fetchAdminTools;
       window.openFeedbackPage = openFeedbackPage;
       window.openFeedbackForUploadRequest = openFeedbackForUploadRequest;
       window.selectFeedbackOption = selectFeedbackOption;
@@ -7191,10 +7512,9 @@
       window.removeBankingPin = removeBankingPin;
       window.pastePinInto = pastePinInto;
       window.openCustomerServiceModal = openCustomerServiceModal;
+      window.logoutSuspendedToMain = logoutSuspendedToMain;
       window.triggerDirectPwaDownload = triggerDirectPwaDownload;
       window.downloadLiveSyncPwaFile = downloadLiveSyncPwaFile;
-      window.openLiveWebsiteTool = openLiveWebsiteTool;
-      window.fetchSiteConfig = fetchSiteConfig;
       window.openAutoRefreshPage = openAutoRefreshPage;
       window.toggleDraftAutoRefresh = toggleDraftAutoRefresh;
       window.selectDraftRefreshSec = selectDraftRefreshSec;
@@ -7217,6 +7537,9 @@
       loadLocalState();
       initPwaEngine();
       initBankingSecurity();
+      initDeviceAndIpSecurity().then(function () {
+        enforceDeviceAndIpSecurity();
+      });
       updateMeAccountUI();
       updateNotificationUI();
       updateBankingSecurityUI();
@@ -7228,22 +7551,12 @@
       startAutoRefreshTimer();
 
       document.getElementById("homeSearchInput").addEventListener("input", function () {
-        scheduleExternalSearch(this.value);
         renderHome();
         renderSuggestions("homeSearchInput", "homeSuggestions");
       });
       document.getElementById("appsSearchInput").addEventListener("input", function () {
-        scheduleExternalSearch(this.value);
         renderAppsPage();
         renderSuggestions("appsSearchInput", "appsSuggestions");
-      });
-      document.getElementById("subAppName").addEventListener("input", function () {
-        var box = document.getElementById("submitDuplicateError");
-        if (box) box.classList.remove("show");
-      });
-      document.getElementById("subAppLink").addEventListener("input", function () {
-        var box = document.getElementById("submitDuplicateError");
-        if (box) box.classList.remove("show");
       });
       document.addEventListener("click", function (e) {
         if (!e.target.closest(".search-box")) {
@@ -7253,19 +7566,16 @@
       document.getElementById("themeToggleBtn").addEventListener("click", toggleTheme);
       document.getElementById("refreshBtn").addEventListener("click", function () {
         fetchApps(true);
-        fetchAdminTools(false);
-        fetchSiteConfig();
         fetchMessages(false);
         fetchPromoCodes();
         fetchSubmittedAppsStatus(false);
         fetchAppointments(false);
         fetchUploadApprovalStatus(false);
+        enforceDeviceAndIpSecurity();
         if (swRegistration) swRegistration.update().catch(function () {});
       });
 
       fetchApps(false);
-      fetchAdminTools(false);
-      fetchSiteConfig();
       fetchMessages(false);
       fetchPromoCodes();
       fetchSubmittedAppsStatus(false);
